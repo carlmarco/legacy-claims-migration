@@ -74,7 +74,7 @@ The machine is an Apple M4 (4 performance + 6 efficiency cores, 16 GB). Postgres
 4. **parallel** attacks the transform. Extract+load scales sublinearly: 1.2× at 2 workers, 1.8× at 4, 2.8× at 8. The total worker CPU for the same work rises from 350 s to 579 s. Past 4 workers, processes land on efficiency cores, and they compete with Postgres in the same machine.
 5. **At 8 workers the merge is the bottleneck: 68% of the total.** It's single-threaded set-based SQL; `claim_diagnosis` (66 s) and `claim_line` (46 s) dominate. The merge is also 20–40 s slower after parallel loads than after single-process ones. My hypothesis is that rows interleaved by concurrent COPYs lose physical locality for the sort and join; that's unverified. The merge is the next optimization target.
 
-**Run-to-run noise:** each row above is a single run. An earlier full set of runs on the same code, minus a merge fix, was 15–30% slower across the board: naive took 2,502 s, COPY 447 s, 8 workers 253 s. The *ratios* and the bottleneck story held in both runs. The absolute numbers depend on what else the laptop is doing; a rented-VM run with repeated trials is planned.
+**Run-to-run noise:** each row above is a single run. An earlier full set of runs on the same code, minus a merge fix, measured naive at 2,502 s (+30%), COPY at 447 s (+16%), and 8 workers at 253 s (+1%). The single-process, transform-heavy runs vary the most. The bottleneck story held in both sets. The absolute numbers depend on what else the laptop is doing; a rented-VM run with repeated trials is planned.
 
 Memory stays flat regardless of input size: about 120 MB for single-process batched runs, and at most 95 MB per parallel worker.
 
