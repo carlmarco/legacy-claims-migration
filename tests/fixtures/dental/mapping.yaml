@@ -1,0 +1,50 @@
+# Second, unrelated dataset: proves the engine has no SynPUF assumptions (DECISIONS D2).
+name: dental
+source: {kind: sqlite, path: legacy.sqlite}   # built by the test into this directory
+null_tokens: ["", "NULL", "00/00/0000"]
+lineage: {rec_id: ROWID_, version: MODIFIED}
+exclude: "DELETED = 'T'"
+
+code_maps:
+  gender: {case_insensitive: true, values: {"m": M, "f": F, "1": M, "2": F}}
+
+entities:
+  patient:
+    key: [patient_number]
+    survivorship: {order: "_version DESC"}
+    sources:
+      - from: PATIENT_TBL
+        columns:
+          patient_number: [PT_NUM, id]
+          last_name: [LNAME, text]
+          birth_date: [BDATE, date, {formats: ["%m/%d/%Y"], century: 1900}]
+          gender: [GENDER, code, {map: gender}]
+          zip: [ZIP, padded_digits, {width: 5}]
+
+  appointment:
+    key: [appointment_number]
+    survivorship: {order: "_version DESC"}
+    references: {patient: [patient_number]}
+    sources:
+      - from: APPT_TBL
+        columns:
+          appointment_number: [APPT_NO, integer]
+          patient_number: [PT_NUM, id]
+          appointment_date: [APPT_DT, date, {formats: ["%m/%d/%Y"]}]
+
+  appointment_procedure:
+    key: [appointment_number, slot]
+    survivorship: {order: "_version DESC"}
+    references: {appointment: [appointment_number]}
+    sources:
+      - from: APPT_TBL
+        columns:
+          appointment_number: [APPT_NO, integer]
+        unpivot:
+          index: slot
+          n: 4
+          fields: {code: "PROC{n}", fee: "FEE{n}"}
+          keep_if_any: [procedure_code, fee]
+          columns:
+            procedure_code: [code, text]
+            fee: [fee, money]

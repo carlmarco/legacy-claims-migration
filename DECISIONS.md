@@ -87,3 +87,52 @@ Measured by `datasets/synpuf/profile_source.py` → `results/native_profile.json
 **Rejected:**
 - A single `random.Random(seed)` stream: output would depend on row order and subset size.
 - Writing the truth log into the legacy DB: it would leak the answers to the migrator.
+
+### D13 · ICD-9 codes: store raw + resolved + resolution status; resolve against the official code list; never guess
+**Decision:** Each code becomes three columns: `code_raw` (as received), `code` (resolved, or NULL), and `resolution`, one of:
+- `exact`: as received and valid.
+- `repaired`: exactly one zero-padded candidate is valid.
+- `ambiguous`: several candidates are valid, so the code is left NULL.
+- `unresolved`: no candidate is valid and zeros may have been lost.
+- `not_in_reference`: no zeros could have been lost, but the code isn't in the list. The value is kept.
+
+Candidates are the received digits plus left-padded variants, up to the code system's maximum length (5 for diagnosis, 4 for procedure). The reference list is CMS ICD-9-CM v32.
+
+**Measured against the truth log (25% subset):** of 41,456 codes with leading zeros lost,
+| Outcome | Count |
+|---|---:|
+| Unique and correct | 25,958 |
+| Ambiguous | 13,474 |
+| No valid candidate | 1,775 |
+| **Unique but wrong** | **249 (0.6%)** |
+
+**Why "unique but wrong" exists:** 2.85% of *clean* SynPUF diagnosis codes aren't in v32. That's version drift (v32 is FY2015, the claims are 2008–2010; e.g. `041.4` was later subdivided) plus synthesis noise (HIV codes `043.x`/`044.x`, retired in 1994). When the true code isn't in the list, the only valid candidate is a different code. Checking against the reference list is necessary but not sufficient, and the validator reports this residual explicitly.
+
+**Open:** adding the code lists for the claim years (v25–v28) should shrink `unresolved` and the wrong repairs. That needs a download, pending approval.
+
+**Rejected:**
+- Always left-padding (silently wrong for every ambiguous code).
+- Never repairing (throws away 25,958 recoverable codes).
+- Picking the most frequent candidate (a guess dressed up as a rule).
+
+### D14 · Row-local transforms in Python; set-based work (dedup, survivorship, FK checks) in Postgres
+**Decision:** The engine streams legacy rows through compiled converters in Python: type parsing, code maps, ICD resolution, unpivot, split. Rows land in staging tables, and dedup, survivorship (`DISTINCT ON … ORDER BY load_ts DESC`), field-level merge rules, and orphan detection run as SQL in Postgres.
+**Rationale:** Row-local work is embarrassingly parallel and needs no memory beyond the current row. Dedup and FK checks need the whole table, and holding 1.2M wide carrier rows in a Python dict would take GBs, while the database does it with sorts and hash joins it's designed for. This is the ETL/ELT split, made per operation rather than for the whole pipeline.
+**Rejected:**
+- All-Python dedup (memory-bound).
+- All-SQL transforms (date/money/ICD parsing in SQL is unreadable, and the ICD resolver needs a reference set).
+- Sorting in SQLite before transform (keys aren't normalized yet, so `' abc'` and `'ABC'` sort apart).
+
+### D15 · Natural composite keys in the target, no surrogate IDs
+**Decision:** `claim` is keyed `(claim_type, clm_id, segment)`, with carrier segment = 1. Child tables carry the same three columns. `drug_event` is keyed `pde_id`; `beneficiary` is keyed `beneficiary_id`.
+**Rationale:** Idempotency: a re-run computes the same key from the same source, so an upsert lands on the same row. Surrogate IDs would need a lookup round trip for every child row and could drift between runs.
+**Rejected:** `bigserial` surrogates (lookup cost; non-deterministic across runs).
+
+### D16 · State stored as SSA code, not USPS
+**Decision:** Normalize both legacy forms to the 2-digit SSA code.
+**Rationale:** It's lossless. SSA `54` ("Others") has no USPS equivalent, and SynPUF county codes are SSA county codes that only mean something alongside the SSA state code. USPS can be derived in a view.
+**Rejected:** USPS (loses `54` and breaks the county code's meaning).
+
+### D17 · Strict row conversion: any unparseable value quarantines the row
+**Rationale:** In a migration, a silently NULLed field is worse than a quarantined row. Quarantine is visible and countable, and the raw row is preserved as JSONB for replay. Values that are legitimately null use the explicit null-token list.
+**Rejected:** Coercing failures to NULL (silent data loss).

@@ -15,6 +15,8 @@ FILES=(
   "DE1_0_2008_to_2010_Inpatient_Claims_Sample_1.zip|$BASE_WWW/de1_0_2008_to_2010_inpatient_claims_sample_1.zip|4162147"
   "DE1_0_2008_Beneficiary_Summary_File_Sample_1.zip|$BASE_WWW/de1_0_2008_beneficiary_summary_file_sample_1.zip|3119160"
   "DE1_0_2009_Beneficiary_Summary_File_Sample_1.zip|$BASE_WWW/de1_0_2009_beneficiary_summary_file_sample_1.zip|3177446"
+  # ICD-9-CM v32 (FY2015, final) code list: resolves leading-zero ambiguity. See DECISIONS D13.
+  "ICD-9-CM-v32-master-descriptions.zip|https://www.cms.gov/medicare/coding/icd9providerdiagnosticcodes/downloads/icd-9-cm-v32-master-descriptions.zip|1079497"
   # No 2010 beneficiary file for Sample 1: CMS's link serves Sample 20 (0 ID overlap). See DECISIONS D10.
 )
 for entry in "${FILES[@]}"; do

@@ -29,3 +29,21 @@ python -m datasets.synpuf.legacyize        # -> data/legacy.sqlite + data/legacy
 | `RX_EVNT` | 1,402,142 | Part D drug events |
 
 Build time is 190 s on an Apple M4 (10 cores, 16 GB) using one process, streaming straight from the zips. The legacy DB is 957 MB. There are 3,967,754 logged defects across 20 types; the definitions are in [DECISIONS.md](DECISIONS.md) (D11, D12) and [legacyize.yaml](datasets/synpuf/legacyize.yaml). Two builds are byte-identical.
+
+## Transform (row-level, dry run)
+
+```bash
+etl transform --mapping datasets/synpuf/mapping.yaml   # counts + quarantine reasons; writes nothing
+```
+
+| Target entity | Rows before dedup |
+|---|---:|
+| beneficiary / beneficiary_year | 57,481 / 57,481 |
+| claim | 1,427,946 |
+| claim_diagnosis | 3,246,714 |
+| claim_line (carrier) | 2,366,623 |
+| claim_hcpcs | 952,013 |
+| claim_procedure | 24,418 |
+| drug_event | 1,395,271 |
+
+2,880,698 legacy rows become 9,470,000 target rows in 325 s (**29k rows/s, one process, transform only**). 14,057 soft-deleted rows are excluded and 0 rows are quarantined for bad values.

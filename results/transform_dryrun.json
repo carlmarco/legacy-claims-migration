@@ -1,0 +1,23 @@
+{
+  "source_rows_approx": 2880698,
+  "excluded_soft_deleted": {
+    "MBR_MSTR": 292,
+    "CLM_HDR_ALL": 1133,
+    "CAR_CLM": 5761,
+    "RX_EVNT": 6871
+  },
+  "target_rows": {
+    "beneficiary": 57481,
+    "beneficiary_year": 57481,
+    "claim": 1427946,
+    "claim_diagnosis": 3246714,
+    "claim_procedure": 24418,
+    "claim_hcpcs": 952013,
+    "claim_line": 2366623,
+    "drug_event": 1395271
+  },
+  "quarantined": {},
+  "quarantine_examples": {},
+  "elapsed_s": 325.5,
+  "target_rows_per_s": 29271
+}
