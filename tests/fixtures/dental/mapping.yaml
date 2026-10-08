@@ -1,6 +1,7 @@
 # Second, unrelated dataset: proves the engine has no SynPUF assumptions (DECISIONS D2).
 name: dental
 source: {kind: sqlite, path: legacy.sqlite}   # built by the test into this directory
+target: {schema: dental, ddl: target.sql}
 null_tokens: ["", "NULL", "00/00/0000"]
 lineage: {rec_id: ROWID_, version: MODIFIED}
 exclude: "DELETED = 'T'"

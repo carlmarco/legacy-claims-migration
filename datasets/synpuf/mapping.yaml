@@ -4,6 +4,7 @@
 
 name: synpuf
 source: {kind: sqlite, path: ../../data/legacy.sqlite}
+target: {schema: synpuf, ddl: target.sql}
 
 null_tokens: ["", "N/A", "00000000", "99991231"]
 lineage: {rec_id: REC_ID, version: LOAD_TS}

@@ -152,3 +152,35 @@ Candidates are the received digits plus left-padded variants, up to the code sys
 
 **Rejected:**
 - A per-claim-year reference, i.e. choosing the version by service date. It's more precise in principle, but it adds a date dependency to a row-level converter, and the union already captures most of the gain. Revisit only if the validator shows that cross-version collisions matter.
+
+### D19 · Merge semantics
+**Decision:** Staging tables are UNLOGGED and created with `CREATE … AS TABLE target WITH NO DATA`, which copies types but not constraints. The merge runs in **one transaction** across all entities, parent before child (topological order from `references`). Per entity:
+1. `DISTINCT ON (key) … ORDER BY key, <survivorship order>, _src_rec_id DESC`, with field rules (e.g. `death_date: max`) applied as window aggregates.
+2. Orphans (parent key missing from the merged parent table) go to `etl.quarantine` as `ORPHAN_FK`.
+3. `INSERT … ON CONFLICT (key) DO UPDATE … WHERE (data cols) IS DISTINCT FROM (EXCLUDED…)`, with `RETURNING (xmax = 0)` to count inserted vs updated rows.
+
+`etl.quarantine` reflects the latest run: it's cleared for the dataset and rebuilt inside the merge transaction. **Dry run** is the same code path, with `ROLLBACK` instead of `COMMIT`.
+
+**Rationale:**
+- One transaction means the target is never half-migrated.
+- The `IS DISTINCT FROM` guard makes a re-run write zero rows (verified: 0 inserted / 0 updated on every entity), and that's what makes "re-runnable" cheap rather than just correct.
+- Sharing a code path means the dry run can't drift from the real run.
+- Lineage columns are excluded from the change comparison, so a re-load that only changes `_version` isn't treated as a change.
+
+**Known limitation:** the merge doesn't delete. If a re-run's source drops a diagnosis position or a whole claim, the old target row stays. That's correct for incremental loads; a full-refresh mode would need an anti-join delete per touched parent. Deferred until it's needed.
+
+**Rejected:**
+- Per-entity transactions (a failure mid-merge leaves inconsistent parent and child tables).
+- Doing survivorship in Python (memory-bound, D14).
+- A separate dry-run implementation (it would drift).
+
+### D20 · Load strategies are defined by the load path only
+**Decision:** Strategies share the transform, staging, merge and validation; only "records → staging" differs.
+- `naive`: one `INSERT` per row with autocommit. One round trip **and** one WAL flush per row, which is what default ORM code does.
+- `executemany`: batches of 20k rows, pipelined `INSERT`s. Removes round trips but keeps per-row statement execution.
+- `batched`: batches of 20k rows via `COPY FROM STDIN`. One statement per batch.
+- `parallel`: N processes, each transforming a REC_ID range and running COPY. More chunks than workers, so the work balances out.
+
+**Rationale:** Isolating the load path makes benchmark differences attributable to it alone. `executemany` sits between the other two so the result separates round-trip cost from per-statement cost.
+
+**Rejected:** a "naive with a transaction" variant (`executemany` already covers removing the commit cost); binary COPY (exact-type matching across smallint/int adds fragility for a gain that's second-order next to parallelizing the transform).

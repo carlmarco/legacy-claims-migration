@@ -1,0 +1,108 @@
+{
+  "run_id": 20,
+  "dataset": "synpuf",
+  "strategy": "parallel",
+  "dry_run": false,
+  "limit": null,
+  "workers": 4,
+  "chunks": 64,
+  "worker_transform_cpu_s": 494.25,
+  "worker_load_s": 32.4,
+  "staged_rows": 9527947,
+  "staged_by_entity": {
+    "drug_event": 1395271,
+    "claim_diagnosis": 3246714,
+    "claim_line": 2366623,
+    "claim": 1427946,
+    "claim_procedure": 24418,
+    "claim_hcpcs": 952013,
+    "beneficiary": 57481,
+    "beneficiary_year": 57481
+  },
+  "extract_load_s": 133.98,
+  "staged_rows_per_s": 71113,
+  "merge": {
+    "beneficiary": {
+      "staged": 57481,
+      "survivors": 28972,
+      "duplicates_resolved": 28509,
+      "orphans": 0,
+      "inserted": 28972,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "beneficiary_year": {
+      "staged": 57481,
+      "survivors": 57481,
+      "duplicates_resolved": 0,
+      "orphans": 0,
+      "orphans_beneficiary": 0,
+      "inserted": 57481,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "claim": {
+      "staged": 1427946,
+      "survivors": 1392642,
+      "duplicates_resolved": 35304,
+      "orphans": 2846,
+      "orphans_beneficiary": 2846,
+      "inserted": 1389796,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "claim_diagnosis": {
+      "staged": 3246714,
+      "survivors": 3166746,
+      "duplicates_resolved": 79968,
+      "orphans": 6418,
+      "orphans_claim": 6418,
+      "inserted": 3160328,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "claim_procedure": {
+      "staged": 24418,
+      "survivors": 23823,
+      "duplicates_resolved": 595,
+      "orphans": 38,
+      "orphans_claim": 38,
+      "inserted": 23785,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "claim_hcpcs": {
+      "staged": 952013,
+      "survivors": 929110,
+      "duplicates_resolved": 22903,
+      "orphans": 1973,
+      "orphans_claim": 1973,
+      "inserted": 927137,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "claim_line": {
+      "staged": 2366623,
+      "survivors": 2307610,
+      "duplicates_resolved": 59013,
+      "orphans": 4825,
+      "orphans_claim": 4825,
+      "inserted": 2302785,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "drug_event": {
+      "staged": 1395271,
+      "survivors": 1367641,
+      "duplicates_resolved": 27630,
+      "orphans": 2547,
+      "orphans_beneficiary": 2547,
+      "inserted": 1365094,
+      "updated": 0,
+      "unchanged": 0
+    }
+  },
+  "merge_s": 148.22,
+  "total_s": 282.2,
+  "peak_rss_mb": 56.1
+}

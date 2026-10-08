@@ -75,6 +75,7 @@ class Record:
 class Mapping:
     def __init__(self, path: str | Path):
         path = Path(path)
+        self.path = path
         self.base = path.parent
         spec = yaml.safe_load(path.read_text())
         self.spec = spec
@@ -84,6 +85,8 @@ class Mapping:
         self.rec_id_col = spec["lineage"]["rec_id"]
         self.version_col = spec["lineage"]["version"]
         self.exclude = spec.get("exclude")
+        self.target_schema = spec["target"]["schema"]
+        self.target_ddl = self.base / spec["target"]["ddl"]
 
         code_maps = {name: self._code_map(m) for name, m in spec.get("code_maps", {}).items()}
         refs = {name: reference.load(r, self.base) for name, r in spec.get("references", {}).items()}
@@ -216,6 +219,26 @@ class Mapping:
                 continue
             body = tuple(vals[c.name + suf] for c in u.columns for suf in c.outputs)
             yield Record("row", src.entity, head + (i,) + body + lineage)
+
+    def load_order(self) -> list[str]:
+        """Entities ordered so every parent is merged before its children."""
+        order: list[str] = []
+        visiting: set[str] = set()
+
+        def visit(name: str) -> None:
+            if name in order:
+                return
+            if name in visiting:
+                raise ValueError(f"reference cycle at {name}")
+            visiting.add(name)
+            for parent in self.entities[name].references:
+                visit(parent)
+            visiting.discard(name)
+            order.append(name)
+
+        for name in self.entities:
+            visit(name)
+        return order
 
     def connect(self) -> sqlite3.Connection:
         con = sqlite3.connect(f"file:{self.source_path}?mode=ro", uri=True)

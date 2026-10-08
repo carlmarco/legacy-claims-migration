@@ -43,6 +43,18 @@ def cmd_transform(args: argparse.Namespace) -> None:
     }, indent=2, default=str))
 
 
+def cmd_migrate(args: argparse.Namespace) -> None:
+    from . import pipeline
+    stats = pipeline.run(args.mapping, args.strategy, dry_run=args.dry_run, limit=args.limit,
+                         merge_step=not args.no_merge, fresh=args.fresh, workers=args.workers)
+    out = json.dumps(stats, indent=2, default=str)
+    print(out)
+    if args.out:
+        from pathlib import Path
+        Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.out).write_text(out)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="etl")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -52,6 +64,17 @@ def main() -> None:
     t.add_argument("--tables", help="comma-separated legacy tables (default: all)")
     t.add_argument("--limit", type=int, help="rows per legacy table")
     t.set_defaults(fn=cmd_transform)
+
+    g = sub.add_parser("migrate", help="extract, transform, load into staging, merge into the target")
+    g.add_argument("--mapping", required=True)
+    g.add_argument("--strategy", default="batched", help="naive | batched | parallel")
+    g.add_argument("--dry-run", action="store_true", help="run everything, then roll back the merge")
+    g.add_argument("--limit", type=int, help="rows per legacy table (benchmark slices)")
+    g.add_argument("--no-merge", action="store_true", help="stop after staging (load-path benchmarks)")
+    g.add_argument("--fresh", action="store_true", help="drop the target schema first")
+    g.add_argument("--workers", type=int, default=1)
+    g.add_argument("--out", help="write run stats JSON here")
+    g.set_defaults(fn=cmd_migrate)
 
     args = parser.parse_args()
     args.fn(args)
