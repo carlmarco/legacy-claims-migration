@@ -55,6 +55,22 @@ def cmd_migrate(args: argparse.Namespace) -> None:
         Path(args.out).write_text(out)
 
 
+def cmd_validate(args: argparse.Namespace) -> None:
+    from pathlib import Path
+
+    from . import db, validate
+    m = Mapping(args.mapping)
+    t0 = time.perf_counter()
+    with db.connect() as con:
+        report = validate.run(con, m, args.oracle)
+    report["elapsed_s"] = round(time.perf_counter() - t0, 1)
+    out = json.dumps(report, indent=2, default=str)
+    print(out)
+    if args.out:
+        Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.out).write_text(out)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="etl")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -75,6 +91,12 @@ def main() -> None:
     g.add_argument("--workers", type=int, default=1)
     g.add_argument("--out", help="write run stats JSON here")
     g.set_defaults(fn=cmd_migrate)
+
+    v = sub.add_parser("validate", help="counts, FK integrity, checksums and diff against an oracle schema")
+    v.add_argument("--mapping", required=True)
+    v.add_argument("--oracle", help="schema holding the expected target (e.g. synpuf_oracle)")
+    v.add_argument("--out", help="write the report JSON here")
+    v.set_defaults(fn=cmd_validate)
 
     args = parser.parse_args()
     args.fn(args)

@@ -92,3 +92,32 @@ def test_dry_run_writes_nothing_to_target(mapping_path):
     assert q("SELECT count(*) FROM dental.patient") == [(0,)]  # ...but rolled back
     assert q("SELECT count(*) FROM etl.quarantine WHERE dataset = 'dental'") == [(0,)]
     assert q("SELECT dry_run, status FROM etl.migration_run WHERE run_id = %s", s["run_id"]) == [(True, "succeeded")]
+
+
+def test_child_slot_dropped_by_newer_parent_version_is_not_revived(mapping_path):
+    """Regression: a newer version whose slot is filtered out (no code, zero fee) must not let the
+    older version's slot win survivorship by default. Children follow their parent's version."""
+    con = sqlite3.connect(Path(mapping_path).parent / "legacy.sqlite")
+    con.execute("""INSERT INTO APPT_TBL VALUES
+        (4, '500', 'P001', '06/01/2020', 'D0120', '$45.00', NULL, '0.00', NULL, '0.00', '', NULL,
+         'F', '2020-07-01')""")  # newer version of appointment 500: slot 2 removed
+    con.commit()
+    con.close()
+    s = pipeline.run(mapping_path, "naive", fresh=True)
+    assert q("SELECT slot FROM dental.appointment_procedure ORDER BY slot") == [(1,)]
+    assert q("SELECT _src_rec_id FROM dental.appointment") == [(4,)]
+    assert s["merge"]["appointment_procedure"]["inserted"] == 1
+
+
+def test_rerun_deletes_children_the_parent_no_longer_has(mapping_path):
+    pipeline.run(mapping_path, "naive", fresh=True)
+    assert len(q("SELECT * FROM dental.appointment_procedure")) == 2
+    con = sqlite3.connect(Path(mapping_path).parent / "legacy.sqlite")
+    con.execute("UPDATE APPT_TBL SET PROC2 = NULL, FEE2 = '0.00' WHERE APPT_NO = '500'")
+    con.commit()
+    con.close()
+    s = pipeline.run(mapping_path, "naive")
+    assert s["merge"]["appointment_procedure"]["deleted"] == 1
+    assert q("SELECT slot FROM dental.appointment_procedure") == [(1,)]
+    # Child-set replacement is opt-in (follow_parent). An FK alone must never delete.
+    assert "deleted" not in s["merge"]["appointment"]

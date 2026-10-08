@@ -143,7 +143,7 @@ entities:
 
   claim_diagnosis:
     key: [claim_type, clm_id, segment, position]
-    survivorship: {order: "_version DESC"}
+    survivorship: {order: "_version DESC", follow_parent: claim}
     references: {claim: [claim_type, clm_id, segment]}
     sources:
       - from: CLM_HDR_ALL
@@ -162,7 +162,7 @@ entities:
 
   claim_procedure:
     key: [claim_type, clm_id, segment, position]
-    survivorship: {order: "_version DESC"}
+    survivorship: {order: "_version DESC", follow_parent: claim}
     references: {claim: [claim_type, clm_id, segment]}
     sources:
       - from: CLM_HDR_ALL
@@ -175,7 +175,7 @@ entities:
 
   claim_hcpcs:
     key: [claim_type, clm_id, segment, position]
-    survivorship: {order: "_version DESC"}
+    survivorship: {order: "_version DESC", follow_parent: claim}
     references: {claim: [claim_type, clm_id, segment]}
     sources:
       - from: CLM_HDR_ALL
@@ -188,7 +188,7 @@ entities:
 
   claim_line:
     key: [claim_type, clm_id, segment, line_number]
-    survivorship: {order: "_version DESC"}
+    survivorship: {order: "_version DESC", follow_parent: claim}
     references: {claim: [claim_type, clm_id, segment]}
     sources:
       - from: CAR_CLM

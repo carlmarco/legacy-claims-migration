@@ -1,0 +1,13 @@
+== naive 15:29:58
+   total=1928.56s merge=159.73s checksums_all_match=True defects_100pct=19/20
+== executemany 16:04:08
+   total=471.84s merge=149.95s checksums_all_match=True defects_100pct=19/20
+== batched 16:13:55
+   total=386.48s merge=161.6s checksums_all_match=True defects_100pct=19/20
+== parallel_w2 16:22:30
+   total=380.35s merge=192.5s checksums_all_match=True defects_100pct=19/20
+== parallel_w4 16:31:16
+   total=327.99s merge=199.78s checksums_all_match=True defects_100pct=19/20
+== parallel_w8 16:39:09
+   total=250.71s merge=170.36s checksums_all_match=True defects_100pct=19/20
+== done 16:45:19

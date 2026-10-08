@@ -1,0 +1,120 @@
+{
+  "defects": {
+    "A1": {
+      "total": 4316,
+      "excluded": 9,
+      "repaired": 4307,
+      "handled_pct": 100.0
+    },
+    "B1": {
+      "total": 1271311,
+      "excluded": 2503,
+      "repaired": 1268808,
+      "handled_pct": 100.0
+    },
+    "B2": {
+      "total": 233165,
+      "excluded": 411,
+      "repaired": 232754,
+      "handled_pct": 100.0
+    },
+    "B3": {
+      "total": 1416523,
+      "repaired": 1413851,
+      "excluded": 2672,
+      "handled_pct": 100.0
+    },
+    "B4_dot": {
+      "total": 31432,
+      "repaired": 31170,
+      "excluded": 262,
+      "handled_pct": 100.0
+    },
+    "B4_int_cast": {
+      "total": 41456,
+      "repaired": 26505,
+      "withheld": 14454,
+      "excluded": 202,
+      "wrong": 295,
+      "handled_pct": 64.423
+    },
+    "B5_hyphen": {
+      "total": 68152,
+      "repaired": 68035,
+      "excluded": 117,
+      "handled_pct": 100.0
+    },
+    "B5_int_cast": {
+      "total": 398045,
+      "repaired": 397268,
+      "excluded": 777,
+      "handled_pct": 100.0
+    },
+    "B6": {
+      "total": 82869,
+      "excluded": 155,
+      "repaired": 82714,
+      "handled_pct": 100.0
+    },
+    "C1": {
+      "total": 17109,
+      "repaired": 17109,
+      "handled_pct": 100.0
+    },
+    "C2": {
+      "total": 252418,
+      "repaired": 252418,
+      "handled_pct": 100.0
+    },
+    "C3": {
+      "total": 11445,
+      "repaired": 11445,
+      "handled_pct": 100.0
+    },
+    "C4": {
+      "total": 53210,
+      "excluded": 112,
+      "repaired": 53098,
+      "handled_pct": 100.0
+    },
+    "C5": {
+      "total": 8649,
+      "repaired": 8649,
+      "handled_pct": 100.0
+    },
+    "D1": {
+      "total": 55926,
+      "excluded": 105,
+      "repaired": 55821,
+      "handled_pct": 100.0
+    },
+    "D2": {
+      "total": 7008,
+      "excluded": 21,
+      "repaired": 6987,
+      "handled_pct": 100.0
+    },
+    "D3": {
+      "total": 285,
+      "repaired": 285,
+      "handled_pct": 100.0
+    },
+    "E1": {
+      "total": 55,
+      "excluded": 55,
+      "handled_pct": 100.0
+    },
+    "E2": {
+      "total": 323,
+      "repaired": 323,
+      "handled_pct": 100.0
+    },
+    "E3": {
+      "total": 14057,
+      "excluded": 14057,
+      "handled_pct": 100.0
+    }
+  },
+  "unmapped_columns": [],
+  "elapsed_s": 113.3
+}

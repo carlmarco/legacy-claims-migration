@@ -1,25 +1,26 @@
 {
-  "run_id": 17,
+  "run_id": 75,
   "dataset": "synpuf",
-  "strategy": "batched",
+  "strategy": "parallel",
   "dry_run": false,
   "limit": null,
-  "workers": 1,
-  "transform_s": 282.53,
-  "load_s": 18.91,
+  "workers": 2,
+  "chunks": 32,
+  "worker_transform_cpu_s": 349.92,
+  "worker_load_s": 21.87,
   "staged_rows": 9527947,
   "staged_by_entity": {
-    "beneficiary": 57481,
-    "beneficiary_year": 57481,
+    "drug_event": 1395271,
     "claim_diagnosis": 3246714,
-    "claim_procedure": 24418,
-    "claim": 1427946,
-    "claim_hcpcs": 952013,
     "claim_line": 2366623,
-    "drug_event": 1395271
+    "claim": 1427946,
+    "claim_procedure": 24418,
+    "claim_hcpcs": 952013,
+    "beneficiary": 57481,
+    "beneficiary_year": 57481
   },
-  "extract_load_s": 301.43,
-  "staged_rows_per_s": 31609,
+  "extract_load_s": 187.85,
+  "staged_rows_per_s": 50720,
   "merge": {
     "beneficiary": {
       "staged": 57481,
@@ -28,7 +29,8 @@
       "orphans": 0,
       "inserted": 28972,
       "updated": 0,
-      "unchanged": 0
+      "unchanged": 0,
+      "seconds": 0.22
     },
     "beneficiary_year": {
       "staged": 57481,
@@ -38,7 +40,8 @@
       "orphans_beneficiary": 0,
       "inserted": 57481,
       "updated": 0,
-      "unchanged": 0
+      "unchanged": 0,
+      "seconds": 0.48
     },
     "claim": {
       "staged": 1427946,
@@ -48,7 +51,8 @@
       "orphans_beneficiary": 2846,
       "inserted": 1389796,
       "updated": 0,
-      "unchanged": 0
+      "unchanged": 0,
+      "seconds": 18.78
     },
     "claim_diagnosis": {
       "staged": 3246714,
@@ -58,7 +62,9 @@
       "orphans_claim": 6418,
       "inserted": 3160328,
       "updated": 0,
-      "unchanged": 0
+      "unchanged": 0,
+      "deleted": 0,
+      "seconds": 67.39
     },
     "claim_procedure": {
       "staged": 24418,
@@ -68,7 +74,9 @@
       "orphans_claim": 38,
       "inserted": 23785,
       "updated": 0,
-      "unchanged": 0
+      "unchanged": 0,
+      "deleted": 0,
+      "seconds": 5.18
     },
     "claim_hcpcs": {
       "staged": 952013,
@@ -78,17 +86,21 @@
       "orphans_claim": 1973,
       "inserted": 927137,
       "updated": 0,
-      "unchanged": 0
+      "unchanged": 0,
+      "deleted": 0,
+      "seconds": 24.22
     },
     "claim_line": {
       "staged": 2366623,
-      "survivors": 2307610,
-      "duplicates_resolved": 59013,
+      "survivors": 2307607,
+      "duplicates_resolved": 59016,
       "orphans": 4825,
       "orphans_claim": 4825,
-      "inserted": 2302785,
+      "inserted": 2302782,
       "updated": 0,
-      "unchanged": 0
+      "unchanged": 0,
+      "deleted": 0,
+      "seconds": 58.7
     },
     "drug_event": {
       "staged": 1395271,
@@ -98,10 +110,12 @@
       "orphans_beneficiary": 2547,
       "inserted": 1365094,
       "updated": 0,
-      "unchanged": 0
+      "unchanged": 0,
+      "seconds": 17.44
     }
   },
-  "merge_s": 145.13,
-  "total_s": 446.56,
-  "peak_rss_mb": 119.8
+  "merge_s": 192.5,
+  "total_s": 380.35,
+  "peak_rss_mb": 57.4,
+  "peak_rss_worker_mb": 93.7
 }

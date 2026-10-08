@@ -1,0 +1,280 @@
+{
+  "counts": {
+    "beneficiary": {
+      "target_rows": 28972,
+      "quarantined": {}
+    },
+    "beneficiary_year": {
+      "target_rows": 57481,
+      "quarantined": {}
+    },
+    "claim": {
+      "target_rows": 1389796,
+      "quarantined": {
+        "ORPHAN_FK": 2846
+      }
+    },
+    "claim_diagnosis": {
+      "target_rows": 3160328,
+      "quarantined": {
+        "ORPHAN_FK": 2845
+      }
+    },
+    "claim_procedure": {
+      "target_rows": 23785,
+      "quarantined": {
+        "ORPHAN_FK": 14
+      }
+    },
+    "claim_hcpcs": {
+      "target_rows": 927137,
+      "quarantined": {
+        "ORPHAN_FK": 379
+      }
+    },
+    "claim_line": {
+      "target_rows": 2302782,
+      "quarantined": {
+        "ORPHAN_FK": 2426
+      }
+    },
+    "drug_event": {
+      "target_rows": 1365094,
+      "quarantined": {
+        "ORPHAN_FK": 2547
+      }
+    }
+  },
+  "fk_orphans_in_target": {
+    "beneficiary_year->beneficiary": 0,
+    "claim->beneficiary": 0,
+    "claim_diagnosis->claim": 0,
+    "claim_procedure->claim": 0,
+    "claim_hcpcs->claim": 0,
+    "claim_line->claim": 0,
+    "drug_event->beneficiary": 0
+  },
+  "checksums": {
+    "beneficiary": {
+      "target": [
+        28972,
+        "12571612930036650061"
+      ],
+      "oracle": [
+        28972,
+        "12571612930036650061"
+      ],
+      "match": true
+    },
+    "beneficiary_year": {
+      "target": [
+        57481,
+        "-1876629261671965685374"
+      ],
+      "oracle": [
+        57481,
+        "-1876629261671965685374"
+      ],
+      "match": true
+    },
+    "claim": {
+      "target": [
+        1389796,
+        "-743551373896063972522"
+      ],
+      "oracle": [
+        1389796,
+        "-743551373896063972522"
+      ],
+      "match": true
+    },
+    "claim_diagnosis": {
+      "target": [
+        3160328,
+        "-694194793952052287086"
+      ],
+      "oracle": [
+        3160328,
+        "-694194793952052287086"
+      ],
+      "match": true
+    },
+    "claim_procedure": {
+      "target": [
+        23785,
+        "-668193298111711613527"
+      ],
+      "oracle": [
+        23785,
+        "-668193298111711613527"
+      ],
+      "match": true
+    },
+    "claim_hcpcs": {
+      "target": [
+        927137,
+        "-5764553799089469020777"
+      ],
+      "oracle": [
+        927137,
+        "-5764553799089469020777"
+      ],
+      "match": true
+    },
+    "claim_line": {
+      "target": [
+        2302782,
+        "8503401522225865167276"
+      ],
+      "oracle": [
+        2302782,
+        "8503401522225865167276"
+      ],
+      "match": true
+    },
+    "drug_event": {
+      "target": [
+        1365094,
+        "3434031084619027638156"
+      ],
+      "oracle": [
+        1365094,
+        "3434031084619027638156"
+      ],
+      "match": true
+    }
+  },
+  "diff": {
+    "beneficiary": {
+      "missing_in_target": 0,
+      "extra_in_target": 0,
+      "differing_rows": 0,
+      "differing_by_column": {}
+    },
+    "beneficiary_year": {
+      "missing_in_target": 0,
+      "extra_in_target": 0,
+      "differing_rows": 0,
+      "differing_by_column": {}
+    },
+    "claim": {
+      "missing_in_target": 0,
+      "extra_in_target": 0,
+      "differing_rows": 0,
+      "differing_by_column": {}
+    },
+    "claim_diagnosis": {
+      "missing_in_target": 0,
+      "extra_in_target": 0,
+      "differing_rows": 0,
+      "differing_by_column": {}
+    },
+    "claim_procedure": {
+      "missing_in_target": 0,
+      "extra_in_target": 0,
+      "differing_rows": 0,
+      "differing_by_column": {}
+    },
+    "claim_hcpcs": {
+      "missing_in_target": 0,
+      "extra_in_target": 0,
+      "differing_rows": 0,
+      "differing_by_column": {}
+    },
+    "claim_line": {
+      "missing_in_target": 0,
+      "extra_in_target": 0,
+      "differing_rows": 0,
+      "differing_by_column": {}
+    },
+    "drug_event": {
+      "missing_in_target": 0,
+      "extra_in_target": 0,
+      "differing_rows": 0,
+      "differing_by_column": {}
+    }
+  },
+  "codes": {
+    "claim.admitting_dx": {
+      "ambiguous": {
+        "withheld": 2011
+      },
+      "exact": {
+        "correct": 62221
+      },
+      "(none)": {
+        "both_null": 1325153
+      },
+      "not_in_reference": {
+        "correct": 33
+      },
+      "repaired": {
+        "correct": 375
+      },
+      "unresolved": {
+        "withheld": 3
+      }
+    },
+    "claim_diagnosis.code": {
+      "ambiguous": {
+        "withheld": 116223
+      },
+      "exact": {
+        "correct": 2969018,
+        "wrong": 195
+      },
+      "not_in_reference": {
+        "correct": 14228
+      },
+      "repaired": {
+        "correct": 17657,
+        "wrong": 2552
+      },
+      "unresolved": {
+        "withheld": 40455
+      }
+    },
+    "claim_procedure.code": {
+      "ambiguous": {
+        "withheld": 537
+      },
+      "exact": {
+        "correct": 11340,
+        "wrong": 40
+      },
+      "not_in_reference": {
+        "correct": 11201,
+        "wrong": 50
+      },
+      "repaired": {
+        "correct": 295,
+        "wrong": 2
+      },
+      "unresolved": {
+        "withheld": 320
+      }
+    },
+    "claim_line.dx": {
+      "ambiguous": {
+        "withheld": 105455
+      },
+      "exact": {
+        "correct": 2123638
+      },
+      "(none)": {
+        "both_null": 65022
+      },
+      "not_in_reference": {
+        "correct": 465
+      },
+      "repaired": {
+        "correct": 8178,
+        "wrong": 1
+      },
+      "unresolved": {
+        "withheld": 23
+      }
+    }
+  },
+  "elapsed_s": 29.8
+}

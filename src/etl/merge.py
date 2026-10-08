@@ -41,10 +41,32 @@ def merge_entity(con: psycopg.Connection, m: Mapping, entity: str, run_id: int) 
             select.append(sql.Identifier(c))
     order = sql.SQL(e.survivorship.get("order", "_version DESC"))
     con.execute(sql.SQL("DROP TABLE IF EXISTS {}").format(surv))
-    con.execute(sql.SQL("""CREATE TEMP TABLE {surv} AS
-        SELECT DISTINCT ON ({key}) {select} FROM {stage}
-        ORDER BY {key}, {order}, _src_rec_id DESC""").format(
-        surv=surv, key=key, select=sql.SQL(", ").join(select), stage=stage, order=order))
+    follow = e.survivorship.get("follow_parent")
+    if follow:
+        # Child rows belong to a *version* of their parent. Keep only children emitted by the parent's
+        # surviving legacy row, so a slot the newest version dropped can't be revived from an older one.
+        pe = m.entities[follow]
+        pcols = e.references[follow]
+        pkey = _ids(pe.key)
+        win = sql.SQL("""SELECT DISTINCT ON ({pkey}) {pkey}, _src_table, _src_rec_id FROM {pstage}
+                         ORDER BY {pkey}, {porder}, _src_rec_id DESC""").format(
+            pkey=pkey, pstage=stage_table(m, follow),
+            porder=sql.SQL(pe.survivorship.get("order", "_version DESC")))
+        on = sql.SQL(" AND ").join(
+            [sql.SQL("w.{} = c.{}").format(sql.Identifier(pk), sql.Identifier(ck)) for pk, ck in zip(pe.key, pcols)]
+            + [sql.SQL("w._src_table = c._src_table"), sql.SQL("w._src_rec_id = c._src_rec_id")])
+        con.execute(sql.SQL("""CREATE TEMP TABLE {surv} AS
+            SELECT DISTINCT ON ({key}) {select} FROM {stage} c JOIN ({win}) w ON {on}
+            ORDER BY {key}, {order}, c._src_rec_id DESC""").format(
+            surv=surv, key=sql.SQL(", ").join(sql.SQL("c.{}").format(sql.Identifier(k)) for k in e.key),
+            select=sql.SQL(", ").join(sql.SQL("c.{}").format(sql.Identifier(c)) for c in e.output)
+            if not rules else sql.SQL(", ").join(select),
+            stage=stage, win=win, on=on, order=order))
+    else:
+        con.execute(sql.SQL("""CREATE TEMP TABLE {surv} AS
+            SELECT DISTINCT ON ({key}) {select} FROM {stage}
+            ORDER BY {key}, {order}, _src_rec_id DESC""").format(
+            surv=surv, key=key, select=sql.SQL(", ").join(select), stage=stage, order=order))
     stats["survivors"] = con.execute(sql.SQL("SELECT count(*) FROM {}").format(surv)).fetchone()[0]
     stats["duplicates_resolved"] = stats["staged"] - stats["survivors"]
 
@@ -84,6 +106,21 @@ def merge_entity(con: psycopg.Connection, m: Mapping, entity: str, run_id: int) 
         distinct=distinct if data_cols else sql.SQL("false"))
     stats["inserted"], stats["updated"] = con.execute(upsert).fetchone()
     stats["unchanged"] = stats["survivors"] - stats["orphans"] - stats["inserted"] - stats["updated"]
+
+    if follow:
+        # Replace the child set of every parent present in this run: delete target children the
+        # surviving parent version no longer has.
+        pcols = e.references[follow]
+        same_parent = sql.SQL(" AND ").join(
+            sql.SQL("p.{} = t.{}").format(sql.Identifier(pk), sql.Identifier(ck))
+            for pk, ck in zip(m.entities[follow].key, pcols))
+        same_key = sql.SQL(" AND ").join(sql.SQL("s.{0} = t.{0}").format(sql.Identifier(k)) for k in e.key)
+        stats["deleted"] = con.execute(sql.SQL("""
+            DELETE FROM {target} t
+            WHERE EXISTS (SELECT 1 FROM {pstage} p WHERE {same_parent})
+              AND NOT EXISTS (SELECT 1 FROM {surv} s WHERE {same_key})""").format(
+            target=target, pstage=stage_table(m, follow), same_parent=same_parent, surv=surv,
+            same_key=same_key)).rowcount
     con.execute(sql.SQL("DROP TABLE {}").format(surv))
     return stats
 

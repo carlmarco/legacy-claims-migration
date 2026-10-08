@@ -35,7 +35,7 @@ entities:
 
   appointment_procedure:
     key: [appointment_number, slot]
-    survivorship: {order: "_version DESC"}
+    survivorship: {order: "_version DESC", follow_parent: appointment}
     references: {appointment: [appointment_number]}
     sources:
       - from: APPT_TBL

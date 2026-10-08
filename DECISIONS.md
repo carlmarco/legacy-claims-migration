@@ -184,3 +184,52 @@ Candidates are the received digits plus left-padded variants, up to the code sys
 **Rationale:** Isolating the load path makes benchmark differences attributable to it alone. `executemany` sits between the other two so the result separates round-trip cost from per-statement cost.
 
 **Rejected:** a "naive with a transaction" variant (`executemany` already covers removing the commit cost); binary COPY (exact-type matching across smallint/int adds fragility for a gain that's second-order next to parallelizing the transform).
+
+### D21 · Validation compares against an independent oracle, entirely in SQL
+**Decision:** `datasets/synpuf/oracle.py` builds the expected target from the **clean zips** into schema `synpuf_oracle`, with the same DDL as the target. It deliberately reuses none of the engine's converters: dates are parsed with slicing, codes are taken verbatim. The generic validator (`src/etl/validate.py`) then runs:
+- Per-entity counts and quarantine reasons.
+- FK integrity in the target.
+- Order-independent checksums on both sides: `count(*)` plus `sum` of the first 64 bits of `md5(row text)`, with NULL encoded as `\N`.
+- A full keyed diff (`FULL JOIN` on the natural key: missing, extra, differing rows, mismatches per column).
+- For code-resolver columns, a resolution × outcome matrix.
+
+The per-defect scorer joins the truth log to staging lineage (`_src_table`, `_src_rec_id`) to find each defect's natural key, then compares target with oracle at that key.
+
+**Rationale:**
+- An oracle built with the engine's own converters would share their bugs.
+- Checksums are the cheap cross-system check (source and target in different databases). The keyed diff says *what* differs once a checksum mismatches.
+- `sum`, not `xor`: duplicate rows don't cancel out.
+- Resolver columns are excluded from checksum and diff because withholding a value is an allowed outcome. They're scored separately, so they can't mask or fake a mismatch.
+
+**Rejected:**
+- Sampling-only field diffs (a full keyed diff of 9.3M rows takes about 20 s in Postgres, so there's no reason to sample).
+- Comparing against the legacy DB (it *is* the thing with defects).
+
+### D22 · Child rows follow their parent's surviving version (`follow_parent`), and child sets are replaced
+**Bug found by the validator:** `claim_line` had 3 extra rows. All 3 were D2 correction pairs where the corrected amount was `0.00`. In the newer, correct version, line 1 had no HCPCS and all-zero amounts, so `keep_if_any` dropped that slot in the transform. Survivorship then only saw the *older*, wrong version's line, and the stale row won by default. **Filtering before dedup turns "this version has no such row" into "use the older row."**
+
+**Fix:** For unpivot children, `survivorship.follow_parent: <entity>`.
+- Children are kept only if they were emitted by the parent's surviving legacy row (`_src_table`, `_src_rec_id`).
+- In the same merge, target children of those parents that the surviving version no longer has are deleted. This resolves D19's "merge never deletes" limitation for child sets.
+- Regression tests on the dental fixture fail without the fix (slots `[1, 2]` instead of `[1]`).
+
+**Second bug, caught while verifying the first:** in `merge_entity`, the orphan loop `for parent, … in e.references.items()` shadowed the `follow_parent` variable. That made child-set deletion run for *every* entity with an FK. On an incremental run, it would have deleted a beneficiary's claims that weren't in the current batch. Found because the "deletes children" test also passed *without* the fix, which shouldn't be possible. The test now also asserts that an entity with only an FK never deletes.
+
+**Cost:** merge time rose from about 157 s to about 224 s at 8 workers (the parent-version join plus the delete's anti-join scan). It's the largest stage and the next optimization target.
+
+**Rejected:**
+- Moving `keep_if_any` after survivorship. That stages every padded slot: 13 × 1.2M carrier slots, about 6× the `claim_line` staging volume.
+- Tombstone rows for filtered slots (more machinery for the same result).
+
+### D23 · Validation result (25% subset, 8-worker run)
+- All 8 tables match the oracle by checksum and full diff: 0 missing, 0 extra, 0 differing across 9,255,375 rows. All 7 FK checks report 0.
+- 19 of 20 injected defect types are verified at 100%, meaning repaired, or excluded exactly where the oracle has no row.
+- B4_int_cast (leading zeros lost from ICD-9 codes) has 41,456 cases:
+  | Outcome | Count |
+  |---|---:|
+  | Repaired | 26,505 |
+  | Withheld (ambiguous or unresolved) | 14,454 |
+  | Wrong | 295 (0.7%) |
+  | Excluded (on dropped lines) | 202 |
+
+**Broader finding:** integer storage makes *every* numeric code suspect, not just the damaged ones. Across all three diagnosis columns, 223,689 codes are `ambiguous`, of which **210,695 (94.2%) are actually undamaged** and 12,994 really lost a zero. Whether to withhold or to trust the as-received value is a coverage/precision trade-off. Resolved in D24.
