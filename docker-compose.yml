@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: etl
+      POSTGRES_PASSWORD: etl
+      POSTGRES_DB: target
+    ports:
+      - "5433:5432"   # 5433 on host to avoid clashing with any local Postgres
+    shm_size: 1g
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U etl -d target"]
+      interval: 2s
+      retries: 30
+volumes:
+  pgdata:
