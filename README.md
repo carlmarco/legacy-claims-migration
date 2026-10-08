@@ -46,4 +46,4 @@ etl transform --mapping datasets/synpuf/mapping.yaml   # counts + quarantine rea
 | claim_procedure | 24,418 |
 | drug_event | 1,395,271 |
 
-2,880,698 legacy rows become 9,470,000 target rows in 325 s (**29k rows/s, one process, transform only**). 14,057 soft-deleted rows are excluded and 0 rows are quarantined for bad values.
+2,880,698 legacy rows become 9,527,947 target rows in 325 s (**29k rows/s, one process, transform only**). 14,057 soft-deleted rows are excluded and 0 rows are quarantined for bad values.
