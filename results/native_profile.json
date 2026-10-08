@@ -1,0 +1,304 @@
+{
+  "pct": 25.0,
+  "seed": 0,
+  "beneficiary": {
+    "years": {
+      "2008": {
+        "rows": 29027,
+        "distinct_ids": 29027,
+        "duplicate_ids": 0,
+        "domains": {
+          "BENE_SEX_IDENT_CD": {
+            "2": 15904,
+            "1": 13123
+          },
+          "BENE_RACE_CD": {
+            "1": 24032,
+            "2": 3113,
+            "3": 1256,
+            "5": 626
+          },
+          "BENE_ESRD_IND": {
+            "0": 26931,
+            "Y": 2096
+          },
+          "SP_ALZHDMTA": {
+            "2": 23467,
+            "1": 5560
+          },
+          "SP_STATE_CODE_distinct": 52,
+          "BIRTH_DT_valid": {
+            "True": 29027
+          },
+          "DEATH_DT_present": {
+            "False": 28563,
+            "True": 464
+          }
+        }
+      },
+      "2009": {
+        "rows": 28563,
+        "distinct_ids": 28563,
+        "duplicate_ids": 0,
+        "domains": {
+          "BENE_SEX_IDENT_CD": {
+            "2": 15647,
+            "1": 12916
+          },
+          "BENE_RACE_CD": {
+            "1": 23643,
+            "2": 3062,
+            "3": 1239,
+            "5": 619
+          },
+          "BENE_ESRD_IND": {
+            "0": 25903,
+            "Y": 2660
+          },
+          "SP_ALZHDMTA": {
+            "2": 21926,
+            "1": 6637
+          },
+          "SP_STATE_CODE_distinct": 52,
+          "BIRTH_DT_valid": {
+            "True": 28563
+          },
+          "DEATH_DT_present": {
+            "False": 28119,
+            "True": 444
+          }
+        }
+      }
+    },
+    "overlap": {
+      "only_2008": 464,
+      "only_2009": 0,
+      "both": 28563
+    },
+    "cross_year_conflicts": {
+      "BENE_BIRTH_DT": {
+        "count": 0,
+        "examples": []
+      },
+      "BENE_DEATH_DT": {
+        "count": 444,
+        "examples": [
+          {
+            "id": "0021940CF994C374",
+            "2008": "",
+            "2009": "20090101"
+          },
+          {
+            "id": "013FD49E86CC2913",
+            "2008": "",
+            "2009": "20091201"
+          },
+          {
+            "id": "014E2FF01D30C394",
+            "2008": "",
+            "2009": "20090201"
+          },
+          {
+            "id": "038294CD8830820C",
+            "2008": "",
+            "2009": "20090201"
+          },
+          {
+            "id": "03E3BB87DBE698B1",
+            "2008": "",
+            "2009": "20091001"
+          }
+        ]
+      },
+      "BENE_SEX_IDENT_CD": {
+        "count": 0,
+        "examples": []
+      },
+      "BENE_RACE_CD": {
+        "count": 0,
+        "examples": []
+      },
+      "BENE_ESRD_IND": {
+        "count": 3385,
+        "examples": [
+          {
+            "id": "001EA2F4DB30F105",
+            "2008": "0",
+            "2009": "Y"
+          },
+          {
+            "id": "0021B3C854C968C8",
+            "2008": "Y",
+            "2009": "0"
+          },
+          {
+            "id": "004E88D8CE2C3FDB",
+            "2008": "0",
+            "2009": "Y"
+          },
+          {
+            "id": "004FACDB62274D04",
+            "2008": "Y",
+            "2009": "0"
+          },
+          {
+            "id": "006D1BD234E5C844",
+            "2008": "Y",
+            "2009": "0"
+          }
+        ]
+      },
+      "SP_STATE_CODE": {
+        "count": 0,
+        "examples": []
+      },
+      "BENE_COUNTY_CD": {
+        "count": 0,
+        "examples": []
+      }
+    }
+  },
+  "inpatient": {
+    "rows": 16713,
+    "duplicate_keys": 0,
+    "duplicate_key_examples": [],
+    "orphan_rows": 0,
+    "orphan_examples": [],
+    "no_dates": 17,
+    "bad_dates": 0,
+    "reversed_dates": 0
+  },
+  "outpatient": {
+    "rows": 196100,
+    "duplicate_keys": 0,
+    "duplicate_key_examples": [],
+    "orphan_rows": 0,
+    "orphan_examples": [],
+    "no_dates": 2669,
+    "bad_dates": 0,
+    "reversed_dates": 0
+  },
+  "carrier": {
+    "rows": 1179829,
+    "duplicate_keys": 0,
+    "duplicate_key_examples": [],
+    "orphan_rows": 0,
+    "orphan_examples": [],
+    "no_dates": 0,
+    "bad_dates": 0,
+    "reversed_dates": 0
+  },
+  "claim_id_overlap_across_types": {
+    "inpatient&outpatient": 0,
+    "inpatient&carrier": 0,
+    "outpatient&carrier": 0
+  },
+  "drug_events": {
+    "rows": 1367641,
+    "duplicate_keys": 0,
+    "orphan_rows": 0,
+    "bad_dates": 0,
+    "ndc_length_distribution": {
+      "11": 1367634,
+      "non-numeric": 7
+    },
+    "ndc_with_leading_zero": 418844
+  },
+  "icd9": {
+    "dx": {
+      "distinct_codes": 12418,
+      "distinct_with_leading_zero": 735,
+      "occurrences_with_leading_zero": 40509,
+      "integer_cast_collisions": 196,
+      "collision_occurrences": 9268,
+      "collision_examples": [
+        [
+          "01000",
+          "1000"
+        ],
+        [
+          "01100",
+          "1100"
+        ],
+        [
+          "01101",
+          "1101"
+        ],
+        [
+          "01103",
+          "1103"
+        ],
+        [
+          "01110",
+          "1110"
+        ],
+        [
+          "01120",
+          "1120"
+        ],
+        [
+          "01122",
+          "1122"
+        ],
+        [
+          "01123",
+          "1123"
+        ],
+        [
+          "01124",
+          "1124"
+        ],
+        [
+          "01140",
+          "1140"
+        ]
+      ]
+    },
+    "px": {
+      "distinct_codes": 2397,
+      "distinct_with_leading_zero": 118,
+      "occurrences_with_leading_zero": 947,
+      "integer_cast_collisions": 9,
+      "collision_occurrences": 31,
+      "collision_examples": [
+        [
+          "0310",
+          "310"
+        ],
+        [
+          "03812",
+          "3812"
+        ],
+        [
+          "03844",
+          "3844"
+        ],
+        [
+          "04104",
+          "4104"
+        ],
+        [
+          "04110",
+          "4110"
+        ],
+        [
+          "04111",
+          "4111"
+        ],
+        [
+          "0539",
+          "539"
+        ],
+        [
+          "05411",
+          "5411"
+        ],
+        [
+          "07054",
+          "7054"
+        ]
+      ]
+    }
+  },
+  "elapsed_s": 63.7
+}

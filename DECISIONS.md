@@ -50,3 +50,19 @@ Format: decision · rationale · alternatives rejected. Check here before propos
 **Evidence:** The 2010 file linked on the Sample 1 page is `..._Sample_20.csv`. It has 112,811 IDs and **0** overlap with 2008 (116,352) or 2009 (114,538). Every other URL variant for a Sample 1 2010 file returns 404.
 **Consequence:** Beneficiaries are built from 2008 and 2009. 2010 claims for those beneficiaries are still valid, and `beneficiary_year` simply has no 2010 rows. This is a real upstream data defect, documented and handled rather than hidden.
 **Rejected:** Using the Sample 20 file (would create ~113k fake orphans); switching to a different sample (same broken link pattern is likely; not worth the risk).
+
+### D11 · Native defects in clean SynPUF (25% subset, seed 0) and how the target handles them
+Measured by `datasets/synpuf/profile_source.py` → `results/native_profile.json` before injecting anything. These are excluded from injected-defect scoring.
+
+| Finding | Count | Handling |
+|---|---|---|
+| ESRD indicator changes between 2008 and 2009 | 3,385 benes | ESRD is a **per-year attribute**: it moves to `beneficiary_year`, not `beneficiary`. |
+| Death date blank in 2008, set in 2009 | 444 benes | Survivorship: a non-null death date wins. |
+| Beneficiaries only in 2008 | 464 | All died in 2008. Expected, not a defect. |
+| Claims with no from/thru dates at all | 17 IP, 2,669 OP | Load with NULL dates; target date columns are nullable; counted in validation. |
+| NDC placeholder `'OTHER'` (non-numeric) | 7 rows (23 in full file) | Map to NULL `ndc`. Zero-padding is only applied to all-digit values. |
+| Negative claim payments | 55 IP (full file) | Valid adjustments; the target allows negative amounts. |
+| Duplicate keys, orphans, reversed dates, cross-type CLM_ID reuse | 0 | None. Claim natural key is `(claim_type, clm_id, segment)` anyway. |
+| ICD-9 dx codes ambiguous after integer cast (`01000` vs `1000`) | 196 codes / 9,268 occurrences | Sets up B4: see the ICD-9 decision pending. |
+
+**Rejected:** quarantining undated claims. They're genuine source records, and quarantine is reserved for integrity failures.
