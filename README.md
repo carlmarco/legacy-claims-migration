@@ -28,4 +28,4 @@ python -m datasets.synpuf.legacyize        # -> data/legacy.sqlite + data/legacy
 | `CAR_CLM` | 1,215,626 | Carrier claims, 13 line groups kept wide |
 | `RX_EVNT` | 1,402,142 | Part D drug events |
 
-Build time is 190 s on an Apple Silicon laptop with one process, streaming straight from the zips. The legacy DB is 957 MB. There are 3,967,754 logged defects across 20 types; the definitions are in [DECISIONS.md](DECISIONS.md) (D11, D12) and [legacyize.yaml](datasets/synpuf/legacyize.yaml). Two builds are byte-identical.
+Build time is 190 s on an Apple M4 (10 cores, 16 GB) using one process, streaming straight from the zips. The legacy DB is 957 MB. There are 3,967,754 logged defects across 20 types; the definitions are in [DECISIONS.md](DECISIONS.md) (D11, D12) and [legacyize.yaml](datasets/synpuf/legacyize.yaml). Two builds are byte-identical.
