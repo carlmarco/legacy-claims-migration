@@ -66,3 +66,24 @@ Measured by `datasets/synpuf/profile_source.py` → `results/native_profile.json
 | ICD-9 dx codes ambiguous after integer cast (`01000` vs `1000`) | 196 codes / 9,268 occurrences | Sets up B4: see the ICD-9 decision pending. |
 
 **Rejected:** quarantining undated claims. They're genuine source records, and quarantine is reserved for integrity failures.
+
+### D12 · Legacy-izer design
+**Decision:**
+- Every random decision is drawn from `rng_for(seed, table, natural_key)`, a PRNG seeded from a blake2b hash of the row's key, not from a shared random stream.
+- Ground truth goes to a separate `legacy_truth.sqlite` that the migrator never opens.
+- Leading-zero loss (B4/B5) is produced by SQLite's own INTEGER affinity, not simulated.
+- Builds go to a temp file and are renamed on success.
+
+**Rationale:**
+- Content-seeded randomness makes the output byte-identical across runs (verified: two builds have the same `.dump` hash) and independent of processing order, so the legacy-izer can be parallelized later without changing its output.
+- A separate truth file prevents the migrator from "passing" by reading the answers.
+- Using real INTEGER-affinity behavior means the defect is exactly what a real legacy DB produces, including side effects I'd have missed, such as `'458.0'` → `458`.
+
+**Adjustments found while building:**
+- Zero money amounts are not eligible for B3. Unused carrier lines 2–13 are padded with `0.00`, which made up 94% of B3 hits (633k at 1%).
+- In a D2 correction pair, the superseded row gets the *higher* REC_ID, so survivorship can't use REC_ID as a stand-in for recency; it has to use LOAD_TS.
+- The dot format (B4_dot) applies only to V/E codes, because SQLite converts numeric `'458.0'` to `458` anyway.
+
+**Rejected:**
+- A single `random.Random(seed)` stream: output would depend on row order and subset size.
+- Writing the truth log into the legacy DB: it would leak the answers to the migrator.

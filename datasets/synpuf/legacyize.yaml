@@ -1,0 +1,26 @@
+# Defect injection config for the SynPUF legacy-izer. IDs match DECISIONS.md / the M1 defect list.
+# Rates are probabilities per value (B*, C1/C3/C4/C5) or per row (A1, B6, D*, E*).
+
+seed: 0
+subset_pct: 25
+
+rates:
+  A1_stale_copy: 0.02         # denormalized demographic copy on a claim row disagrees with MBR_MSTR
+  B1_date_format: 0.30        # non-canonical date format
+  B3_money_format: 0.20       # money rendered as messy text
+  B4_dx_dot_format: 0.10      # V/E diagnosis codes written with a dot (numeric codes lose it to INTEGER affinity)
+  B5_ndc_hyphen: 0.05         # NDC written 5-4-2 with hyphens
+  B6_id_variant: 0.03         # MBR_ID on a claim row with case/whitespace drift
+  C1_sex: 0.30
+  C2_flag_batches: 0.40       # fraction of load batches using a non-native flag scheme
+  C3_state: 0.20
+  C4_claim_type: 0.25
+  C5_esrd: 0.15
+  D1_exact_dup: 0.02
+  D2_correction: 0.005
+  D3_bene_id_variant: 0.01
+  E1_removed_bene: 0.002
+  E2_reversed_dates: 0.003
+  E3_soft_deleted: 0.005
+
+batches_per_year: 50
