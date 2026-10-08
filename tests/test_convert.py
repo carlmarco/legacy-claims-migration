@@ -99,3 +99,16 @@ def test_zero_padded_code_repairs_unique_candidate():
     ctx = Context(references={"dx": {"0389"}})
     out = build("zero_padded_code", {"reference": "dx", "max_len": 5}, ctx)(389)
     assert out == {"": "0389", "_raw": "389", "_resolution": "repaired"}
+
+
+def test_assume_received_stores_labeled_guess_only_when_received_value_is_valid():
+    f = conv("zero_padded_code", {"reference": "dx", "max_len": 5, "on_ambiguous": "assume_received"})
+    assert f(389) == {"": "389", "_raw": "389", "_resolution": "assumed"}   # '389' valid; '0389' too
+    ctx = Context(references={"dx": {"0389", "00389"}})                   # received value not valid
+    g = build("zero_padded_code", {"reference": "dx", "max_len": 5, "on_ambiguous": "assume_received"}, ctx)
+    assert g(389) == {"": None, "_raw": "389", "_resolution": "ambiguous"}
+
+
+def test_on_ambiguous_rejects_unknown_policy():
+    with pytest.raises(ValueError):
+        conv("zero_padded_code", {"reference": "dx", "max_len": 5, "on_ambiguous": "pad"})

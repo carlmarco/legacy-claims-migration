@@ -33,9 +33,9 @@
     "B4_int_cast": {
       "total": 41456,
       "repaired": 26505,
-      "withheld": 14454,
+      "withheld": 7038,
       "excluded": 202,
-      "wrong": 295,
+      "wrong": 7711,
       "handled_pct": 64.423
     },
     "B5_hyphen": {
@@ -116,5 +116,5 @@
     }
   },
   "unmapped_columns": [],
-  "elapsed_s": 85.0
+  "elapsed_s": 102.8
 }

@@ -42,8 +42,9 @@ code_maps:
 # Shared column fragments (YAML anchors).
 _ids:
   bene: &bene_id [MBR_ID, id, {pattern: "[0-9A-F]{16}"}]
-  icd9_dx: &icd9_dx {reference: icd9_dx, max_len: 5}
-  icd9_px: &icd9_px {reference: icd9_px, max_len: 4}
+  # on_ambiguous: assume_received -> store the as-received code labeled 'assumed' (D24)
+  icd9_dx: &icd9_dx {reference: icd9_dx, max_len: 5, on_ambiguous: assume_received}
+  icd9_px: &icd9_px {reference: icd9_px, max_len: 4, on_ambiguous: assume_received}
   hdr_key: &hdr_key
     claim_type: [CLM_TYP, code, {map: claim_type}]
     clm_id: [CLM_ID, text]

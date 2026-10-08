@@ -1,13 +1,13 @@
 {
-  "run_id": 77,
+  "run_id": 100,
   "dataset": "synpuf",
   "strategy": "parallel",
   "dry_run": false,
   "limit": null,
   "workers": 8,
   "chunks": 128,
-  "worker_transform_cpu_s": 578.88,
-  "worker_load_s": 44.53,
+  "worker_transform_cpu_s": 386.24,
+  "worker_load_s": 32.21,
   "staged_rows": 9527947,
   "staged_by_entity": {
     "drug_event": 1395271,
@@ -19,8 +19,8 @@
     "beneficiary": 57481,
     "beneficiary_year": 57481
   },
-  "extract_load_s": 80.35,
-  "staged_rows_per_s": 118578,
+  "extract_load_s": 54.22,
+  "staged_rows_per_s": 175734,
   "merge": {
     "beneficiary": {
       "staged": 57481,
@@ -30,7 +30,7 @@
       "inserted": 28972,
       "updated": 0,
       "unchanged": 0,
-      "seconds": 0.24
+      "seconds": 0.18
     },
     "beneficiary_year": {
       "staged": 57481,
@@ -41,7 +41,7 @@
       "inserted": 57481,
       "updated": 0,
       "unchanged": 0,
-      "seconds": 0.47
+      "seconds": 0.44
     },
     "claim": {
       "staged": 1427946,
@@ -52,7 +52,7 @@
       "inserted": 1389796,
       "updated": 0,
       "unchanged": 0,
-      "seconds": 18.51
+      "seconds": 16.88
     },
     "claim_diagnosis": {
       "staged": 3246714,
@@ -64,7 +64,7 @@
       "updated": 0,
       "unchanged": 0,
       "deleted": 0,
-      "seconds": 66.47
+      "seconds": 54.35
     },
     "claim_procedure": {
       "staged": 24418,
@@ -76,7 +76,7 @@
       "updated": 0,
       "unchanged": 0,
       "deleted": 0,
-      "seconds": 4.79
+      "seconds": 4.04
     },
     "claim_hcpcs": {
       "staged": 952013,
@@ -88,7 +88,7 @@
       "updated": 0,
       "unchanged": 0,
       "deleted": 0,
-      "seconds": 20.63
+      "seconds": 19.24
     },
     "claim_line": {
       "staged": 2366623,
@@ -100,7 +100,7 @@
       "updated": 0,
       "unchanged": 0,
       "deleted": 0,
-      "seconds": 45.92
+      "seconds": 77.86
     },
     "drug_event": {
       "staged": 1395271,
@@ -111,11 +111,11 @@
       "inserted": 1365094,
       "updated": 0,
       "unchanged": 0,
-      "seconds": 13.26
+      "seconds": 35.14
     }
   },
-  "merge_s": 170.36,
-  "total_s": 250.71,
-  "peak_rss_mb": 56.6,
-  "peak_rss_worker_mb": 95.2
+  "merge_s": 208.55,
+  "total_s": 262.77,
+  "peak_rss_mb": 57.2,
+  "peak_rss_worker_mb": 97.0
 }

@@ -180,12 +180,19 @@ def _zero_padded_code(args, ctx):
     """Resolve a code that may have lost leading zeros (e.g. stored in an INTEGER column).
 
     Candidates are the received digits plus left-padded variants up to `max_len`; each is checked
-    against the reference set. Exactly one valid -> use it. Several -> ambiguous (NULL). Never guess.
+    against the reference set. Exactly one valid -> use it. Several -> ambiguous.
+    `on_ambiguous` decides what an ambiguous code stores:
+      withhold          code NULL, status 'ambiguous' (never guess)
+      assume_received   if the value as received is itself valid, store it with status 'assumed'
+                        (a labeled guess: consumers can filter on the status); otherwise withhold
     Returns {"": code, "_raw": received, "_resolution": status}.
     """
     ref = ctx.references[args["reference"]]
     max_len = args["max_len"]
     strip_dot = args.get("strip_dot", True)
+    on_ambiguous = args.get("on_ambiguous", "withhold")
+    if on_ambiguous not in ("withhold", "assume_received"):
+        raise ValueError(f"on_ambiguous must be withhold|assume_received, got {on_ambiguous!r}")
 
     def f(v):
         raw = str(v).strip()
@@ -200,6 +207,8 @@ def _zero_padded_code(args, ctx):
         if len(valid) == 1:
             return {"": valid[0], "_raw": raw, "_resolution": "exact" if valid[0] == s else "repaired"}
         if len(valid) > 1:
+            if on_ambiguous == "assume_received" and s in valid:
+                return {"": s, "_raw": raw, "_resolution": "assumed"}
             return {"": None, "_raw": raw, "_resolution": "ambiguous"}
         return {"": None, "_raw": raw, "_resolution": "unresolved"}
     return f

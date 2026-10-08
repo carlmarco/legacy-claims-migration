@@ -28,6 +28,7 @@ def merge_entity(con: psycopg.Connection, m: Mapping, entity: str, run_id: int) 
     surv = sql.Identifier(f"surv__{entity}")
     key = _ids(e.key)
     stats: dict = {"staged": con.execute(sql.SQL("SELECT count(*) FROM {}").format(stage)).fetchone()[0]}
+    t = time.perf_counter()
 
     # 1. Survivorship. Ties on the order expression break on the higher legacy REC_ID, deterministically.
     rules = e.survivorship.get("fields", {})
@@ -68,6 +69,7 @@ def merge_entity(con: psycopg.Connection, m: Mapping, entity: str, run_id: int) 
             ORDER BY {key}, {order}, _src_rec_id DESC""").format(
             surv=surv, key=key, select=sql.SQL(", ").join(select), stage=stage, order=order))
     stats["survivors"] = con.execute(sql.SQL("SELECT count(*) FROM {}").format(surv)).fetchone()[0]
+    stats["t_survivorship"], t = round(time.perf_counter() - t, 2), time.perf_counter()
     stats["duplicates_resolved"] = stats["staged"] - stats["survivors"]
 
     # 2. Orphans: parent key absent from the (already merged) parent target table.
@@ -89,6 +91,8 @@ def merge_entity(con: psycopg.Connection, m: Mapping, entity: str, run_id: int) 
         stats["orphans"] += n
         stats[f"orphans_{parent}"] = n
 
+    stats["t_orphans"], t = round(time.perf_counter() - t, 2), time.perf_counter()
+
     # 3. Upsert. Only rows whose data actually changed are written (lineage excluded from the comparison).
     data_cols = [c for c in e.output if c not in e.key and c not in LINEAGE_COLS]
     set_cols = [c for c in e.output if c not in e.key]
@@ -106,6 +110,7 @@ def merge_entity(con: psycopg.Connection, m: Mapping, entity: str, run_id: int) 
         distinct=distinct if data_cols else sql.SQL("false"))
     stats["inserted"], stats["updated"] = con.execute(upsert).fetchone()
     stats["unchanged"] = stats["survivors"] - stats["orphans"] - stats["inserted"] - stats["updated"]
+    stats["t_upsert"], t = round(time.perf_counter() - t, 2), time.perf_counter()
 
     if follow:
         # Replace the child set of every parent present in this run: delete target children the
@@ -121,6 +126,7 @@ def merge_entity(con: psycopg.Connection, m: Mapping, entity: str, run_id: int) 
               AND NOT EXISTS (SELECT 1 FROM {surv} s WHERE {same_key})""").format(
             target=target, pstage=stage_table(m, follow), same_parent=same_parent, surv=surv,
             same_key=same_key)).rowcount
+        stats["t_child_delete"] = round(time.perf_counter() - t, 2)
     con.execute(sql.SQL("DROP TABLE {}").format(surv))
     return stats
 

@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS synpuf.claim (
     admitting_dx            text,
     admitting_dx_raw        text,
     admitting_dx_resolution text CHECK (admitting_dx_resolution IN
-                                ('exact', 'repaired', 'ambiguous', 'unresolved', 'not_in_reference')),
+                                ('exact', 'repaired', 'assumed', 'ambiguous', 'unresolved', 'not_in_reference')),
     drg_code        text,
     pass_thru_per_diem numeric(12,2),
     ip_deductible   numeric(12,2),
@@ -67,14 +67,15 @@ CREATE TABLE IF NOT EXISTS synpuf.claim (
 );
 CREATE INDEX IF NOT EXISTS claim_beneficiary ON synpuf.claim (beneficiary_id);
 
--- One row per code slot. code is NULL exactly when the leading-zero loss can't be resolved (D13).
+-- One row per code slot. code is NULL exactly when the leading-zero loss can't be resolved (D13);
+-- 'assumed' = ambiguous, as-received value stored as a labeled guess (D24).
 CREATE TABLE IF NOT EXISTS synpuf.claim_diagnosis (
     claim_type text NOT NULL, clm_id text NOT NULL, segment smallint NOT NULL,
     position        smallint NOT NULL,
     code            text,
     code_raw        text NOT NULL,
     code_resolution text NOT NULL CHECK (code_resolution IN
-                        ('exact', 'repaired', 'ambiguous', 'unresolved', 'not_in_reference')),
+                        ('exact', 'repaired', 'assumed', 'ambiguous', 'unresolved', 'not_in_reference')),
     _src_table text NOT NULL, _src_rec_id bigint NOT NULL, _version timestamp NOT NULL,
     PRIMARY KEY (claim_type, clm_id, segment, position),
     FOREIGN KEY (claim_type, clm_id, segment) REFERENCES synpuf.claim ON DELETE CASCADE,
@@ -111,7 +112,7 @@ CREATE TABLE IF NOT EXISTS synpuf.claim_line (
     dx                   text,
     dx_raw               text,
     dx_resolution        text CHECK (dx_resolution IN
-                             ('exact', 'repaired', 'ambiguous', 'unresolved', 'not_in_reference')),
+                             ('exact', 'repaired', 'assumed', 'ambiguous', 'unresolved', 'not_in_reference')),
     _src_table text NOT NULL, _src_rec_id bigint NOT NULL, _version timestamp NOT NULL,
     PRIMARY KEY (claim_type, clm_id, segment, line_number),
     FOREIGN KEY (claim_type, clm_id, segment) REFERENCES synpuf.claim ON DELETE CASCADE

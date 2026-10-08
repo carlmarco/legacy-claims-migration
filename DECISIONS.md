@@ -233,3 +233,39 @@ The per-defect scorer joins the truth log to staging lineage (`_src_table`, `_sr
   | Excluded (on dropped lines) | 202 |
 
 **Broader finding:** integer storage makes *every* numeric code suspect, not just the damaged ones. Across all three diagnosis columns, 223,689 codes are `ambiguous`, of which **210,695 (94.2%) are actually undamaged** and 12,994 really lost a zero. Whether to withhold or to trust the as-received value is a coverage/precision trade-off. Resolved in D24.
+
+### D24 · Ambiguous ICD-9 codes: store the as-received value, labeled `assumed` (policy C)
+**Decision:** `zero_padded_code` takes `on_ambiguous: assume_received`. When several zero-padded candidates are valid *and* the as-received value is one of them, store it with resolution `assumed`. If the received value isn't itself valid, the code is still withheld (`ambiguous`, NULL). The DDL's resolution CHECK adds `assumed`; `code IS NULL ⇔ resolution IN ('ambiguous', 'unresolved')` still holds.
+
+**Measured** (all 5,486,516 codes with a clean value, 25% subset):
+| Policy | Correct | Withheld | Wrong |
+|---|---:|---:|---:|
+| A: withhold | 5,218,649 (95.1%) | 265,027 (4.8%) | 2,840 (0.05%) |
+| **C: assume, labeled** | **5,429,410 (99.0%)** | 46,850 (0.9%) | 10,256 (0.19%), of which 7,416 are `assumed` |
+
+**Mechanism:** `assumed` can never fix a *damaged* code, because the received value is wrong by definition when a zero was lost. The gain is all on undamaged codes (210,761 moved from withheld to correct), and the cost is all on damaged ones (7,416 moved from withheld to wrong, labeled). B4_int_cast scoring shows exactly this: repaired stays 26,505, and wrong rises from 295 to 7,711.
+
+**Risk:** consumers who ignore `code_resolution` will silently use 7,416 wrong codes. Mitigation: document the column, and expose a `code_confirmed` view that filters out `assumed`.
+
+**Rejected:** A, withholding (coverage was preferred); B, trusting without a label (indistinguishable from verified codes).
+
+### D25 · Merge profiling: findings so far (optimization paused)
+**Instrumented:** per-step merge timings (`t_survivorship`, `t_orphans`, `t_upsert`, `t_child_delete`), plus `scripts/profile_merge.py`. The profiler runs the merge against the current staging inside a transaction that TRUNCATEs the target and then ROLLs BACK, so the target is never touched.
+
+**Baseline (149 s):** upsert 62%, survivorship 27%, orphan checks 7%, child-set delete 4%.
+
+| Hypothesis | Result |
+|---|---|
+| Per-row FK trigger checks are redundant with the set-based orphan check | One run: 149 s → 111 s (−25%). **Not yet confirmed by repeats.** |
+| `work_mem` 4 MB → 256 MB speeds survivorship sorts | **Rejected.** 163 s, no gain, survivorship unchanged. |
+
+**Measurement invalidated by the environment:** a repeat baseline took 322 s, 2.2× the first, on identical data. Two causes found:
+1. **Forced checkpoints.** `max_wal_size` is the default 1 GB, and each merge writes several GB of WAL, so 113 of 160 checkpoints were requested rather than timed.
+2. **Host disk at 97% (6 GB free).** Docker Desktop's VM disk has grown to about 30 GB: 21 GB unused build cache from other projects, plus a 5.4 GB Postgres volume. The container has written 226 GB in total.
+
+No optimization is claimed until measurements are repeatable.
+
+**Planned:**
+- Raise `max_wal_size` to 8 GB for bulk loads. It doesn't reduce durability; it only spaces checkpoints.
+- Re-measure each hypothesis 3× alternating.
+- If FK deferral holds up: opt-in drop-FK → upsert → `ADD … NOT VALID` → `VALIDATE` inside the merge transaction. It's atomic, but it takes ACCESS EXCLUSIVE locks, so it suits a cutover, not live incremental loads.
