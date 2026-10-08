@@ -25,11 +25,17 @@ def first_token(path: str, member: str | None = None, encoding: str = "latin-1")
 
 
 def load(spec: dict, base: Path) -> set[str]:
-    """spec: {loader: name, path: ..., ...}. Multiple `paths` are unioned (e.g. several code-set versions)."""
+    """spec: {loader: name, path: ..., <loader args>}  or  {loader: name, sources: [{path, ...}, ...]}.
+
+    `sources` are unioned, e.g. several versions of a code set that each apply to part of the data.
+    Paths are relative to `base`.
+    """
     spec = dict(spec)
     fn = LOADERS[spec.pop("loader")]
-    paths = spec.pop("paths", None) or [spec.pop("path")]
+    sources = spec.pop("sources", None) or [spec]
     out: set[str] = set()
-    for p in paths:
-        out |= fn(str(base / p) if not Path(p).is_absolute() else p, **spec)
+    for src in sources:
+        src = dict(src)
+        path = Path(src.pop("path"))
+        out |= fn(str(path if path.is_absolute() else base / path), **src)
     return out

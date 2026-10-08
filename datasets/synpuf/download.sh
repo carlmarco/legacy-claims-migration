@@ -17,6 +17,11 @@ FILES=(
   "DE1_0_2009_Beneficiary_Summary_File_Sample_1.zip|$BASE_WWW/de1_0_2009_beneficiary_summary_file_sample_1.zip|3177446"
   # ICD-9-CM v32 (FY2015, final) code list: resolves leading-zero ambiguity. See DECISIONS D13.
   "ICD-9-CM-v32-master-descriptions.zip|https://www.cms.gov/medicare/coding/icd9providerdiagnosticcodes/downloads/icd-9-cm-v32-master-descriptions.zip|1079497"
+  # Code lists for the claim years (FY2008-FY2011), unioned with v32 by the resolver. See DECISIONS D18.
+  "ICD-9-CM-v25.zip|https://www.cms.gov/medicare/coding/icd9providerdiagnosticcodes/downloads/v25_icd9.zip|146991"
+  "ICD-9-CM-v26.zip|https://www.cms.gov/medicare/coding/icd9providerdiagnosticcodes/downloads/v26_icd9.zip|150818"
+  "ICD-9-CM-v27.zip|https://www.cms.gov/medicare/coding/icd9providerdiagnosticcodes/downloads/v27_icd9.zip|158272"
+  "ICD-9-CM-v28.zip|https://www.cms.gov/medicare/coding/icd9providerdiagnosticcodes/downloads/cmsv28_master_descriptions.zip|941708"
   # No 2010 beneficiary file for Sample 1: CMS's link serves Sample 20 (0 ID overlap). See DECISIONS D10.
 )
 for entry in "${FILES[@]}"; do

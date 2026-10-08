@@ -9,9 +9,24 @@ null_tokens: ["", "N/A", "00000000", "99991231"]
 lineage: {rec_id: REC_ID, version: LOAD_TS}
 exclude: "DEL_FLG = 'Y'"          # soft-deleted legacy rows (E3); counted, never loaded
 
+# ICD-9-CM code lists: the claim years (FY2008-FY2011 = v25-v28) plus the final version (v32). D13, D18.
 references:
-  icd9_dx: {loader: first_token, path: ../../data/raw/ICD-9-CM-v32-master-descriptions.zip, member: CMS32_DESC_SHORT_DX.txt}
-  icd9_px: {loader: first_token, path: ../../data/raw/ICD-9-CM-v32-master-descriptions.zip, member: CMS32_DESC_SHORT_SG.txt}
+  icd9_dx:
+    loader: first_token
+    sources:
+      - {path: ../../data/raw/ICD-9-CM-v25.zip, member: I9diagnosesV25.txt}
+      - {path: ../../data/raw/ICD-9-CM-v26.zip, member: "V26 I-9 Diagnosis.txt"}
+      - {path: ../../data/raw/ICD-9-CM-v27.zip, member: CMS27_DESC_SHORT_DX.txt}
+      - {path: ../../data/raw/ICD-9-CM-v28.zip, member: CMS28_DESC_SHORT_DX.txt}
+      - {path: ../../data/raw/ICD-9-CM-v32-master-descriptions.zip, member: CMS32_DESC_SHORT_DX.txt}
+  icd9_px:
+    loader: first_token
+    sources:
+      - {path: ../../data/raw/ICD-9-CM-v25.zip, member: I9proceduresV25.txt}
+      - {path: ../../data/raw/ICD-9-CM-v26.zip, member: "V26  I-9 Procedures.txt"}
+      - {path: ../../data/raw/ICD-9-CM-v27.zip, member: CMS27_DESC_SHORT_SG.txt}
+      - {path: ../../data/raw/ICD-9-CM-v28.zip, member: CMS28_DESC_SHORT_SG.txt}
+      - {path: ../../data/raw/ICD-9-CM-v32-master-descriptions.zip, member: CMS32_DESC_SHORT_SG.txt}
 
 code_maps:
   sex: {case_insensitive: true, values: {"1": M, "2": F, "M": M, "F": F, "male": M, "female": F}}

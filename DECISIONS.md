@@ -98,15 +98,17 @@ Measured by `datasets/synpuf/profile_source.py` → `results/native_profile.json
 
 Candidates are the received digits plus left-padded variants, up to the code system's maximum length (5 for diagnosis, 4 for procedure). The reference list is CMS ICD-9-CM v32.
 
-**Measured against the truth log (25% subset):** of 41,456 codes with leading zeros lost,
+**Measured against the truth log (25% subset)** by running the real resolver (`zero_padded_code`) over all 41,456 codes with leading zeros lost, against v32 only:
 | Outcome | Count |
 |---|---:|
-| Unique and correct | 25,958 |
+| Correct | 25,958 |
 | Ambiguous | 13,474 |
-| No valid candidate | 1,775 |
-| **Unique but wrong** | **249 (0.6%)** |
+| Unresolved | 1,724 |
+| **Resolved but wrong** | **300 (0.7%)** |
 
-**Why "unique but wrong" exists:** 2.85% of *clean* SynPUF diagnosis codes aren't in v32. That's version drift (v32 is FY2015, the claims are 2008–2010; e.g. `041.4` was later subdivided) plus synthesis noise (HIV codes `043.x`/`044.x`, retired in 1994). When the true code isn't in the list, the only valid candidate is a different code. Checking against the reference list is necessary but not sufficient, and the validator reports this residual explicitly.
+*(Correction: an earlier ad-hoc estimate said 249 wrong. It used a different length rule for procedure codes. The figures above come from the resolver itself.)*
+
+**Why "unique but wrong" exists:** 2.85% of *clean* SynPUF diagnosis codes aren't in v32. That's version drift (v32 is FY2015, the claims are 2008–2010; e.g. `041.4` was later subdivided) plus synthesis noise (HIV codes `043.x`/`044.x`, retired in 1994). When the true code isn't in the list, the only valid candidate is a different code. This includes 5-digit procedure codes in SynPUF that exceed the ICD-9 procedure format and are kept as `not_in_reference`. Checking against the reference list is necessary but not sufficient, and the validator reports this residual explicitly.
 
 **Open:** adding the code lists for the claim years (v25–v28) should shrink `unresolved` and the wrong repairs. That needs a download, pending approval.
 
@@ -136,3 +138,17 @@ Candidates are the received digits plus left-padded variants, up to the code sys
 ### D17 · Strict row conversion: any unparseable value quarantines the row
 **Rationale:** In a migration, a silently NULLed field is worse than a quarantined row. Quarantine is visible and countable, and the raw row is preserved as JSONB for replay. Values that are legitimately null use the explicit null-token list.
 **Rejected:** Coercing failures to NULL (silent data loss).
+
+### D18 · ICD-9 reference = union of v25–v28 (the claim years) and v32
+**Decision:** The resolver's reference set is the union of the CMS code lists for FY2008–FY2011 and the final v32.
+
+**Measured against the truth log** (41,456 codes with leading zeros lost):
+| Reference set | Correct | Ambiguous | Unresolved | Wrong |
+|---|---:|---:|---:|---:|
+| v32 only | 25,958 | 13,474 | 1,724 | 300 |
+| v25–v28 + v32 | **26,626** | 13,540 | **993** | **297** |
+
+**Reading:** Version drift caused the *unresolved* codes: those dropped 42%, and 668 more codes are repaired correctly. It did **not** cause the *wrong* resolutions, which barely moved. Those come from SynPUF's synthetic codes that are invalid in every version (e.g. `044.x`, retired in 1994). No reference list can fix them. The residual 297 (0.7%) is reported, not hidden. Ambiguity rises slightly (+66), because a bigger valid set means more collisions. That's the cost of better coverage.
+
+**Rejected:**
+- A per-claim-year reference, i.e. choosing the version by service date. It's more precise in principle, but it adds a date dependency to a row-level converter, and the union already captures most of the gain. Revisit only if the validator shows that cross-version collisions matter.
