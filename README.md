@@ -48,7 +48,7 @@ etl transform --mapping datasets/synpuf/mapping.yaml   # counts + quarantine rea
 
 2,880,698 legacy rows become 9,527,947 target rows in 325 s (**29k rows/s, one process, transform only**). 14,057 soft-deleted rows are excluded and 0 rows are quarantined for bad values.
 
-## Load strategy benchmark (25% subset → 9,527,947 staged rows → 8,817,780 target rows)
+## Load strategy benchmark (25% subset → 9,527,947 staged rows → 9,255,378 target rows)
 
 ```bash
 etl migrate --mapping datasets/synpuf/mapping.yaml --strategy {naive|executemany|batched|parallel} [--workers N] --fresh
