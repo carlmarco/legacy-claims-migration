@@ -76,6 +76,19 @@ The machine is an Apple M4 (4 performance + 6 efficiency cores, 16 GB). Postgres
 
 **Run-to-run noise:** each row above is a single run. An earlier full set of runs on the same code, minus a merge fix, measured naive at 2,502 s (+30%), COPY at 447 s (+16%), and 8 workers at 253 s (+1%). The single-process, transform-heavy runs vary the most. The bottleneck story held in both sets. The absolute numbers depend on what else the laptop is doing; a rented-VM run with repeated trials is planned.
 
+### Merge optimization (`--defer-fks`, `max_wal_size`)
+
+The merge was profiled per step before anything changed: upsert 62%, survivorship 27%, orphan checks 7%, child-set delete 4%. Each hypothesis was tested with [`scripts/profile_merge.py`](scripts/profile_merge.py), which runs the merge on the current staging inside a rolled-back transaction. Baseline and candidate runs alternate, 3 pairs each:
+
+| Change | Baseline | Candidate | Verdict |
+|---|---:|---:|---|
+| `work_mem` 4 MB → 256 MB | 149 s | 163 s | rejected |
+| `--defer-fks`: drop FKs → upsert → `ADD … NOT VALID` → `VALIDATE` | 158 s (mean) | **133 s (mean)** | **−16%** (per pair −12% to −20%); kept, opt-in |
+
+The merge already quarantines orphans set-based, so the per-row FK triggers were redundant. `VALIDATE` re-checks every row once, with a join (6–8 s for all 7 FKs). It's opt-in because `ALTER TABLE` locks the target tables until commit. That's for cutover loads, not live databases.
+
+`max_wal_size` was raised from 1 GB to 4 GB: each merge writes several GB of WAL, and the default forced dozens of checkpoints per merge (it's 1–2 now). Durability is unchanged. One end-to-end 8-worker run with `--defer-fks` validated cleanly at 260 s total. That isn't directly comparable to the table above (different day, different machine state), which is why the paired number is the one reported.
+
 Memory stays flat regardless of input size: about 120 MB for single-process batched runs, and at most 95 MB per parallel worker.
 
 ## Validation (`etl validate`, `python -m datasets.synpuf.score`)

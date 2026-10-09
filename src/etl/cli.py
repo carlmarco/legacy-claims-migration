@@ -46,7 +46,8 @@ def cmd_transform(args: argparse.Namespace) -> None:
 def cmd_migrate(args: argparse.Namespace) -> None:
     from . import pipeline
     stats = pipeline.run(args.mapping, args.strategy, dry_run=args.dry_run, limit=args.limit,
-                         merge_step=not args.no_merge, fresh=args.fresh, workers=args.workers)
+                         merge_step=not args.no_merge, fresh=args.fresh, workers=args.workers,
+                         defer_fks=args.defer_fks)
     out = json.dumps(stats, indent=2, default=str)
     print(out)
     if args.out:
@@ -89,6 +90,8 @@ def main() -> None:
     g.add_argument("--no-merge", action="store_true", help="stop after staging (load-path benchmarks)")
     g.add_argument("--fresh", action="store_true", help="drop the target schema first")
     g.add_argument("--workers", type=int, default=1)
+    g.add_argument("--defer-fks", action="store_true",
+                   help="drop target FKs during the merge, re-validate set-based at the end (cutover loads)")
     g.add_argument("--out", help="write run stats JSON here")
     g.set_defaults(fn=cmd_migrate)
 

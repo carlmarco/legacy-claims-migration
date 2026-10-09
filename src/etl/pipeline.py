@@ -45,7 +45,7 @@ def peak_rss_mb(who: int = resource.RUSAGE_SELF) -> float:
 
 
 def run(mapping_path: str, strategy: str, dry_run: bool = False, limit: int | None = None,
-        merge_step: bool = True, fresh: bool = False, workers: int = 1) -> dict:
+        merge_step: bool = True, fresh: bool = False, workers: int = 1, defer_fks: bool = False) -> dict:
     m = Mapping(mapping_path)
     load = STRATEGIES[strategy]
     with db.connect(autocommit=True) as con:
@@ -60,7 +60,7 @@ def run(mapping_path: str, strategy: str, dry_run: bool = False, limit: int | No
             (m.name, strategy, dry_run)).fetchone()[0]
 
     stats: dict = {"run_id": run_id, "dataset": m.name, "strategy": strategy, "dry_run": dry_run,
-                   "limit": limit, "workers": workers}
+                   "limit": limit, "workers": workers, "defer_fks": defer_fks}
     try:
         t0 = time.perf_counter()
         if strategy == "parallel":
@@ -80,7 +80,7 @@ def run(mapping_path: str, strategy: str, dry_run: bool = False, limit: int | No
         if merge_step:
             t1 = time.perf_counter()
             with db.connect() as con:  # one transaction for the whole merge
-                stats["merge"] = merge.merge_all(con, m, run_id)
+                stats["merge"] = merge.merge_all(con, m, run_id, defer_fks=defer_fks)
                 if dry_run:
                     con.rollback()
                 else:

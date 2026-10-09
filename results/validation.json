@@ -243,27 +243,27 @@
       }
     },
     "claim_procedure.code": {
-      "not_in_reference": {
-        "correct": 11201,
-        "wrong": 50
+      "ambiguous": {
+        "withheld": 391
+      },
+      "assumed": {
+        "correct": 66,
+        "wrong": 80
       },
       "exact": {
         "correct": 11340,
         "wrong": 40
       },
+      "not_in_reference": {
+        "correct": 11201,
+        "wrong": 50
+      },
       "repaired": {
         "correct": 295,
         "wrong": 2
       },
-      "assumed": {
-        "wrong": 80,
-        "correct": 66
-      },
       "unresolved": {
         "withheld": 320
-      },
-      "ambiguous": {
-        "withheld": 391
       }
     },
     "claim_line.dx": {
@@ -292,5 +292,5 @@
       }
     }
   },
-  "elapsed_s": 59.3
+  "elapsed_s": 30.9
 }

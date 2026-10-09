@@ -131,8 +131,35 @@ def merge_entity(con: psycopg.Connection, m: Mapping, entity: str, run_id: int) 
     return stats
 
 
-def merge_all(con: psycopg.Connection, m: Mapping, run_id: int) -> dict:
-    """Merge every entity in one transaction (the caller commits, or rolls back for a dry run)."""
+def _drop_fks(con: psycopg.Connection, m: Mapping) -> list[tuple[str, str, str]]:
+    """Drop the target's FK constraints, returning (table, name, definition) to restore them."""
+    fks = con.execute("""
+        SELECT c.conrelid::regclass::text, c.conname, pg_get_constraintdef(c.oid)
+        FROM pg_constraint c JOIN pg_namespace n ON n.oid = c.connamespace
+        WHERE c.contype = 'f' AND n.nspname = %s ORDER BY 1, 2""", (m.target_schema,)).fetchall()
+    for table, name, _ in fks:
+        con.execute(sql.SQL("ALTER TABLE {} DROP CONSTRAINT {}").format(sql.SQL(table), sql.Identifier(name)))
+    return fks
+
+
+def _restore_fks(con: psycopg.Connection, fks: list[tuple[str, str, str]]) -> None:
+    """Re-add FKs NOT VALID (instant), then VALIDATE: one set-based check per FK instead of a
+    trigger lookup per inserted row. A violation fails the whole merge transaction."""
+    for table, name, definition in fks:
+        con.execute(sql.SQL("ALTER TABLE {} ADD CONSTRAINT {} {} NOT VALID").format(
+            sql.SQL(table), sql.Identifier(name), sql.SQL(definition)))
+    for table, name, _ in fks:
+        con.execute(sql.SQL("ALTER TABLE {} VALIDATE CONSTRAINT {}").format(sql.SQL(table), sql.Identifier(name)))
+
+
+def merge_all(con: psycopg.Connection, m: Mapping, run_id: int, defer_fks: bool = False) -> dict:
+    """Merge every entity in one transaction (the caller commits, or rolls back for a dry run).
+
+    defer_fks: drop the target's FKs for the duration of the merge and re-validate them set-based
+    at the end. Redundant per-row checks are skipped (the merge already quarantines orphans), but
+    ALTER TABLE holds ACCESS EXCLUSIVE locks until commit: for cutover loads, not live targets.
+    """
+    fks = _drop_fks(con, m) if defer_fks else []
     # Quarantine reflects the latest run: clear this dataset's rows, then re-add from this run.
     con.execute("DELETE FROM etl.quarantine WHERE dataset = %s", (m.name,))
     con.execute(sql.SQL("""
@@ -145,4 +172,8 @@ def merge_all(con: psycopg.Connection, m: Mapping, run_id: int) -> dict:
         t = time.perf_counter()
         out[entity] = merge_entity(con, m, entity, run_id)
         out[entity]["seconds"] = round(time.perf_counter() - t, 2)
+    if fks:
+        t = time.perf_counter()
+        _restore_fks(con, fks)
+        out["_fk_validate"] = {"constraints": len(fks), "seconds": round(time.perf_counter() - t, 2)}
     return out

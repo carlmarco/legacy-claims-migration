@@ -121,3 +121,30 @@ def test_rerun_deletes_children_the_parent_no_longer_has(mapping_path):
     assert q("SELECT slot FROM dental.appointment_procedure") == [(1,)]
     # Child-set replacement is opt-in (follow_parent). An FK alone must never delete.
     assert "deleted" not in s["merge"]["appointment"]
+
+
+def test_defer_fks_gives_same_result_and_restores_constraints(mapping_path):
+    s = pipeline.run(mapping_path, "naive", fresh=True, defer_fks=True)
+    assert s["merge"]["_fk_validate"]["constraints"] == 2
+    assert q("SELECT patient_number, last_name FROM dental.patient") == [("P001", "Okafor-Lee")]
+    assert q("SELECT slot FROM dental.appointment_procedure ORDER BY slot") == [(1,), (2,)]
+    fks = q("""SELECT conrelid::regclass::text, convalidated FROM pg_constraint c
+               JOIN pg_namespace n ON n.oid = c.connamespace
+               WHERE n.nspname = 'dental' AND contype = 'f' ORDER BY 1""")
+    assert fks == [("dental.appointment", True), ("dental.appointment_procedure", True)]
+
+
+def test_defer_fks_still_rejects_a_real_violation(mapping_path):
+    """Deferral moves the check, it doesn't remove it: an orphan that slips into the target fails VALIDATE."""
+    import psycopg
+    from etl import merge
+    from etl.mapping import Mapping
+    pipeline.run(mapping_path, "naive", fresh=True)
+    m = Mapping(mapping_path)
+    with db.connect() as con:
+        fks = merge._drop_fks(con, m)
+        con.execute("INSERT INTO dental.appointment VALUES (999, 'NOPE', NULL, 'T', 1, now())")
+        with pytest.raises(psycopg.errors.ForeignKeyViolation):
+            merge._restore_fks(con, fks)
+        con.rollback()
+    assert len(q("SELECT * FROM pg_constraint WHERE conrelid = 'dental.appointment'::regclass AND contype = 'f'")) == 1

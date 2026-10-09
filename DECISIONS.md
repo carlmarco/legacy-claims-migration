@@ -269,3 +269,27 @@ No optimization is claimed until measurements are repeatable.
 - Raise `max_wal_size` to 8 GB for bulk loads. It doesn't reduce durability; it only spaces checkpoints.
 - Re-measure each hypothesis 3× alternating.
 - If FK deferral holds up: opt-in drop-FK → upsert → `ADD … NOT VALID` → `VALIDATE` inside the merge transaction. It's atomic, but it takes ACCESS EXCLUSIVE locks, so it suits a cutover, not live incremental loads.
+
+### D26 · Merge optimization: `max_wal_size` 4 GB, and opt-in FK deferral (`--defer-fks`)
+**Environment fixes first** (the measurements weren't repeatable without them):
+- Freed host disk space (it was 97% full): free space went from 6.1 GB to 25 GB.
+- `max_wal_size = 4GB` (was the default 1 GB), set in `docker-compose.yml`. Forced checkpoints per merge dropped from dozens to 1–2. Durability is unchanged; checkpoints are just spaced further apart. I chose 4 GB rather than 8 because WAL lives on the same nearly-full disk.
+
+**Hypotheses, each measured as 3 paired runs (baseline and candidate alternating, same staging, rolled back):**
+| Change | Baseline mean | Candidate mean | Result |
+|---|---:|---:|---|
+| `work_mem` 4 MB → 256 MB | 149 s | 163 s (1 run) | **Rejected**: survivorship unchanged |
+| Skip per-row FK triggers (experiment only, `session_replication_role`) | 170 s | 124 s | −27%: FK triggers cost about 46 s |
+| **`--defer-fks`**: drop FKs → upsert → `ADD … NOT VALID` → `VALIDATE` | **158 s** | **133 s** | **−16%** (−12% to −20% per pair). VALIDATE of 7 FKs costs 6–8 s |
+
+**Why it's safe:** the merge already quarantines orphans set-based before the upsert, so the per-row FK triggers were re-checking what was already guaranteed. `VALIDATE` still checks every row, once, with a join instead of millions of index probes. A test proves that a real violation still fails the transaction. DDL is transactional, so a failed merge restores the constraints.
+
+**Why it's opt-in:** `ALTER TABLE` takes ACCESS EXCLUSIVE locks on the target tables until commit, which blocks all readers. That's right for a cutover load, wrong for incremental loads into a live database.
+
+**Remaining merge profile** (after deferral): survivorship about 41 s (child `DISTINCT ON` + join to the parent's winning version), upsert about 57 s (PK index maintenance + WAL). Next candidates, not yet measured:
+- Skip the redundant `DISTINCT ON` sort for `follow_parent` children (uniqueness is already guaranteed by the join).
+- Build the target PK after insert on initial loads.
+
+**Rejected:**
+- `session_replication_role = replica` in production: needs superuser, and disables *all* triggers, not just FK checks.
+- `fsync`/`synchronous_commit = off`: misleading numbers (D8).
