@@ -103,14 +103,16 @@ The expected target is built **independently** from the clean CMS files ([`oracl
 | FK integrity in target | 0 orphans on all 7 references |
 | Injected defects (3,967,754 across 20 types), scored against the truth log | 19/20 types at 100% |
 
-**ICD-9 leading-zero loss (B4_int_cast, 41,456 cases):**
-| Outcome | Count |
-|---|---:|
-| Repaired | 26,505 |
-| Withheld as ambiguous or unresolved | 14,454 |
-| **Wrong** | **295 (0.7%)** |
-| On lines dropped by rule | 202 |
+**ICD-9 codes stored as integers by the legacy system** (the resolver's policy is in [DECISIONS.md](DECISIONS.md) D13, D18, D24):
 
-The wrong cases are source codes that aren't valid in any ICD-9 version, so no reference list can fix them. The broader finding: once codes were stored as integers, every numeric code is suspect, not just the damaged ones. Of 223,689 codes the resolver withholds as ambiguous, 94.2% are actually undamaged. Whether to withhold or trust the as-received value is a coverage/precision decision ([DECISIONS.md](DECISIONS.md) D23).
+Once a legacy column stored codes as integers, *every* numeric code is suspect: `389` might be `389` or `038.9` that lost its zero. The resolver checks each zero-padded candidate against the official CMS code lists (FY2008–2011 and FY2015). One valid candidate → `repaired`. Several valid candidates and the received value is one of them → stored, labeled `assumed`. Otherwise → withheld (NULL, with a status). Every code keeps its raw value and its resolution status.
+
+| Across all 5,486,516 codes | Policy A: withhold ambiguous | **Policy C: assume, labeled (current)** |
+|---|---:|---:|
+| Correct | 5,218,649 (95.1%) | **5,429,410 (99.0%)** |
+| Withheld | 265,027 (4.8%) | 46,850 (0.9%) |
+| Wrong | 2,840 (0.05%) | 10,256 (0.19%), of which 7,416 are labeled `assumed` |
+
+"Assumed" never fixes a code that actually lost a zero: by definition, the received value is wrong there. The gain is entirely on undamaged codes that policy A was withholding. Consumers who need certainty filter on `code_resolution <> 'assumed'`. The remaining wrong codes are source codes that aren't valid in *any* ICD-9 version, so no reference list can fix them.
 
 The validator found a real bug on its first run: 3 extra `claim_line` rows out of 2.3M, caused by a filter running before survivorship. The details are in D22.
