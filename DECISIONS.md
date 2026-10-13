@@ -189,7 +189,7 @@ Candidates are the received digits plus left-padded variants, up to the code sys
 **Decision:** `datasets/synpuf/oracle.py` builds the expected target from the **clean zips** into schema `synpuf_oracle`, with the same DDL as the target. It deliberately reuses none of the engine's converters: dates are parsed with slicing, codes are taken verbatim. The generic validator (`src/etl/validate.py`) then runs:
 - Per-entity counts and quarantine reasons.
 - FK integrity in the target.
-- Order-independent checksums on both sides: `count(*)` plus `sum` of the first 64 bits of `md5(row text)`, with NULL encoded as `\N`.
+- Order-independent checksums on both sides: `count(*)` plus `sum` of the first 64 bits of `md5(row text)`. *(Amended: row text was first built with NULL as `\N` and `|` as the delimiter, which collides with the literal text `'\N'` and with delimiters inside values. It now uses `quote_nullable()` on every column; tests cover both collisions.)*
 - A full keyed diff (`FULL JOIN` on the natural key: missing, extra, differing rows, mismatches per column).
 - For code-resolver columns, a resolution × outcome matrix.
 
