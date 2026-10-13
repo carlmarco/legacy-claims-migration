@@ -85,6 +85,25 @@ Per legacy table, a `(version, rec_id)` watermark of the last *committed* sync. 
 The WAL result is deterministic. **The time results in this section are not trustworthy:** an unrelated CPU-heavy workload was running on the same machine (load average ~23 on 10 cores; the pure-CPU transform slowed up to 3.5×). Clean, repeated measurements on a quiet, dedicated machine are pending (D33).
 
 Next: PowerShell scripts ([`scripts/`](../scripts/), run on PowerShell 7.7; not yet on Windows), T-SQL notes ([docs/TSQL_NOTES.md](TSQL_NOTES.md)), clean benchmarks on dedicated hardware.
+## C# engine benchmark (2026-10-13, repeated trials, every run validated)
+
+Apple M4 (10 cores, 16 GB), PostgreSQL 16 in Docker Desktop, `max_wal_size = 4GB`, durability at defaults. Each run started from an empty target and passed validation against the oracle (8/8 checksums, 0 FK orphans) before it was counted. Raw results: [`results/bench/dotnet-m4-2026-10-13/`](../results/bench/dotnet-m4-2026-10-13/).
+
+| Strategy (C#) | Trials | Extract + load | Merge (SQL) | **Total** | Peak memory |
+|---|---:|---:|---:|---:|---:|
+| `executemany` (NpgsqlBatch, 20k) | 2 | 256–362 s | 164–196 s | **420–558 s** | 540–570 MB |
+| `batched` (binary COPY, 20k) | 2 | 103–104 s | 201–233 s | **305–336 s** | 174–188 MB |
+| `parallel`, 2 workers | 1 | 71 s | 203 s | **274 s** | 137 MB |
+| `parallel`, 4 workers | 1 | 60 s | 198 s | **258 s** | 204 MB |
+| `parallel`, 8 workers | 1 | 63 s | 220 s | **283 s** | 316 MB |
+
+**What it shows:**
+- **The merge now dominates** at about 70–80% of total. The C# transform is fast enough that the set-based SQL merge (identical for both engines) is the bottleneck. The 4.6× transform speedup over Python therefore becomes a much smaller end-to-end gain.
+- **Parallel loading plateaus at 4 workers.** At 8 workers, producers spent 13.6 s blocked on channel backpressure: the 2 COPY writers became the limit, and the bounded channel kept memory capped instead of growing.
+- **`executemany` holds 20,000 parameterized commands per batch**, about 3× the memory of COPY for the same rows.
+
+**Incomplete matrix, stated plainly:** 3 trials per configuration were planned. Two later runs overlapped an unrelated, I/O-heavy workload on the same machine (a merge stalled on `WALWrite` for 50 minutes), so the matrix was stopped and only the 7 clean runs above are reported. A same-day Python baseline wasn't run. The Python figures below come from an earlier session and aren't directly comparable.
+
 ## Load strategy benchmark (25% subset → 9,527,947 staged rows → 9,255,375 target rows)
 
 ```bash

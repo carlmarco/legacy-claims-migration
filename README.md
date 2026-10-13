@@ -18,11 +18,11 @@ Real migrations fail quietly: a date format nobody noticed, codes that lost thei
 | **Scale** | 2,894,755 legacy rows → **9,255,375** rows in a normalized 8-table schema |
 | **Correctness** | Matches an independently built expected result on **every row**: 8/8 tables checksum-identical, 0 differing rows, 0 broken references |
 | **Data quality** | 3,967,754 injected defects across 20 types; **19 of 20 types handled 100%**. The 20th (medical codes stored as integers) is 99.0% correct, and uncertain values are *labeled*, never silently guessed |
-| **Performance** | Bulk loading is **85× faster** than row-by-row; the C# engine is **4.6× faster** than the Python reference implementation, with identical output |
+| **Performance** | Full 9.3M-row migration in **about 4.5 minutes** (C#, 4 parallel workers, validated). Bulk loading is **85× faster** than row-by-row, and the C# transform is **4.6× faster** than the Python reference, with identical output |
 | **Incremental sync** | Re-syncing 9.26M rows with no changes takes **0.6 s**. A fix to how unchanged rows are handled cut database write volume by **99.8%** |
 | **Quality bar** | 178 automated tests (65 xUnit, 113 pytest) running against real PostgreSQL in CI. 33 design decisions logged with the alternatives rejected |
 
-*Performance figures are single runs on an Apple M4 laptop; repeated-trial benchmarks are in progress. Full methodology and caveats: [docs/RESULTS.md](docs/RESULTS.md).*
+*Measured on an Apple M4 laptop (10 cores) with PostgreSQL 16 in Docker; every benchmark run is validated against the oracle before it counts. Trials, ranges and caveats: [docs/RESULTS.md](docs/RESULTS.md).*
 
 ## How it works
 
