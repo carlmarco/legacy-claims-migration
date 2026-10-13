@@ -1,161 +1,85 @@
-# etl
+# Legacy Claims Migration
 
-A generic engine that migrates a degraded "legacy" SQLite database into a normalized PostgreSQL schema. It includes a validation suite and benchmarks four load strategies (row-by-row, pipelined `executemany`, batched COPY, parallel workers).
+[![CI](https://github.com/carlmarco/legacy-claims-migration/actions/workflows/ci.yml/badge.svg)](https://github.com/carlmarco/legacy-claims-migration/actions/workflows/ci.yml)
+![.NET 10](https://img.shields.io/badge/.NET-10-512BD4) ![PostgreSQL 16](https://img.shields.io/badge/PostgreSQL-16-336791) ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
-Built using Claude Code.
+**A C#/.NET migration engine that moves a messy legacy database into a clean PostgreSQL schema, and proves the result is correct, row by row.**
 
-The source data is CMS DE-SynPUF (synthetic Medicare claims). The pipeline deliberately damages it into a realistic legacy schema, then migrates it back to a clean target.
+Real migrations fail quietly: a date format nobody noticed, codes that lost their leading zeros, a record loaded twice. This project takes 2.9 million rows of Medicare claims data that was *deliberately damaged* in 20 realistic ways, migrates it, and measures exactly how much was repaired, flagged or rejected, against a ground truth the engine never sees.
 
-Status: the Python engine is complete and validated (results below). It is being reworked into a C#/.NET project.
+> Built using Claude Code.
 
-## Quickstart
+## At a glance
 
-```bash
-./datasets/synpuf/download.sh        # ~378 MB, CMS Sample 1
-docker compose up -d
-pip install -e '.[dev]'
-```
-
-## Legacy source (built from 25% of DE-SynPUF Sample 1, seed 0)
-
-```bash
-python -m datasets.synpuf.profile_source   # native defects in the clean data -> results/native_profile.json
-python -m datasets.synpuf.legacyize        # -> data/legacy.sqlite + data/legacy_truth.sqlite
-```
-
-| Legacy table | Rows | Built from |
-|---|---:|---|
-| `MBR_MSTR` | 57,773 | 2008 + 2009 beneficiary summaries, one row per beneficiary per year |
-| `CLM_HDR_ALL` | 219,214 | Inpatient + outpatient claims, merged, wide |
-| `CAR_CLM` | 1,215,626 | Carrier claims, 13 line groups kept wide |
-| `RX_EVNT` | 1,402,142 | Part D drug events |
-
-Build time is 190 s on an Apple M4 (10 cores, 16 GB) using one process, streaming straight from the zips. The legacy DB is 957 MB. There are 3,967,754 logged defects across 20 types; the definitions are in [DECISIONS.md](DECISIONS.md) (D11, D12) and [legacyize.yaml](datasets/synpuf/legacyize.yaml). Two builds are byte-identical.
-
-## Transform (row-level, dry run)
-
-```bash
-etl transform --mapping datasets/synpuf/mapping.yaml   # counts + quarantine reasons; writes nothing
-```
-
-| Target entity | Rows before dedup |
-|---|---:|
-| beneficiary / beneficiary_year | 57,481 / 57,481 |
-| claim | 1,427,946 |
-| claim_diagnosis | 3,246,714 |
-| claim_line (carrier) | 2,366,623 |
-| claim_hcpcs | 952,013 |
-| claim_procedure | 24,418 |
-| drug_event | 1,395,271 |
-
-2,880,698 legacy rows become 9,527,947 target rows in 325 s (**29k rows/s, one process, transform only**). 14,057 soft-deleted rows are excluded and 0 rows are quarantined for bad values.
-
-## C# / .NET 10 engine (port in progress, see DECISIONS D27–D28)
-
-```bash
-dotnet run -c Release --project src/Etl.Cli -- transform --mapping datasets/synpuf/mapping.yaml --checksum
-```
-
-The C# transform produces **output identical to the Python engine's**: an order-independent per-entity checksum over every transformed row (typed canonical encoding → MD5 → summed) matches for all 8 entities, 9,527,947 rows. Same machine, back-to-back single runs, both computing the checksum:
-
-| Engine | Transform time | Rows/s | Peak memory |
-|---|---:|---:|---:|
-| Python 3.13 | 240 s | ~39.7k | 44 MB |
-| C# / .NET 10 (one thread) | **52 s** | **~183k** | 88 MB |
-
-### Schema discovery (`etl discover`)
-Profiles an unfamiliar database in one streaming pass. It reports declared vs stored types, null/blank rates, distinct counts, length ranges, value-format patterns, candidate keys, repeating column groups, code domains and near-unique keys. On the legacy DB (2,894,755 rows, 52 s), it flags every injected defect family without being told about any of them. Report: [`results/discovery_legacy.md`](results/discovery_legacy.md).
-
-### Length validation
-String limits are read from the target DDL (`varchar(n)`/`char(n)`). A value that doesn't fit quarantines its row with reason `TOO_LONG` before load, never truncated. On the real data: 0 violations, and parity unchanged.
-
-### Migration, validated end to end (C#)
-`etl migrate --strategy batched --fresh` with the C# engine: 9,527,947 rows staged and merged in 231 s. The **Python** validator then checked it against the **Python-built** oracle: 8/8 table checksums match, the full keyed diff is 0 missing / 0 extra / 0 differing, 0 FK orphans, and the per-defect scores are identical to the Python engine's on all 20 defect types. Strategies: `naive` (prepared INSERT per row), `executemany` (NpgsqlBatch), `batched` (binary COPY with per-column typed writers), and `parallel` (N transform workers → bounded `Channel<T>` → K COPY writers, with backpressure wait measured).
-
-### Incremental sync (`etl sync`)
-Per legacy table, a `(version, rec_id)` watermark of the last *committed* sync. Each run extracts only `(watermark, high mark]`. Soft-deleted rows become tombstones that delete their target row (children cascade). An upsert version guard prevents regressions. The watermark commits in the merge's transaction.
-
-| Sync over the loaded 9.26M-row target | Rows extracted | Target rows written | Time |
-|---|---:|---:|---:|
-| First sync (no watermark yet) | 9,527,947 | 0 | 661 s |
-| No changes since last sync | 0 | 0 | **0.63 s** |
-| Delta since 2010-12-01 | 160,934 | 0 | 15–40 s (see below) |
-
-**A "0 rows written" re-run was still writing.** `ON CONFLICT DO UPDATE … WHERE false` locks every conflicting row, and each lock is WAL-logged. Filtering unchanged rows out *before* the upsert, plus `ANALYZE` on the merge's temp tables (autovacuum never analyzes them), measured over 3 paired runs on the same delta:
-
-| | Untuned | Tuned |
-|---|---:|---:|
-| WAL written per no-op delta sync | 554 MB (3/3 runs) | **1 MB** (3/3 runs) |
-| Merge time | 36–42 s | 15–66 s (median 27 s) |
-
-The WAL result is deterministic. **The time results in this section are not trustworthy:** an unrelated CPU-heavy workload was running on the same machine (load average ~23 on 10 cores; the pure-CPU transform slowed up to 3.5×). Clean, repeated measurements on a quiet, dedicated machine are pending (D33).
-
-Next: PowerShell scripts ([`scripts/`](scripts/), run on PowerShell 7.7; not yet on Windows), T-SQL notes ([docs/TSQL_NOTES.md](docs/TSQL_NOTES.md)), clean benchmarks on dedicated hardware.
-## Load strategy benchmark (25% subset → 9,527,947 staged rows → 9,255,375 target rows)
-
-```bash
-./scripts/bench_all.sh   # every strategy from an empty target, each validated against the oracle and scored
-```
-
-The machine is an Apple M4 (4 performance + 6 efficiency cores, 16 GB). Postgres 16 runs in Docker Desktop (10 vCPU, 8 GB) with default durability settings. Every run starts from an empty target. Raw results, including each run's validation and defect scores, are in [`results/bench/`](results/bench/).
-
-| Strategy | Transform | Load to staging | Extract+load (wall) | Staged rows/s | Merge | **Total** | vs naive | Validated |
-|---|---:|---:|---:|---:|---:|---:|---:|:-:|
-| `naive`: INSERT per row, autocommit | 284 s | **1,485 s** | 1,769 s | 5,387 | 160 s | **1,929 s** | 1.0× | ✓ |
-| `executemany`: pipelined, 20k batches | 236 s | 86 s | 322 s | 29,600 | 150 s | **472 s** | 4.1× | ✓ |
-| `batched`: COPY, 20k batches | **207 s** | 17 s | 225 s | 42,367 | 162 s | **386 s** | 5.0× | ✓ |
-| `parallel`, 2 workers | — | — | 188 s | 50,720 | 193 s | **380 s** | 5.1× | ✓ |
-| `parallel`, 4 workers | — | — | 128 s | 74,315 | 200 s | **328 s** | 5.9× | ✓ |
-| `parallel`, 8 workers | — | — | 80 s | 118,578 | **170 s** | **251 s** | 7.7× | ✓ |
-
-"Validated" means all 8 target tables match the oracle by checksum, 0 FK orphans, and 19 of 20 defect types at 100% (the 20th is the ICD-9 leading-zero case; see below).
-
-**Where the bottleneck is, and how it moves:**
-1. **naive is bound by round trips and commits.** 84% of its time is the load. Python and Postgres each sit at about 25% CPU, both waiting on a round trip plus a WAL flush per row. On the load path alone that's 6.4k rows/s.
-2. **executemany** removes the round trips, which makes the load path 17× faster (111k rows/s). It still executes one statement per row.
-3. **COPY** removes the per-statement cost too: 545k rows/s on the load path, so the load is now 8% of extract+load. **The bottleneck has moved to the Python transform**, at about 46k rows/s on one core.
-4. **parallel** attacks the transform. Extract+load scales sublinearly: 1.2× at 2 workers, 1.8× at 4, 2.8× at 8. The total worker CPU for the same work rises from 350 s to 579 s. Past 4 workers, processes land on efficiency cores, and they compete with Postgres in the same machine.
-5. **At 8 workers the merge is the bottleneck: 68% of the total.** It's single-threaded set-based SQL; `claim_diagnosis` (66 s) and `claim_line` (46 s) dominate. The merge is also 20–40 s slower after parallel loads than after single-process ones. My hypothesis is that rows interleaved by concurrent COPYs lose physical locality for the sort and join; that's unverified. The merge is the next optimization target.
-
-**Run-to-run noise:** each row above is a single run. An earlier full set of runs on the same code, minus a merge fix, measured naive at 2,502 s (+30%), COPY at 447 s (+16%), and 8 workers at 253 s (+1%). The single-process, transform-heavy runs vary the most. The bottleneck story held in both sets. The absolute numbers depend on what else the laptop is doing; a rented-VM run with repeated trials is planned.
-
-### Merge optimization (`--defer-fks`, `max_wal_size`)
-
-The merge was profiled per step before anything changed: upsert 62%, survivorship 27%, orphan checks 7%, child-set delete 4%. Each hypothesis was tested with [`scripts/profile_merge.py`](scripts/profile_merge.py), which runs the merge on the current staging inside a rolled-back transaction. Baseline and candidate runs alternate, 3 pairs each:
-
-| Change | Baseline | Candidate | Verdict |
-|---|---:|---:|---|
-| `work_mem` 4 MB → 256 MB | 149 s | 163 s | rejected |
-| `--defer-fks`: drop FKs → upsert → `ADD … NOT VALID` → `VALIDATE` | 158 s (mean) | **133 s (mean)** | **−16%** (per pair −12% to −20%); kept, opt-in |
-
-The merge already quarantines orphans set-based, so the per-row FK triggers were redundant. `VALIDATE` re-checks every row once, with a join (6–8 s for all 7 FKs). It's opt-in because `ALTER TABLE` locks the target tables until commit. That's for cutover loads, not live databases.
-
-`max_wal_size` was raised from 1 GB to 4 GB: each merge writes several GB of WAL, and the default forced dozens of checkpoints per merge (it's 1–2 now). Durability is unchanged. One end-to-end 8-worker run with `--defer-fks` validated cleanly at 260 s total. That isn't directly comparable to the table above (different day, different machine state), which is why the paired number is the one reported.
-
-Memory stays flat regardless of input size: about 120 MB for single-process batched runs, and at most 95 MB per parallel worker.
-
-## Validation (`etl validate`, `python -m datasets.synpuf.score`)
-
-The expected target is built **independently** from the clean CMS files ([`oracle.py`](datasets/synpuf/oracle.py): separate, deliberately simple parsing, none of the engine's converters) into a sibling schema with the same DDL. The checks:
-
-| Check | Result |
+| | |
 |---|---|
-| Row counts, all 8 tables | match the oracle exactly |
-| Order-independent checksums: `count` + Σ first 64 bits of `md5(quote_nullable(...))` | 8/8 match |
-| Full keyed diff (`FULL JOIN` on natural key, 9.3M rows, ~20 s) | 0 missing / 0 extra / 0 differing |
-| FK integrity in target | 0 orphans on all 7 references |
-| Injected defects (3,967,754 across 20 types), scored against the truth log | 19/20 types at 100% |
+| **Scale** | 2,894,755 legacy rows → **9,255,375** rows in a normalized 8-table schema |
+| **Correctness** | Matches an independently built expected result on **every row**: 8/8 tables checksum-identical, 0 differing rows, 0 broken references |
+| **Data quality** | 3,967,754 injected defects across 20 types; **19 of 20 types handled 100%**. The 20th (medical codes stored as integers) is 99.0% correct, and uncertain values are *labeled*, never silently guessed |
+| **Performance** | Bulk loading is **85× faster** than row-by-row; the C# engine is **4.6× faster** than the Python reference implementation, with identical output |
+| **Incremental sync** | Re-syncing 9.26M rows with no changes takes **0.6 s**. A fix to how unchanged rows are handled cut database write volume by **99.8%** |
+| **Quality bar** | 172 automated tests (59 xUnit, 113 pytest) running against real PostgreSQL in CI. 32 design decisions logged with the alternatives rejected |
 
-**ICD-9 codes stored as integers by the legacy system** (the resolver's policy is in [DECISIONS.md](DECISIONS.md) D13, D18, D24):
+*Performance figures are single runs on an Apple M4 laptop; repeated-trial benchmarks are in progress. Full methodology and caveats: [docs/RESULTS.md](docs/RESULTS.md).*
 
-Once a legacy column stored codes as integers, *every* numeric code is suspect: `389` might be `389` or `038.9` that lost its zero. The resolver checks each zero-padded candidate against the official CMS code lists (FY2008–2011 and FY2015). One valid candidate → `repaired`. Several valid candidates and the received value is one of them → stored, labeled `assumed`. Otherwise → withheld (NULL, with a status). Every code keeps its raw value and its resolution status.
+## How it works
 
-| Across all 5,486,516 codes | Policy A: withhold ambiguous | **Policy C: assume, labeled (current)** |
-|---|---:|---:|
-| Correct | 5,218,649 (95.1%) | **5,429,410 (99.0%)** |
-| Withheld | 265,027 (4.8%) | 46,850 (0.9%) |
-| Wrong | 2,840 (0.05%) | 10,256 (0.19%), of which 7,416 are labeled `assumed` |
+```
+ legacy SQLite DB ──► DISCOVER  profile an unfamiliar schema: types, formats, keys, duplicates, code domains
+ (2.9M rows,     ──► TRANSFORM  declarative YAML mapping → typed converters, unpivots, ICD-code resolution
+  20 defect types)               anything unparseable → quarantine with a reason (never coerced to NULL)
+                 ──► LOAD       naive | batched | binary COPY | parallel producer/consumer with backpressure
+                 ──► MERGE      one transaction: dedupe (newest wins) → orphan check → change-guarded upsert
+                 ──► VALIDATE   vs an expected result built independently: checksums, row-level diff, FK checks
+                 ──► SYNC       afterwards: watermark-based incremental updates and deletes
+```
 
-"Assumed" never fixes a code that actually lost a zero: by definition, the received value is wrong there. The gain is entirely on undamaged codes that policy A was withholding. Consumers who need certainty filter on `code_resolution <> 'assumed'`. The remaining wrong codes are source codes that aren't valid in *any* ICD-9 version, so no reference list can fix them.
+The engine contains **no dataset-specific code**. The Medicare dataset is a 230-line [YAML mapping](datasets/synpuf/mapping.yaml), and a second, unrelated test dataset (a dental practice system) runs through the same engine unchanged.
 
-The validator found a real bug on its first run: 3 extra `claim_line` rows out of 2.3M, caused by a filter running before survivorship. The details are in D22.
+## Try it
+
+Requires Docker, .NET 10 and Python 3.11+.
+
+```bash
+docker compose up -d                                     # PostgreSQL 16
+./datasets/synpuf/download.sh                            # CMS synthetic Medicare data + ICD-9 code lists (~380 MB)
+python -m venv .venv && .venv/bin/pip install -e ".[dev]"
+.venv/bin/python -m datasets.synpuf.legacyize            # build the damaged "legacy" database (~3 min)
+.venv/bin/python -m datasets.synpuf.oracle               # build the expected result, independently (~3 min)
+
+dotnet run -c Release --project src/Etl.Cli -- discover --source data/legacy.sqlite --out discovery.md
+dotnet run -c Release --project src/Etl.Cli -- migrate  --mapping datasets/synpuf/mapping.yaml --strategy parallel --fresh
+.venv/bin/etl validate --mapping datasets/synpuf/mapping.yaml --oracle synpuf_oracle
+dotnet run -c Release --project src/Etl.Cli -- sync     --mapping datasets/synpuf/mapping.yaml
+```
+Every command supports a dry run (`--dry-run`): the full migration runs and reports, then rolls back. PowerShell wrappers are in [`scripts/`](scripts/).
+
+## Engineering highlights
+
+- **Never guess.** When a legacy system stored medical codes as integers, `038.9` (septicemia) and `389` (hearing loss) became indistinguishable. Each code keeps its raw value, its resolved value, and *how* it was resolved, so uncertainty is queryable rather than hidden. ([D13](DECISIONS.md), [D24](DECISIONS.md))
+- **A bug that only row-level validation could find.** 3 stale rows out of 2.3M survived because a filter ran *before* deduplication. Fixed by making child rows follow their parent's surviving version; regression tests are verified to fail without the fix. ([D22](DECISIONS.md))
+- **"Zero rows written" was still writing 554 MB.** Postgres's `INSERT … ON CONFLICT DO UPDATE` locks every row it touches, even when nothing changes. Filtering unchanged rows out first cut that to 1 MB. ([D33](DECISIONS.md))
+- **Ported Python → C# with proof, not hope.** Both engines checksum every transformed value. They agree on all 9,527,947 rows, and the C# output passes the Python validator. ([D30](DECISIONS.md))
+- **Reproducible by construction.** Every random decision in the data generator is keyed on the record, not on a shared random stream, so two builds are byte-identical regardless of order or parallelism. ([D12](DECISIONS.md))
+- **Measured honestly.** Paired before/after runs, rejected hypotheses kept in the log, and a machine-contention problem disclosed rather than averaged away. ([D25–D26](DECISIONS.md), [D33](DECISIONS.md))
+
+## Repository map
+
+| Path | What's there |
+|---|---|
+| [`src/Etl.Core/`](src/Etl.Core/) | The C# engine: mapping compiler, converters, discovery, loaders, merge, sync |
+| [`src/Etl.Cli/`](src/Etl.Cli/) | `etl transform \| discover \| migrate \| sync` |
+| [`tests/Etl.Tests/`](tests/Etl.Tests/) | xUnit: unit tests plus end-to-end runs against real PostgreSQL |
+| [`datasets/synpuf/`](datasets/synpuf/) | The Medicare mapping and target schema, plus the data generator, the oracle and the defect scorer (Python) |
+| [`src/etl/`](src/etl/) | The Python reference engine and the validator used to cross-check the C# engine |
+| [`scripts/`](scripts/) | PowerShell: run a migration, run the benchmark matrix |
+| [`docs/`](docs/) | [Results detail](docs/RESULTS.md), [T-SQL / SQL Server notes](docs/TSQL_NOTES.md), [benchmark runbook](docs/WINDOWS_BENCHMARK_RUNBOOK.md) |
+| [`DECISIONS.md`](DECISIONS.md) | Every design decision, with rationale and the alternatives rejected |
+
+**Stack:** C# / .NET 10, Npgsql (binary COPY), Microsoft.Data.Sqlite, YamlDotNet, xUnit · PostgreSQL 16 · Python 3.13 (reference engine, oracle, validation) · PowerShell 7 · GitHub Actions
+
+**Data:** [CMS DE-SynPUF](https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-claims-synthetic-public-use-files), public *synthetic* Medicare claims. No real patient data is used anywhere.
+
+## License
+
+[MIT](LICENSE)

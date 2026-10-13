@@ -2,6 +2,7 @@
 is caught by the checksum and located by the diff."""
 from etl import db, pipeline, validate
 from etl.mapping import Mapping
+from tests.conftest import requires_data
 from tests.test_pipeline import mapping_path, q  # noqa: F401  (fixture)
 
 ORACLE = "dental_oracle"
@@ -69,6 +70,7 @@ def test_checksum_is_order_independent_and_counts_duplicates():
         assert cs([("a,b", "c")]) != cs([("a", "b,c")])
 
 
+@requires_data
 def test_zero_padded_codes_excluded_from_diff_but_scored():
     m = Mapping("datasets/synpuf/mapping.yaml")
     assert validate.code_columns(m, "claim_line") == ["dx"]

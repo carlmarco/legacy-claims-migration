@@ -6,6 +6,7 @@ import pytest
 
 from etl import db
 from etl.mapping import Mapping
+from tests.conftest import requires_data
 
 ROOT = Path(__file__).parent.parent
 ENGINE_SQL = ROOT / "src/etl/sql/engine.sql"
@@ -29,6 +30,7 @@ def con():
     c.close()
 
 
+@requires_data
 def test_target_columns_match_mapping(con):
     m = Mapping(ROOT / "datasets/synpuf/mapping.yaml")
     for name, entity in m.entities.items():
@@ -38,6 +40,7 @@ def test_target_columns_match_mapping(con):
         assert cols == entity.output, name
 
 
+@requires_data
 def test_primary_keys_match_mapping_keys(con):
     m = Mapping(ROOT / "datasets/synpuf/mapping.yaml")
     for name, entity in m.entities.items():

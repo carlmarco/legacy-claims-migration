@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  dotnet:
+    name: C# engine (.NET 10, xUnit, Postgres 16)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env: { POSTGRES_USER: etl, POSTGRES_PASSWORD: etl, POSTGRES_DB: target }
+        ports: ["5433:5432"]
+        options: --health-cmd "pg_isready -U etl -d target" --health-interval 2s --health-retries 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with: { dotnet-version: "10.0.x" }
+      - run: dotnet build -c Release
+      # RequiresData tests need the 378 MB CMS files (gitignored); everything else runs against a real Postgres.
+      - run: dotnet test -c Release --no-build --filter "Category!=RequiresData" --logger "console;verbosity=normal"
+
+  python:
+    name: Python reference engine, oracle, validator (pytest, Postgres 16)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env: { POSTGRES_USER: etl, POSTGRES_PASSWORD: etl, POSTGRES_DB: target }
+        ports: ["5433:5432"]
+        options: --health-cmd "pg_isready -U etl -d target" --health-interval 2s --health-retries 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.13" }
+      - run: pip install -e ".[dev]"
+      - run: pytest -q -rs   # -rs lists skipped tests and why (data-dependent ones skip without data/raw)
