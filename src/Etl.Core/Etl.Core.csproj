@@ -13,4 +13,9 @@
     <PackageReference Include="YamlDotNet" Version="18.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- One source of truth for the engine's bookkeeping DDL, shared with the Python engine. -->
+    <EmbeddedResource Include="..\etl\sql\engine.sql" LogicalName="engine.sql" />
+  </ItemGroup>
+
 </Project>

@@ -9,6 +9,7 @@ return args.FirstOrDefault() switch
 {
     "transform" => Transform(opts),
     "discover" => Discover(opts),
+    "migrate" => Migrate(opts),
     _ => Usage(),
 };
 
@@ -18,6 +19,8 @@ static int Usage()
         usage:
           etl transform --mapping <path> [--tables A,B] [--limit N] [--checksum]
           etl discover  --source <legacy.sqlite> [--out report.md]
+          etl migrate   --mapping <path> --strategy naive|executemany|batched|parallel
+                        [--workers N] [--writers K] [--limit N] [--fresh] [--no-merge] [--dry-run] [--defer-fks] [--out stats.json]
         """);
     return 2;
 }
@@ -64,6 +67,29 @@ static int Transform(Dictionary<string, string?> o)
         ["checksum"] = checksum?.Result().ToDictionary(kv => kv.Key, kv => new { count = kv.Value.Count, sum = kv.Value.Sum }),
     };
     Console.WriteLine(JsonSerializer.Serialize(report, new JsonSerializerOptions { WriteIndented = true }));
+    return 0;
+}
+
+static int Migrate(Dictionary<string, string?> o)
+{
+    var options = new Etl.Core.RunOptions(
+        MappingPath: o.GetValueOrDefault("--mapping") ?? throw new ArgumentException("--mapping is required"),
+        Strategy: o.GetValueOrDefault("--strategy") ?? "batched",
+        DryRun: o.ContainsKey("--dry-run"),
+        Limit: o.GetValueOrDefault("--limit") is { } l ? long.Parse(l) : null,
+        MergeStep: !o.ContainsKey("--no-merge"),
+        Fresh: o.ContainsKey("--fresh"),
+        Workers: o.GetValueOrDefault("--workers") is { } w ? int.Parse(w) : Environment.ProcessorCount / 2,
+        Writers: o.GetValueOrDefault("--writers") is { } k ? int.Parse(k) : 2,
+        DeferFks: o.ContainsKey("--defer-fks"));
+    var stats = Etl.Core.Pipeline.Run(options);
+    var json = JsonSerializer.Serialize(stats, new JsonSerializerOptions { WriteIndented = true });
+    if (o.GetValueOrDefault("--out") is { } outPath)
+    {
+        Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(outPath))!);
+        File.WriteAllText(outPath, json);
+    }
+    Console.WriteLine(json);
     return 0;
 }
 
