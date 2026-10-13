@@ -303,3 +303,31 @@ No optimization is claimed until measurements are repeatable.
 
 **Supersedes:** D5's language choice (the no-ORM, raw-SQL reasoning is unchanged).
 **Rejected:** porting the fixture tooling too (a week of churn that proves nothing new); a C# hot path inside the Python engine (two runtimes, worst of both).
+
+### D28 · Port the engine to C#/.NET 10 and extend it into an incremental syncer
+**Decision:**
+- Port the engine (D27) to **.NET 10** (current LTS; .NET 8 support ends Nov 2026), with Npgsql, Microsoft.Data.Sqlite, YamlDotNet, xUnit, and no ORM.
+- Target stays **Postgres**. A **T-SQL notes** doc maps every Postgres construct to its SQL Server equivalent, since many migration targets are SQL Server.
+- Add what a production migration tool needs that the engine lacks:
+  - Schema discovery of the "unfamiliar" legacy DB.
+  - Length validation in the mapping layer.
+  - Structured JSON logging.
+  - A manual-review report file.
+  - PowerShell scripts.
+  - **Incremental sync**: a watermark on `LOAD_TS`, change detection, delete propagation.
+
+**Milestones:**
+| # | Milestone |
+|---|---|
+| C0 | Solution skeleton, test project, `dotnet test` green |
+| C1 | Converters, with the same test cases as Python |
+| C2 | Mapping compiler + transform; parity: dry-run produces 9,527,947 rows |
+| C3 | Schema discovery + length validation |
+| C4 | Staging + load strategies (naive, batched, binary COPY, parallel with bounded `Channel<T>`) |
+| C5 | Merge, dry-run, idempotency, run log, quarantine, review report, structured logging |
+| C6 | Incremental sync mode |
+| C7 | Parity proof against the oracle; C# vs Python benchmark on the same machine; PowerShell; T-SQL notes |
+| C8 | Docs, publish |
+
+**Rejected:** switching the target to SQLite (the set-based merge and the validator rely on PostgreSQL features).
+
