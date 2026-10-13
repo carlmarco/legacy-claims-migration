@@ -90,7 +90,7 @@ Per legacy table, a `(version, rec_id)` watermark of the last *committed* sync. 
 
 The WAL result is deterministic. **The time results in this section are not trustworthy:** an unrelated CPU-heavy workload was running on the same machine (load average ~23 on 10 cores; the pure-CPU transform slowed up to 3.5×). Clean, repeated measurements on a quiet, dedicated machine are pending (D33).
 
-Next: PowerShell scripts (written, not yet run), T-SQL notes ([docs/TSQL_NOTES.md](docs/TSQL_NOTES.md)), clean benchmarks on dedicated hardware.
+Next: PowerShell scripts ([`scripts/`](scripts/), run on PowerShell 7.7; not yet on Windows), T-SQL notes ([docs/TSQL_NOTES.md](docs/TSQL_NOTES.md)), clean benchmarks on dedicated hardware.
 ## Load strategy benchmark (25% subset → 9,527,947 staged rows → 9,255,375 target rows)
 
 ```bash
