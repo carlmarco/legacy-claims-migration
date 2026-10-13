@@ -293,3 +293,13 @@ No optimization is claimed until measurements are repeatable.
 **Rejected:**
 - `session_replication_role = replica` in production: needs superuser, and disables *all* triggers, not just FK checks.
 - `fsync`/`synchronous_commit = off`: misleading numbers (D8).
+
+### D27 · Port the engine to C#/.NET; keep the fixture tooling in Python
+**Decision:** Port the engine (mapping compiler, converters, transform, load strategies, merge, validator, CLI) and its tests to C# on .NET 10 LTS, using Npgsql, Microsoft.Data.Sqlite and YamlDotNet, with no ORM (D5's reasoning still holds). The data tooling (download, profiler, legacy-izer, oracle, scorer) stays in Python.
+**Rationale:**
+- `mapping.yaml`, `target.sql`, the merge SQL, the oracle and the truth log are language-agnostic, so the port can be proven by **parity**: same oracle, same checksums, same defect scores.
+- An oracle written in a different language from the engine is a stronger independence guarantee (D21).
+- .NET runs natively on the Windows benchmark laptop, so no WSL is needed.
+
+**Supersedes:** D5's language choice (the no-ORM, raw-SQL reasoning is unchanged).
+**Rejected:** porting the fixture tooling too (a week of churn that proves nothing new); a C# hot path inside the Python engine (two runtimes, worst of both).
