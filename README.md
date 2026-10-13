@@ -1,10 +1,12 @@
 # etl
 
-A generic engine that migrates a degraded "legacy" SQLite database into a normalized PostgreSQL schema. It includes a validation suite and benchmarks three load strategies (row-by-row, batched COPY, parallel workers).
+A generic engine that migrates a degraded "legacy" SQLite database into a normalized PostgreSQL schema. It includes a validation suite and benchmarks four load strategies (row-by-row, pipelined `executemany`, batched COPY, parallel workers).
+
+Built using Claude Code.
 
 The source data is CMS DE-SynPUF (synthetic Medicare claims). The pipeline deliberately damages it into a realistic legacy schema, then migrates it back to a clean target.
 
-Status: work in progress. Benchmark numbers will be added here once they're measured.
+Status: the Python engine is complete and validated (results below). It is being reworked into a C#/.NET project.
 
 ## Quickstart
 
