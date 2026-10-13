@@ -13,3 +13,5 @@ TestResults/
 dist/
 results/review/
 results/bench/matrix/
+results/bench/matrix_console.log
+results/bench/matrix_load.log
