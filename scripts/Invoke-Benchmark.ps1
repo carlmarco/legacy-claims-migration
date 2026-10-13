@@ -53,8 +53,9 @@ $rows = for ($t = 1; $t -le $Trials; $t++) {
         & $python -m etl.cli validate --mapping (Join-Path $root 'datasets' 'synpuf' 'mapping.yaml') --oracle synpuf_oracle --out $valPath | Out-Null
         if ($LASTEXITCODE -ne 0) { throw "validation failed to run for $name" }
         $v = Get-Content $valPath -Raw | ConvertFrom-Json
-        $valid = ($v.checksums.PSObject.Properties.Value | Where-Object { -not $_.match }).Count -eq 0 -and
-                 ($v.fk_orphans_in_target.PSObject.Properties.Value | Where-Object { $_ -ne 0 }).Count -eq 0
+        # @(...) forces an array: under StrictMode, an empty Where-Object result is $null and $null.Count throws.
+        $valid = @($v.checksums.PSObject.Properties.Value | Where-Object { -not $_.match }).Count -eq 0 -and
+                 @($v.fk_orphans_in_target.PSObject.Properties.Value | Where-Object { $_ -ne 0 }).Count -eq 0
         if (-not $valid) { Write-Warning "$name failed validation: excluded from results" }
 
         [pscustomobject]@{
@@ -69,7 +70,7 @@ $rows | Export-Csv -Path $csv
 
 # Median and range per configuration, valid runs only.
 $rows | Where-Object valid | Group-Object strategy, workers | ForEach-Object {
-    $t = $_.Group.total_s | Sort-Object
+    $t = @($_.Group.total_s | Sort-Object)
     [pscustomobject]@{
         config = $_.Name; runs = $t.Count
         median_total_s = $t[[int][Math]::Floor(($t.Count - 1) / 2)]
