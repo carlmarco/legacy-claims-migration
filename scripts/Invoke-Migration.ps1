@@ -18,6 +18,7 @@ param(
     [switch]$DryRun,
     [switch]$Fresh,
     [switch]$DeferFks,
+    [long]$Limit,      # rows per legacy table: smoke tests only (validation will fail on a slice)
     [string]$Out
 )
 
@@ -37,6 +38,7 @@ if ($DryRun)   { $cliArgs += '--dry-run' }
 if ($Fresh)    { $cliArgs += '--fresh' }
 if ($DeferFks) { $cliArgs += '--defer-fks' }
 if ($Out)      { $cliArgs += '--out', $Out }
+if ($Limit)    { $cliArgs += '--limit', $Limit }
 
 Write-Verbose "dotnet $cli $($cliArgs -join ' ')"
 $json = dotnet $cli @cliArgs

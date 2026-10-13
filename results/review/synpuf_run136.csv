@@ -1,0 +1,1959 @@
+entity,src_table,src_rec_id,reason,detail
+claim,CLM_HDR_ALL,1227,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1228,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1229,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1230,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1231,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1232,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1233,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1234,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1235,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1236,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1237,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1238,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1239,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1240,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1241,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1242,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1243,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1244,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1245,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1246,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1247,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1248,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1249,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1250,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1251,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1252,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1253,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1254,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1255,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1256,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1257,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1258,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1259,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1260,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1261,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1262,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1263,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1264,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1265,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1266,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1267,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1268,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1269,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1270,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1271,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1272,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1273,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1274,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1275,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1276,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1277,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1278,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1279,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1280,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1281,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1282,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1283,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1284,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1285,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1286,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1287,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1288,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1289,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1290,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1291,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1292,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1293,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1294,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1295,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1296,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1297,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1298,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1299,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1300,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1301,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1302,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1303,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1304,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1305,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1306,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1307,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1308,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1309,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1310,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1311,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1312,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1313,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1314,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1315,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1316,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1317,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1319,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1320,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1321,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1322,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1323,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1324,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1325,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1326,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1328,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1329,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1330,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1331,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1332,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1333,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1334,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1335,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1336,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1337,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1338,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1339,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1340,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1341,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1342,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1343,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1344,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1345,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1346,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1347,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1348,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1349,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1350,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1351,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1352,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1353,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1354,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1355,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1356,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1357,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1358,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1359,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1360,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1361,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1362,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1364,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1365,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1366,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1368,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1369,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1370,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1371,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1372,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1373,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1374,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1375,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1376,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1377,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1378,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1379,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1380,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1381,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1382,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1383,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1384,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1385,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1386,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1387,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1388,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1389,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1390,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1391,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1392,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1393,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1394,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1395,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1396,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1397,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1398,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1399,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1400,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1401,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1402,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1403,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1404,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1405,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1406,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1407,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1408,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1409,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1410,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1411,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1412,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1413,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1414,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1415,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1416,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1417,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1418,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1419,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1420,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1421,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1422,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1423,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1424,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1425,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1426,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1427,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1428,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1429,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1430,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1431,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1432,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1433,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1434,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1435,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1436,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1437,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1438,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1439,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1440,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1441,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1442,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1443,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1444,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1445,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1446,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1447,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1448,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1449,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1450,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1451,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1452,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1453,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1454,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1455,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1456,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1457,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1458,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1459,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1460,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1461,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1462,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1463,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1464,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1465,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1466,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1467,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1468,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1469,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1470,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1471,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1472,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1473,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1474,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1475,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1476,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1477,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1478,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1479,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1480,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1481,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1482,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1483,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1485,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1486,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1487,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1488,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1489,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1490,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1491,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1492,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1493,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1494,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1495,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1496,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1497,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1498,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1499,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1500,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1501,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1502,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1503,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1504,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1505,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1506,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1507,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1508,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1509,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1510,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1511,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1512,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1513,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1514,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1515,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1516,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1517,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1518,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1519,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1520,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1522,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1523,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1524,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1525,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1526,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1527,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1528,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1529,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1530,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1531,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1532,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1533,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1534,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1535,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1536,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1537,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1538,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1539,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1540,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1541,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1542,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1543,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1544,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1545,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1546,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1547,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1548,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1549,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1550,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1551,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1552,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1553,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1554,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1555,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1556,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1557,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1558,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1559,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1560,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1561,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1562,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1563,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1564,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1565,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1566,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1567,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1568,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1569,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1570,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1571,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1572,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1573,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1574,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1575,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1576,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1577,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1578,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1579,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1580,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1581,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1582,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1583,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1584,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1585,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1586,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1587,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1588,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1589,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1590,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1591,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1592,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1593,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1594,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1595,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1596,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1597,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1598,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1599,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1600,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1601,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1602,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1603,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1604,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1605,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1606,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1607,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1608,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1609,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1610,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1611,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1612,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1613,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1614,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1615,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1616,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1617,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1618,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1619,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1620,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1621,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1622,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1623,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1624,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1625,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1626,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1627,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1628,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1629,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1630,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1631,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1632,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1633,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1634,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1635,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1636,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1637,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1638,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1639,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1640,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1641,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1642,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1643,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1644,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1645,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1646,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1647,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1648,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1649,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1650,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1651,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1652,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1653,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1654,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1655,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1656,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1657,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1658,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1659,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1660,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1661,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1662,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1663,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1664,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1665,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1666,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1667,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1668,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1669,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1670,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1671,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1672,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1673,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1674,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1675,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1676,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1677,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1678,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1679,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1680,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1681,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1682,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1683,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1684,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1685,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1686,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1687,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1688,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1689,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1690,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1691,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1692,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1693,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1694,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1695,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1696,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1697,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1698,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1699,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1700,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1701,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1702,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1703,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1704,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1705,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1707,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1708,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1709,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1710,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1711,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1712,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1713,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1714,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1715,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1716,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1717,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1718,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1719,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1720,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1721,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1723,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1724,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1725,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1726,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1727,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1728,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1729,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1730,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1731,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1732,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1733,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1734,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1735,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1736,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1737,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1738,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1740,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1741,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1742,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1743,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1744,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1745,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1746,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1747,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1748,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1749,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1750,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1751,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1752,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1753,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1754,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1755,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1756,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1757,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1758,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1759,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1760,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1761,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1762,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1763,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1764,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1765,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1766,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1768,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1769,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1770,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1771,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1772,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1773,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1774,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1775,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1776,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1777,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1778,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1779,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1780,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1781,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1782,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1783,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1784,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1786,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1787,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1788,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1789,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1790,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1791,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1792,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1793,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1794,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1795,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1796,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1797,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1798,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1799,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1800,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1801,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1802,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1803,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1805,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1806,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1807,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1808,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1809,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1810,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1811,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1812,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1813,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1814,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1815,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1816,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1817,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1818,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1819,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1821,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1822,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1823,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1824,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1825,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1826,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1827,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1828,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1829,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1831,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1832,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1833,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1834,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1836,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1837,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1838,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1839,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1840,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1841,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1842,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1843,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1844,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1845,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1846,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1847,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1848,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1849,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1850,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1851,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1853,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1854,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1855,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1856,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1857,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1858,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1859,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1860,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1861,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1862,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1863,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1864,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1865,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1866,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1867,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1868,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1869,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1870,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1871,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1872,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1873,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1874,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1875,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1876,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1877,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1878,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1879,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1880,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1881,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1882,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1883,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1884,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1885,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1886,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1888,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1889,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1890,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1891,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1892,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1893,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1894,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1895,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1896,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1897,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1898,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1899,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1900,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1901,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1902,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1903,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1904,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1905,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1906,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1907,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1908,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1909,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1910,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1911,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1912,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1913,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1914,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1915,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1916,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1917,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1918,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1919,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1920,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1921,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1922,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1923,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1924,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1925,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1926,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1927,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1928,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1929,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1930,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1931,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1933,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1934,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1935,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1936,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1937,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1938,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1939,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1940,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1941,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1942,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1943,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1944,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1945,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1946,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1947,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1948,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1949,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1950,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1951,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1952,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1953,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1954,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1955,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1956,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1957,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1958,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1959,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1960,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1961,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1962,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1963,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1964,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1965,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1966,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1967,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1968,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1969,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1970,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1972,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1973,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1974,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1975,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1976,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1977,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1978,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1979,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1980,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1981,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1982,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1983,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1984,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1985,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1986,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1987,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1988,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1989,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1990,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1991,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1992,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1993,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1994,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1995,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1996,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1997,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1998,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,1999,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,2000,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim_diagnosis,CLM_HDR_ALL,1227,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1228,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1229,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1230,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1231,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1232,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1233,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1234,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1235,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1236,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1237,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1238,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1239,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1240,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1241,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1242,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1243,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1244,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1245,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1246,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1247,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1248,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1249,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1250,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1251,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1252,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1253,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1254,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1255,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1256,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1257,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1258,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1259,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1260,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1261,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1262,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1263,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1264,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1265,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1266,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1267,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1268,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1269,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1270,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1271,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1272,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1273,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1274,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1275,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1276,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1277,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1278,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1279,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1280,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1281,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1282,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1283,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1284,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1285,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1286,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1287,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1288,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1289,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1290,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1291,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1292,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1293,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1294,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1295,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1296,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1297,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1298,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1299,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1300,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1301,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1302,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1303,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1304,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1305,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1306,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1307,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1308,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1309,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1310,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1311,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1312,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1313,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1314,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1315,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1316,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1317,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1319,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1320,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1321,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1322,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1323,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1324,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1325,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1326,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1328,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1329,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1330,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1331,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1332,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1333,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1334,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1335,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1336,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1337,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1338,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1339,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1340,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1341,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1342,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1343,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1344,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1345,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1346,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1347,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1348,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1349,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1350,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1351,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1352,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1353,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1354,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1355,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1356,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1357,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1358,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1359,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1360,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1361,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1362,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1364,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1365,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1366,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1368,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1369,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1370,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1371,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1372,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1373,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1374,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1375,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1376,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1377,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1378,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1379,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1380,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1381,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1382,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1383,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1384,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1385,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1386,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1387,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1388,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1389,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1390,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1391,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1392,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1393,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1394,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1395,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1396,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1397,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1398,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1399,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1400,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1401,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1402,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1403,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1404,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1405,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1406,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1407,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1408,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1409,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1410,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1411,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1412,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1413,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1414,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1415,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1416,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1417,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1418,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1419,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1420,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1421,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1422,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1423,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1424,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1425,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1426,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1427,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1428,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1429,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1430,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1431,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1432,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1433,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1434,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1435,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1436,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1437,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1438,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1439,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1440,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1441,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1442,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1443,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1444,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1445,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1446,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1447,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1448,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1449,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1450,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1451,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1452,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1453,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1454,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1455,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1456,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1457,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1458,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1459,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1460,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1461,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1462,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1463,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1464,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1465,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1466,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1467,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1468,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1469,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1470,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1471,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1472,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1473,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1474,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1475,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1476,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1477,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1478,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1479,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1480,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1481,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1482,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1483,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1485,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1486,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1487,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1488,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1489,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1490,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1491,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1492,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1493,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1494,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1495,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1496,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1497,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1498,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1499,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1500,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1501,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1502,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1503,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1504,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1505,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1506,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1507,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1508,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1509,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1510,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1511,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1512,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1513,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1514,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1515,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1516,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1517,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1518,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1519,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1520,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1522,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1523,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1524,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1525,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1526,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1527,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1528,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1529,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1530,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1531,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1532,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1533,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1534,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1535,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1536,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1537,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1538,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1539,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1540,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1541,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1542,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1543,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1544,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1545,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1546,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1547,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1548,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1549,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1550,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1551,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1552,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1553,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1554,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1555,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1556,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1557,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1558,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1559,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1560,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1561,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1562,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1563,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1564,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1565,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1566,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1567,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1568,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1569,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1570,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1571,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1572,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1573,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1574,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1575,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1576,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1577,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1578,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1579,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1580,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1581,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1582,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1583,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1584,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1585,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1586,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1587,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1588,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1589,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1590,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1591,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1592,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1593,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1594,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1595,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1596,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1597,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1598,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1599,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1600,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1601,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1602,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1603,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1604,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1605,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1606,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1607,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1608,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1609,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1610,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1611,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1612,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1613,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1614,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1615,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1616,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1617,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1618,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1619,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1620,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1621,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1622,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1623,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1624,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1625,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1626,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1627,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1628,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1629,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1630,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1631,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1632,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1633,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1634,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1635,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1636,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1637,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1638,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1639,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1640,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1641,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1642,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1643,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1644,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1645,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1646,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1647,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1648,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1649,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1650,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1651,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1652,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1653,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1654,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1655,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1656,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1657,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1658,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1659,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1660,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1661,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1662,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1663,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1664,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1665,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1666,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1667,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1668,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1669,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1670,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1671,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1672,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1673,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1674,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1675,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1676,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1677,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1678,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1679,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1680,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1681,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1682,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1683,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1684,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1685,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1686,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1687,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1688,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1689,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1690,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1691,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1692,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1693,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1694,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1695,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1696,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1697,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1698,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1699,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1700,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1701,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1702,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1703,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1704,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1705,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1707,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1708,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1709,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1710,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1711,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1712,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1713,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1714,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1715,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1716,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1717,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1718,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1719,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1720,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1721,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1723,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1724,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1725,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1726,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1727,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1728,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1729,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1730,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1731,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1732,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1733,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1734,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1735,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1736,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1737,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1738,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1740,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1741,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1742,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1743,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1744,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1745,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1746,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1747,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1748,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1749,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1750,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1751,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1752,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1753,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1754,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1755,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1756,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1757,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1758,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1759,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1760,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1761,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1762,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1763,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1764,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1765,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1766,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1768,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1769,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1770,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1771,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1772,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1773,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1774,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1775,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1776,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1777,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1778,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1779,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1780,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1781,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1782,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1783,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1784,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1786,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1787,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1788,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1789,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1790,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1791,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1792,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1793,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1794,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1795,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1796,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1797,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1798,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1799,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1800,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1801,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1802,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1803,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1805,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1806,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1807,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1808,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1809,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1810,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1811,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1812,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1813,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1814,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1815,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1816,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1817,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1818,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1819,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1821,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1822,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1823,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1824,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1825,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1826,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1827,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1828,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1829,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1831,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1832,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1833,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1834,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1836,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1837,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1838,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1839,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1840,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1841,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1842,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1843,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1844,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1845,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1846,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1847,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1848,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1849,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1850,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1851,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1853,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1855,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1856,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1857,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1858,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1859,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1860,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1861,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1862,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1863,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1864,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1865,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1866,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1867,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1868,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1869,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1870,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1871,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1872,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1873,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1874,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1875,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1876,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1877,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1878,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1879,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1880,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1881,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1882,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1883,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1884,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1885,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1886,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1888,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1889,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1890,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1891,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1892,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1893,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1894,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1895,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1896,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1897,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1898,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1899,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1900,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1901,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1902,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1903,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1904,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1905,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1906,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1907,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1908,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1909,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1910,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1911,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1912,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1913,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1914,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1915,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1916,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1917,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1918,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1919,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1920,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1921,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1923,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1924,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1925,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1926,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1927,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1928,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1929,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1930,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1931,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1933,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1934,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1935,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1936,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1937,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1938,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1939,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1940,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1941,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1942,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1943,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1944,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1945,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1946,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1947,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1948,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1949,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1950,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1951,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1952,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1953,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1954,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1955,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1956,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1957,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1958,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1959,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1960,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1961,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1962,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1963,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1964,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1965,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1966,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1967,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1968,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1969,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1970,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1972,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1973,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1974,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1975,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1976,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1977,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1978,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1979,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1980,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1981,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1982,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1983,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1984,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1985,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1986,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1987,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1988,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1989,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1990,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1991,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1992,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1993,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1994,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1995,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1996,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1997,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1998,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,1999,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,2000,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1227,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1232,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1233,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1234,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1235,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1236,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1237,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1239,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1240,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1241,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1242,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1243,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1244,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1245,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1246,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1247,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1248,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1254,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1256,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1257,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1258,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1259,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1260,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1261,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1262,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1263,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1264,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1267,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1268,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1273,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1275,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1279,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1281,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1287,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1288,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1290,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1293,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1297,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1298,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1300,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1302,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1304,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1307,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1309,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1313,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1317,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1319,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1320,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1321,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1322,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1324,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1325,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1329,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1331,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1332,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1333,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1334,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1336,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1337,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1340,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1341,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1343,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1346,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1347,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1350,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1351,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1352,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1353,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1354,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1355,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1357,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1358,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1360,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1362,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1364,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1365,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1366,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1368,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1369,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1370,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1372,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1377,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1378,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1380,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1381,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1382,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1383,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1384,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1385,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1386,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1387,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1388,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1389,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1391,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1392,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1393,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1395,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1396,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1398,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1399,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1400,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1402,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1403,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1405,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1406,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1407,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1408,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1409,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1410,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1411,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1412,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1415,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1418,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1423,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1425,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1427,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1428,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1429,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1433,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1434,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1435,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1437,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1438,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1439,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1441,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1442,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1443,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1446,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1447,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1448,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1449,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1450,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1452,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1453,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1454,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1455,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1456,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1458,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1459,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1460,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1463,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1465,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1466,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1468,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1469,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1470,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1471,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1474,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1475,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1476,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1477,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1478,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1479,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1480,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1481,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1482,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1483,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1485,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1486,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1487,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1488,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1490,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1491,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1492,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1493,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1495,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1496,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1500,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1501,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1502,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1503,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1504,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1505,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1506,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1507,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1508,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1510,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1511,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1513,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1515,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1518,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1519,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1520,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1522,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1527,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1528,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1529,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1531,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1532,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1533,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1535,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1537,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1539,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1540,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1543,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1545,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1546,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1547,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1549,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1551,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1553,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1554,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1555,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1557,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1561,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1562,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1564,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1567,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1568,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1569,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1571,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1576,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1584,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1586,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1587,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1588,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1589,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1590,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1591,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1592,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1593,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1594,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1595,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1596,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1598,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1600,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1601,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1603,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1605,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1607,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1609,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1610,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1612,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1613,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1614,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1615,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1616,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1618,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1619,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1621,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1622,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1623,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1624,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1626,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1629,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1630,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1632,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1633,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1637,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1638,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1639,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1640,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1641,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1643,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1645,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1646,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1650,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1651,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1654,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1655,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1656,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1657,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1658,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1659,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1661,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1663,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1664,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1665,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1667,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1668,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1670,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1671,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1673,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1674,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1675,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1676,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1679,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1680,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1681,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1683,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1687,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1688,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1689,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1690,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1691,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1692,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1693,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1696,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1697,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1698,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1704,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1707,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1712,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1714,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1715,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1719,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1720,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1721,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1723,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1724,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1725,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1728,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1730,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1731,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1732,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1733,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1734,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1736,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1737,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1738,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1740,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1742,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1744,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1746,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1748,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1750,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1752,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1754,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1755,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1756,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1757,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1758,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1759,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1760,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1762,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1763,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1764,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1765,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1768,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1770,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1771,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1774,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1778,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1779,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1780,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1783,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1784,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1786,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1787,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1789,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1790,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1793,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1794,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1795,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1796,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1797,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1798,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1803,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1805,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1806,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1809,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1810,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1813,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1815,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1817,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1822,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1823,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1825,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1828,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1832,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1833,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1836,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1837,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1839,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1841,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1843,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1844,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1845,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1846,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1848,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1849,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1850,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1851,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1855,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1856,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1857,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1858,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1861,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1862,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1863,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1864,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1867,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1868,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1871,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1872,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1875,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1876,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1878,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1879,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1880,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1881,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1883,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1891,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1892,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1893,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1894,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1896,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1899,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1900,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1902,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1907,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1908,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1909,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1910,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1915,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1916,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1917,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1918,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1920,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1921,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1923,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1924,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1925,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1926,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1927,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1929,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1933,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1940,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1942,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1943,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1944,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1945,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1947,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1950,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1954,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1956,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1958,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1961,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1962,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1963,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1964,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1965,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1967,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1968,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1969,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1970,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1972,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1975,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1976,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1977,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1979,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1981,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1982,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1983,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1984,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1989,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1991,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1996,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,1998,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_procedure,CLM_HDR_ALL,2000,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"

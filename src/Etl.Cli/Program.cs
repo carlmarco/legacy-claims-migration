@@ -6,14 +6,23 @@ using Etl.Core.Mapping;
 // etl transform --mapping <path> [--tables A,B] [--limit N] [--checksum]
 // Minimal argument parsing on purpose: a handful of flags doesn't justify a CLI framework dependency.
 var opts = ParseArgs(args);
-return args.FirstOrDefault() switch
+try
 {
-    "transform" => Transform(opts),
-    "discover" => Discover(opts),
-    "migrate" => Migrate(opts),
-    "sync" => Migrate(opts, incremental: true),
-    _ => Usage(),
-};
+    return args.FirstOrDefault() switch
+    {
+        "transform" => Transform(opts),
+        "discover" => Discover(opts),
+        "migrate" => Migrate(opts),
+        "sync" => Migrate(opts, incremental: true),
+        _ => Usage(),
+    };
+}
+catch (Exception e)
+{
+    // One clear line and a non-zero exit code for schedulers and scripts, instead of an unhandled-exception crash.
+    Console.Error.WriteLine($"etl: {e.GetType().Name}: {e.Message}");
+    return 1;
+}
 
 static int Usage()
 {

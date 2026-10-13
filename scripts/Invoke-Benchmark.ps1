@@ -15,6 +15,7 @@ param(
     [string[]]$Strategies = @('executemany', 'batched', 'parallel'),
     [int[]]$Workers = @(4, 8),
     [switch]$DeferFks,
+    [long]$Limit,      # smoke test only: runs on a slice will (correctly) fail validation
     [string]$OutDir = (Join-Path $PSScriptRoot '..' 'results' 'bench' 'matrix')
 )
 
@@ -46,7 +47,7 @@ $rows = for ($t = 1; $t -le $Trials; $t++) {
         Write-Host "== $name $(Get-Date -Format HH:mm:ss)"
         $statsPath = Join-Path $OutDir "$name.json"
         $stats = & (Join-Path $PSScriptRoot 'Invoke-Migration.ps1') -Strategy $c.Strategy -Workers $c.Workers -Fresh `
-                    -DeferFks:$DeferFks -Out $statsPath
+                    -DeferFks:$DeferFks -Limit $Limit -Out $statsPath
 
         $valPath = Join-Path $OutDir "$name.validation.json"
         & $python -m etl.cli validate --mapping (Join-Path $root 'datasets' 'synpuf' 'mapping.yaml') --oracle synpuf_oracle --out $valPath | Out-Null
@@ -64,7 +65,7 @@ $rows = for ($t = 1; $t -le $Trials; $t++) {
     }
 }
 $csv = Join-Path $OutDir 'runs.csv'
-$rows | Export-Csv -NoTypeInformation -Path $csv
+$rows | Export-Csv -Path $csv
 
 # Median and range per configuration, valid runs only.
 $rows | Where-Object valid | Group-Object strategy, workers | ForEach-Object {
