@@ -2,6 +2,7 @@
   <Folder Name="/src/">
     <Project Path="src/Etl.Cli/Etl.Cli.csproj" />
     <Project Path="src/Etl.Core/Etl.Core.csproj" />
+    <Project Path="src/Etl.Engine/Etl.Engine.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Etl.Tests/Etl.Tests.csproj" />

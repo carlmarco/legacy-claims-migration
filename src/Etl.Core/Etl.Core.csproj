@@ -19,4 +19,8 @@
     <EmbeddedResource Include="..\etl\sql\engine.sql" LogicalName="engine.sql" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Etl.Engine\Etl.Engine.csproj" />
+  </ItemGroup>
+
 </Project>

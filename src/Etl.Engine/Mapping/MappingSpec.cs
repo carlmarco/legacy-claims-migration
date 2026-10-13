@@ -1,5 +1,4 @@
 using Etl.Core.Conversion;
-using Microsoft.Data.Sqlite;
 
 namespace Etl.Core.Mapping;
 
@@ -55,9 +54,11 @@ public sealed class MappingSpec
     public static readonly IReadOnlyList<string> LineageColumns = ["_src_table", "_src_rec_id", "_version"];
 
     public string Path { get; }
-    public string BaseDir { get; }
+    public IFileResolver Files { get; }
     public string Name { get; }
+    public string SourceRelative { get; }
     public string SourcePath { get; }
+    public string TargetDdlRelative { get; }
     public string TargetSchema { get; }
     public string TargetDdlPath { get; }
     public string RecIdColumn { get; }
@@ -71,16 +72,25 @@ public sealed class MappingSpec
     /// <summary>Per entity: output index -> max length, from the target DDL's varchar(n)/char(n).</summary>
     public Dictionary<string, Dictionary<int, (string Column, int Max)>> LengthLimits { get; } = new();
 
+    /// <summary>Load a mapping from disk; companion files resolve relative to its directory.</summary>
     public MappingSpec(string path)
+        : this(new FileSystemResolver(System.IO.Path.GetDirectoryName(System.IO.Path.GetFullPath(path))!), System.IO.Path.GetFileName(path)) { }
+
+    /// <summary>Load a mapping through any resolver (disk, or in-memory in the browser demo).</summary>
+    public MappingSpec(IFileResolver files, string mappingFile)
     {
-        Path = System.IO.Path.GetFullPath(path);
-        BaseDir = System.IO.Path.GetDirectoryName(Path)!;
-        var spec = Map(YamlLoader.LoadFile(Path));
+        Files = files;
+        Path = files.FullPath(mappingFile);
+        object? yaml;
+        using (var reader = new StreamReader(files.Open(mappingFile))) yaml = YamlLoader.Load(reader);
+        var spec = Map(yaml);
         Name = (string)spec["name"]!;
-        SourcePath = Resolve((string)Map(spec["source"])["path"]!);
+        SourceRelative = (string)Map(spec["source"])["path"]!;
+        SourcePath = Files.FullPath(SourceRelative);
         var target = Map(spec["target"]);
         TargetSchema = (string)target["schema"]!;
-        TargetDdlPath = Resolve((string)target["ddl"]!);
+        TargetDdlRelative = (string)target["ddl"]!;
+        TargetDdlPath = Files.FullPath(TargetDdlRelative);
         var lineage = Map(spec["lineage"]);
         RecIdColumn = (string)lineage["rec_id"]!;
         VersionColumn = (string)lineage["version"]!;
@@ -93,7 +103,7 @@ public sealed class MappingSpec
             foreach (var (name, m) in Map(cm)) codeMaps[name] = BuildCodeMap(Map(m));
         var refs = new Dictionary<string, IReadOnlySet<string>>();
         if (spec.TryGetValue("references", out var rf) && rf is not null)
-            foreach (var (name, r) in Map(rf)) refs[name] = Mapping.References.Load(Map(r), BaseDir);
+            foreach (var (name, r) in Map(rf)) refs[name] = Mapping.References.Load(Map(r), Files);
         Context = new ConverterContext(codeMaps, refs);
 
         foreach (var (entityName, e) in Map(spec["entities"]))
@@ -125,9 +135,11 @@ public sealed class MappingSpec
         }
 
         // Length limits come from the target DDL: one source of truth for what fits.
-        if (File.Exists(TargetDdlPath))
+        if (Files.Exists(TargetDdlRelative))
         {
-            var ddl = DdlLengths.Parse(File.ReadAllText(TargetDdlPath));
+            string ddlText;
+            using (var r = new StreamReader(Files.Open(TargetDdlRelative))) ddlText = r.ReadToEnd();
+            var ddl = DdlLengths.Parse(ddlText);
             foreach (var (name, e) in Entities)
             {
                 var limits = new Dictionary<int, (string, int)>();
@@ -152,8 +164,6 @@ public sealed class MappingSpec
 
     // ---- compile ----------------------------------------------------------------------------------
 
-    private string Resolve(string relative) => System.IO.Path.GetFullPath(System.IO.Path.Combine(BaseDir, relative));
-
     private static IReadOnlyDictionary<string, object?> Map(object? o) =>
         o as IReadOnlyDictionary<string, object?> ?? throw new InvalidDataException($"expected a mapping, got {o?.GetType().Name ?? "null"}");
 
@@ -164,7 +174,9 @@ public sealed class MappingSpec
         var map = new Dictionary<string, object?>();
         if (m.TryGetValue("file", out var file) && file is string f)
         {
-            var pairs = Map(YamlLoader.LoadFile(Resolve(f))).ToDictionary(kv => kv.Key, kv => ConverterRegistry.Str(kv.Value!));
+            object? loaded;
+            using (var r = new StreamReader(Files.Open(f))) loaded = YamlLoader.Load(r);
+            var pairs = Map(loaded).ToDictionary(kv => kv.Key, kv => ConverterRegistry.Str(kv.Value!));
             if (m.TryGetValue("invert", out var inv) && inv is true)
                 pairs = pairs.ToDictionary(kv => kv.Value, kv => kv.Key);
             foreach (var (k, v) in pairs) map[k] = v;
@@ -238,7 +250,7 @@ public sealed class MappingSpec
 
     // ---- run --------------------------------------------------------------------------------------
 
-    private bool IsNull(object? v) => v is null || (v is string s && NullTokens.Contains(s.Trim()));
+    public bool IsNull(object? v) => v is null || (v is string s && NullTokens.Contains(s.Trim()));
 
     /// <summary>Python truthiness for keep_if_any: null, 0, false and "" are falsy.</summary>
     private static bool Truthy(object? v) => v switch
@@ -344,110 +356,6 @@ public sealed class MappingSpec
                                                  Reason: "TOO_LONG", Detail: $"[{u.Index}={i + 1}] {slotTooLong}", Raw: row);
             else
                 yield return new TransformRecord("row", src.Entity, slotValues);
-        }
-    }
-
-    public SqliteConnection OpenSource()
-    {
-        var con = new SqliteConnection(new SqliteConnectionStringBuilder { DataSource = SourcePath, Mode = SqliteOpenMode.ReadOnly }.ToString());
-        con.Open();
-        return con;
-    }
-
-    /// <summary>Soft-deleted rows excluded by the spec's exclude predicate (NULL-safe, like the transform's filter).</summary>
-    public long ExcludedCount(string table)
-    {
-        if (Exclude is null) return 0;
-        using var con = OpenSource();
-        using var cmd = con.CreateCommand();
-        cmd.CommandText = $"SELECT count(*) FROM {table} WHERE coalesce(({Exclude}), 0)";
-        return (long)cmd.ExecuteScalar()!;
-    }
-
-    /// <summary>The newest (version, rec_id) in a legacy table right now: the upper bound of a sync window.</summary>
-    public (string Version, long RecId)? HighMark(string table)
-    {
-        using var con = OpenSource();
-        using var cmd = con.CreateCommand();
-        cmd.CommandText = $"SELECT {VersionColumn}, {RecIdColumn} FROM {table} ORDER BY {VersionColumn} DESC, {RecIdColumn} DESC LIMIT 1";
-        using var r = cmd.ExecuteReader();
-        return r.Read() ? (System.Convert.ToString(r.GetValue(0), System.Globalization.CultureInfo.InvariantCulture)!, r.GetInt64(1)) : null;
-    }
-
-    private void AddWindow(SqliteCommand cmd, List<string> where, SyncWindow w)
-    {
-        // Row-value comparison: (version, rec_id) is a total order, so equal timestamps at the boundary can't be skipped.
-        if (w.From is { } f)
-        {
-            where.Add($"({VersionColumn}, {RecIdColumn}) > ($fv, $fr)");
-            cmd.Parameters.AddWithValue("$fv", f.Version);
-            cmd.Parameters.AddWithValue("$fr", f.RecId);
-        }
-        where.Add($"({VersionColumn}, {RecIdColumn}) <= ($tv, $tr)");
-        cmd.Parameters.AddWithValue("$tv", w.To.Version);
-        cmd.Parameters.AddWithValue("$tr", w.To.RecId);
-    }
-
-    /// <summary>
-    /// Target keys of rows soft-deleted inside the window: each one deletes the target row it stood for
-    /// (if that row isn't newer). Rows whose keys don't convert are ignored: there's nothing to delete.
-    /// </summary>
-    public IEnumerable<Tombstone> Tombstones(string table, SyncWindow window)
-    {
-        if (Exclude is null) yield break;
-        using var con = OpenSource();
-        using var cmd = con.CreateCommand();
-        var where = new List<string> { $"coalesce(({Exclude}), 0)" };
-        AddWindow(cmd, where, window);
-        cmd.CommandText = $"SELECT * FROM {table} WHERE {string.Join(" AND ", where)} ORDER BY {RecIdColumn}";
-        using var reader = cmd.ExecuteReader();
-        var names = Enumerable.Range(0, reader.FieldCount).Select(reader.GetName).ToArray();
-        var flat = ByTable[table].Where(s => s.Unpivot is null).ToList();
-        while (reader.Read())
-        {
-            var row = new Dictionary<string, object?>(names.Length, StringComparer.OrdinalIgnoreCase);
-            for (var i = 0; i < names.Length; i++) row[names[i]] = reader.IsDBNull(i) ? null : reader.GetValue(i);
-            foreach (var src in flat)
-                foreach (var rec in TransformRow(src, row).Where(r => r.IsRow))
-                {
-                    var e = Entities[src.Entity];
-                    var key = e.Key.Select(k => rec.Values![e.Output.ToList().IndexOf(k)]).ToArray();
-                    yield return new Tombstone(src.Entity, key, System.Convert.ToString(row[VersionColumn], System.Globalization.CultureInfo.InvariantCulture)!);
-                }
-        }
-    }
-
-    /// <summary>Stream every record for the given legacy tables (default: all), optionally one REC_ID range or sync window.</summary>
-    public IEnumerable<TransformRecord> Transform(IEnumerable<string>? tables = null, (long Lo, long Hi)? recRange = null, long? limit = null,
-                                                 IReadOnlyDictionary<string, SyncWindow>? windows = null)
-    {
-        using var con = OpenSource();
-        foreach (var table in tables ?? ByTable.Keys)
-        {
-            using var cmd = con.CreateCommand();
-            var where = new List<string>();
-            // coalesce: a NULL flag must not exclude the row (NOT NULL is NULL in SQL).
-            if (Exclude is not null) where.Add($"NOT coalesce(({Exclude}), 0)");
-            if (recRange is { } r) where.Add($"{RecIdColumn} BETWEEN {r.Lo} AND {r.Hi}");
-            if (windows is not null)
-            {
-                if (!windows.TryGetValue(table, out var w)) continue;   // nothing new in this table
-                AddWindow(cmd, where, w);
-            }
-            cmd.CommandText = $"SELECT * FROM {table}" + (where.Count > 0 ? " WHERE " + string.Join(" AND ", where) : "")
-                      + $" ORDER BY {RecIdColumn}" + (limit is { } l ? $" LIMIT {l}" : "");
-            using var reader = cmd.ExecuteReader();
-            var sources = ByTable[table];
-            var names = Enumerable.Range(0, reader.FieldCount).Select(reader.GetName).ToArray();
-            while (reader.Read())
-            {
-                var row = new Dictionary<string, object?>(names.Length, StringComparer.OrdinalIgnoreCase);
-                for (var i = 0; i < names.Length; i++)
-                    row[names[i]] = reader.IsDBNull(i) ? null : reader.GetValue(i);
-                foreach (var src in sources)
-                    foreach (var rec in TransformRow(src, row))
-                        yield return rec;
-            }
         }
     }
 }

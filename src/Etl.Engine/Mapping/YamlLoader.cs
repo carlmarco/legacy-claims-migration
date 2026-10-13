@@ -16,6 +16,11 @@ public static partial class YamlLoader
     public static object? LoadFile(string path)
     {
         using var reader = new StreamReader(path);
+        return Load(reader);
+    }
+
+    public static object? Load(TextReader reader)
+    {
         var stream = new YamlStream();
         stream.Load(new MergingParser(new Parser(reader)));
         return stream.Documents.Count == 0 ? null : ToPlain(stream.Documents[0].RootNode);

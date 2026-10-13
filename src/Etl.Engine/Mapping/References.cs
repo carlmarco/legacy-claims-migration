@@ -8,9 +8,9 @@ public static class References
 {
     /// <summary>
     /// spec: {loader, path, member?, encoding?} or {loader, sources: [{path, member?}, ...]} (sources are unioned,
-    /// e.g. several versions of a code set). Paths are relative to <paramref name="baseDir"/>.
+    /// e.g. several versions of a code set). Paths are resolved by <paramref name="files"/>, relative to the mapping.
     /// </summary>
-    public static IReadOnlySet<string> Load(IReadOnlyDictionary<string, object?> spec, string baseDir)
+    public static IReadOnlySet<string> Load(IReadOnlyDictionary<string, object?> spec, IFileResolver files)
     {
         var loader = (string)spec["loader"]!;
         if (loader != "first_token") throw new InvalidDataException($"unknown reference loader '{loader}'");
@@ -20,33 +20,33 @@ public static class References
         var codes = new HashSet<string>(StringComparer.Ordinal);
         foreach (var src in sources)
         {
-            var path = Path.GetFullPath(Path.Combine(baseDir, (string)src["path"]!));
             var member = src.TryGetValue("member", out var m) ? m as string : null;
-            codes.UnionWith(FirstToken(path, member));
+            using var stream = files.Open((string)src["path"]!);
+            codes.UnionWith(FirstToken(stream, member));
         }
         return codes;
     }
 
     /// <summary>The code is the first whitespace-separated token of each non-blank line (Latin-1 text).</summary>
-    public static IEnumerable<string> FirstToken(string path, string? member)
+    public static List<string> FirstToken(Stream stream, string? member)
     {
         string text;
         if (member is null)
         {
-            text = File.ReadAllText(path, Encoding.Latin1);
+            using var r = new StreamReader(stream, Encoding.Latin1);
+            text = r.ReadToEnd();
         }
         else
         {
-            using var zip = ZipFile.OpenRead(path);
-            var entry = zip.GetEntry(member) ?? throw new FileNotFoundException($"{member} not in {path}");
+            using var zip = new ZipArchive(stream, ZipArchiveMode.Read);
+            var entry = zip.GetEntry(member) ?? throw new FileNotFoundException($"{member} not in archive");
             using var r = new StreamReader(entry.Open(), Encoding.Latin1);
             text = r.ReadToEnd();
         }
+        var tokens = new List<string>();
         foreach (var line in PythonSplitLines(text))
-        {
-            var token = FirstWhitespaceToken(line);
-            if (token is not null) yield return token;
-        }
+            if (FirstWhitespaceToken(line) is { } token) tokens.Add(token);
+        return tokens;
     }
 
     // Python's str.splitlines() and str.split() treat more characters as line breaks / whitespace than .NET

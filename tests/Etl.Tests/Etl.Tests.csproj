@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Etl.Core\Etl.Core.csproj" />
+    <ProjectReference Include="..\..\src\Etl.Engine\Etl.Engine.csproj" />
   </ItemGroup>
 
 </Project>
