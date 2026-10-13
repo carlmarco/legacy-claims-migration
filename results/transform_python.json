@@ -1,0 +1,57 @@
+{
+  "source_rows_approx": 2880698,
+  "excluded_soft_deleted": {
+    "MBR_MSTR": 292,
+    "CLM_HDR_ALL": 1133,
+    "CAR_CLM": 5761,
+    "RX_EVNT": 6871
+  },
+  "target_rows": {
+    "beneficiary": 57481,
+    "beneficiary_year": 57481,
+    "claim": 1427946,
+    "claim_diagnosis": 3246714,
+    "claim_procedure": 24418,
+    "claim_hcpcs": 952013,
+    "claim_line": 2366623,
+    "drug_event": 1395271
+  },
+  "quarantined": {},
+  "quarantine_examples": {},
+  "elapsed_s": 239.5,
+  "target_rows_per_s": 39778,
+  "checksum": {
+    "beneficiary": {
+      "count": 57481,
+      "sum": "530909303530637511422933"
+    },
+    "beneficiary_year": {
+      "count": 57481,
+      "sum": "532444260738979190752446"
+    },
+    "claim": {
+      "count": 1427946,
+      "sum": "13168539508724468567651051"
+    },
+    "claim_diagnosis": {
+      "count": 3246714,
+      "sum": "29945590033723913544256394"
+    },
+    "claim_hcpcs": {
+      "count": 952013,
+      "sum": "8780332618121861297132728"
+    },
+    "claim_line": {
+      "count": 2366623,
+      "sum": "21837706950780661647985258"
+    },
+    "claim_procedure": {
+      "count": 24418,
+      "sum": "224883397053049113837902"
+    },
+    "drug_event": {
+      "count": 1395271,
+      "sum": "12877424530528612686956771"
+    }
+  }
+}

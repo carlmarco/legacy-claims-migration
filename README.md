@@ -50,6 +50,21 @@ etl transform --mapping datasets/synpuf/mapping.yaml   # counts + quarantine rea
 
 2,880,698 legacy rows become 9,527,947 target rows in 325 s (**29k rows/s, one process, transform only**). 14,057 soft-deleted rows are excluded and 0 rows are quarantined for bad values.
 
+## C# / .NET 10 engine (port in progress, see DECISIONS D27–D28)
+
+```bash
+dotnet run -c Release --project src/Etl.Cli -- transform --mapping datasets/synpuf/mapping.yaml --checksum
+```
+
+The C# transform produces **output identical to the Python engine's**: an order-independent per-entity checksum over every transformed row (typed canonical encoding → MD5 → summed) matches for all 8 entities, 9,527,947 rows. Same machine, back-to-back single runs, both computing the checksum:
+
+| Engine | Transform time | Rows/s | Peak memory |
+|---|---:|---:|---:|
+| Python 3.13 | 240 s | ~39.7k | 44 MB |
+| C# / .NET 10 (one thread) | **52 s** | **~183k** | 88 MB |
+
+Next: staging, load strategies (including binary COPY and a bounded `Channel<T>` producer/consumer), and the merge in C#. Then parity against the same oracle.
+
 ## Load strategy benchmark (25% subset → 9,527,947 staged rows → 9,255,375 target rows)
 
 ```bash

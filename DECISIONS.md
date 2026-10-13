@@ -331,3 +331,8 @@ No optimization is claimed until measurements are repeatable.
 
 **Rejected:** switching the target to SQLite (the set-based merge and the validator rely on PostgreSQL features).
 
+### D30 · Parity is proven by a transform checksum, not counts; C2 result
+**Decision:** Both engines gain `transform --checksum`: per entity, the sum of the first 64 bits of MD5 over a typed canonical encoding of each row (`N` NULL, `B` bool, `I` int, `D` normalized decimal, `T` ISO date, `S` string; fields joined by `\x1f`). It's order-independent and type-aware, so NULL ≠ `''` and `1200.00` = `1200`.
+**Result:** 8/8 entities match on 9,527,947 rows. Same soft-delete exclusions, 0 quarantined in both. C# took 52 s versus Python's 240 s, with peak memory of 88 MB versus 44 MB (single back-to-back runs).
+**Python behaviors mirrored in C# to get there:** PyYAML scalar typing plus merge keys, `str()` of floats, single-digit `strptime` fields, Python's `splitlines`/whitespace sets, banker's rounding, case-insensitive column access, and Python truthiness.
+**Rejected:** counts-only parity (9.5M rows can match in number and differ in value); comparing after the merge only (a transform difference would be harder to localize once dedup has run).

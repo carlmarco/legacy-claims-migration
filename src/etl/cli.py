@@ -6,9 +6,30 @@ from collections import Counter
 from .mapping import Mapping
 
 
+def _encode(v) -> str:
+    """Canonical typed encoding for the parity checksum. Must stay byte-identical to RowChecksum.cs."""
+    from datetime import date
+    from decimal import Decimal
+    if v is None:
+        return "N"
+    if isinstance(v, bool):
+        return "B1" if v else "B0"
+    if isinstance(v, int):
+        return f"I{v}"
+    if isinstance(v, Decimal):
+        return "D0" if v == 0 else "D" + format(v.normalize(), "f")
+    if isinstance(v, date):
+        return "T" + v.isoformat()
+    if isinstance(v, str):
+        return "S" + v
+    raise TypeError(f"no canonical encoding for {type(v).__name__}")
+
+
 def cmd_transform(args: argparse.Namespace) -> None:
     """Dry run of the row-level transform: counts, quarantine reasons, throughput. Writes nothing."""
+    import hashlib
     m = Mapping(args.mapping)
+    sums: dict[str, list[int]] = {}
     rows: Counter = Counter()
     quarantined: Counter = Counter()
     examples: dict[str, list] = {}
@@ -21,6 +42,12 @@ def cmd_transform(args: argparse.Namespace) -> None:
         if rec.kind == "row":
             rows[rec.entity] += 1
             src = (rec.values[-3], rec.values[-2])
+            if args.checksum:
+                text = rec.entity + "\x1f" + "\x1f".join(_encode(v) for v in rec.values)
+                h = int.from_bytes(hashlib.md5(text.encode("utf-8")).digest()[:8], "big")
+                c = sums.setdefault(rec.entity, [0, 0])
+                c[0] += 1
+                c[1] += h
         else:
             reason = f"{rec.entity}:{rec.reason}"
             quarantined[reason] += 1
@@ -40,6 +67,7 @@ def cmd_transform(args: argparse.Namespace) -> None:
         "quarantine_examples": examples,
         "elapsed_s": round(elapsed, 1),
         "target_rows_per_s": round(sum(rows.values()) / elapsed) if elapsed else None,
+        "checksum": {e: {"count": c, "sum": str(t)} for e, (c, t) in sorted(sums.items())} if args.checksum else None,
     }, indent=2, default=str))
 
 
@@ -80,6 +108,7 @@ def main() -> None:
     t.add_argument("--mapping", required=True)
     t.add_argument("--tables", help="comma-separated legacy tables (default: all)")
     t.add_argument("--limit", type=int, help="rows per legacy table")
+    t.add_argument("--checksum", action="store_true", help="order-independent per-entity checksum (parity with the C# engine)")
     t.set_defaults(fn=cmd_transform)
 
     g = sub.add_parser("migrate", help="extract, transform, load into staging, merge into the target")
