@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Text.Json;
 using Etl.Core.Mapping;
@@ -82,7 +83,15 @@ static int Migrate(Dictionary<string, string?> o)
         Workers: o.GetValueOrDefault("--workers") is { } w ? int.Parse(w) : Environment.ProcessorCount / 2,
         Writers: o.GetValueOrDefault("--writers") is { } k ? int.Parse(k) : 2,
         DeferFks: o.ContainsKey("--defer-fks"));
-    var stats = Etl.Core.Pipeline.Run(options);
+    // Structured logs: JSON lines on stderr (stdout stays clean for the stats JSON). Message templates keep
+    // {Entity}, {Inserted}... as queryable fields instead of flattening them into text.
+    using var loggerFactory = LoggerFactory.Create(b => b
+        .AddConsole(c => c.LogToStandardErrorThreshold = LogLevel.Trace)
+        .AddJsonConsole(j => j.IncludeScopes = true)
+        .AddFilter("Microsoft", LogLevel.Warning));
+    var log = loggerFactory.CreateLogger("etl");
+    using var scope = log.BeginScope(new Dictionary<string, object> { ["dataset"] = options.MappingPath, ["strategy"] = options.Strategy });
+    var stats = Etl.Core.Pipeline.Run(options, log);
     var json = JsonSerializer.Serialize(stats, new JsonSerializerOptions { WriteIndented = true });
     if (o.GetValueOrDefault("--out") is { } outPath)
     {

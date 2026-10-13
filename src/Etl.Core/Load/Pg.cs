@@ -77,11 +77,16 @@ public sealed record PgColumn(string Name, string UdtName)
         ("int4", long l) => checked((int)l),
         ("int8", long l) => l,
         ("numeric", long l) => (decimal)l,
-        ("timestamp", string s) => DateTime.ParseExact(s, ["yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm:ss.FFFFFFF", "yyyy-MM-ddTHH:mm:ss"],
-                                                       CultureInfo.InvariantCulture, DateTimeStyles.None),
+        // Binary COPY means we parse what Postgres would otherwise parse from text: accept its common ISO forms.
+        ("timestamp", string s) => DateTime.ParseExact(s.Trim(), TimestampFormats, CultureInfo.InvariantCulture, DateTimeStyles.None),
+        ("timestamp", DateOnly d) => d.ToDateTime(TimeOnly.MinValue),
         ("text" or "varchar" or "bpchar", long l) => l.ToString(CultureInfo.InvariantCulture),
         _ => v,
     };
+
+    private static readonly string[] TimestampFormats =
+        ["yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm:ss.FFFFFFF", "yyyy-MM-ddTHH:mm:ss", "yyyy-MM-ddTHH:mm:ss.FFFFFFF",
+         "yyyy-MM-dd HH:mm", "yyyy-MM-dd"];
 
     /// <summary>Catalog types for a table's columns, in the given order.</summary>
     public static IReadOnlyList<PgColumn> For(NpgsqlConnection con, string schema, string table, IReadOnlyList<string> columns)

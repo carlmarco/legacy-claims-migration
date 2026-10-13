@@ -9,7 +9,7 @@ namespace Etl.Core;
 
 public sealed record RunOptions(string MappingPath, string Strategy, bool DryRun = false, long? Limit = null,
                                 bool MergeStep = true, bool Fresh = false, int Workers = 1, int Writers = 2,
-                                bool DeferFks = false, string? Dsn = null);
+                                bool DeferFks = false, string? Dsn = null, string? ReviewDir = "results/review");
 
 /// <summary>
 /// One migration run: extract -> transform -> load (strategy) into staging -> merge into the target. Each phase is
@@ -36,8 +36,9 @@ public static class Pipeline
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
-    public static Dictionary<string, object?> Run(RunOptions o, Func<NpgsqlConnection, MappingSpec, long, Dictionary<string, object?>>? merge = null)
+    public static Dictionary<string, object?> Run(RunOptions o, Microsoft.Extensions.Logging.ILogger? log = null)
     {
+        log ??= Microsoft.Extensions.Logging.Abstractions.NullLogger.Instance;
         var m = new MappingSpec(o.MappingPath);
         using var ds = Pg.DataSource(o.Dsn);
         long runId;
@@ -84,11 +85,13 @@ public static class Pipeline
             stats["extract_load_s"] = Math.Round(extractLoad, 2);
             stats["staged_rows_per_s"] = extractLoad > 0 ? (long)(staged / extractLoad) : null;
 
-            if (o.MergeStep && merge is not null)
+            Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(log,
+                "Staged {Rows} rows with {Strategy} in {Seconds}s", staged, o.Strategy, stats["extract_load_s"]);
+            if (o.MergeStep)
             {
                 var t = Stopwatch.StartNew();
                 using var con = ds.OpenConnection();
-                stats["merge"] = merge(con, m, runId);
+                stats["merge"] = Merge.All(con, m, runId, o.DeferFks, o.DryRun, o.ReviewDir, log);
                 stats["merge_s"] = Math.Round(t.Elapsed.TotalSeconds, 2);
             }
             stats["total_s"] = Math.Round(total.Elapsed.TotalSeconds, 2);
