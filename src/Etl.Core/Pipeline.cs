@@ -95,7 +95,7 @@ public static class Pipeline
                 stats["merge_s"] = Math.Round(t.Elapsed.TotalSeconds, 2);
             }
             stats["total_s"] = Math.Round(total.Elapsed.TotalSeconds, 2);
-            stats["peak_working_set_mb"] = Math.Round(Process.GetCurrentProcess().PeakWorkingSet64 / 1e6, 1);
+            stats["peak_rss_mb"] = Math.Round(PeakMemory.Megabytes(), 1);
             Finish(ds, runId, "succeeded", stats);
         }
         catch (Exception e)
