@@ -243,54 +243,54 @@
       }
     },
     "claim_procedure.code": {
-      "ambiguous": {
-        "withheld": 391
-      },
-      "assumed": {
-        "correct": 66,
-        "wrong": 80
+      "not_in_reference": {
+        "correct": 11201,
+        "wrong": 50
       },
       "exact": {
         "correct": 11340,
         "wrong": 40
       },
-      "not_in_reference": {
-        "correct": 11201,
-        "wrong": 50
-      },
       "repaired": {
         "correct": 295,
         "wrong": 2
       },
+      "assumed": {
+        "wrong": 80,
+        "correct": 66
+      },
       "unresolved": {
         "withheld": 320
+      },
+      "ambiguous": {
+        "withheld": 391
       }
     },
     "claim_line.dx": {
+      "not_in_reference": {
+        "correct": 465
+      },
       "ambiguous": {
         "withheld": 2333
       },
-      "assumed": {
-        "correct": 100533,
-        "wrong": 2589
-      },
       "exact": {
         "correct": 2123638
-      },
-      "(none)": {
-        "both_null": 65022
-      },
-      "not_in_reference": {
-        "correct": 465
       },
       "repaired": {
         "correct": 8178,
         "wrong": 1
       },
+      "assumed": {
+        "wrong": 2589,
+        "correct": 100533
+      },
       "unresolved": {
         "withheld": 23
+      },
+      "(none)": {
+        "both_null": 65022
       }
     }
   },
-  "elapsed_s": 51.2
+  "elapsed_s": 181.8
 }

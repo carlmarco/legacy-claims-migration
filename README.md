@@ -88,7 +88,7 @@ Per legacy table, a `(version, rec_id)` watermark of the last *committed* sync. 
 | WAL written per no-op delta sync | 554 MB (3/3 runs) | **1 MB** (3/3 runs) |
 | Merge time | 36–42 s | 15–66 s (median 27 s) |
 
-The WAL result is deterministic. The time result is noisy: the 66 s tuned run also had its pure-CPU transform slow down 2.3×, which indicates machine contention, not the change.
+The WAL result is deterministic. **The time results in this section are not trustworthy:** an unrelated CPU-heavy workload was running on the same machine (load average ~23 on 10 cores; the pure-CPU transform slowed up to 3.5×). Clean, repeated measurements on a quiet, dedicated machine are pending (D33).
 
 Next: PowerShell scripts (written, not yet run), T-SQL notes ([docs/TSQL_NOTES.md](docs/TSQL_NOTES.md)), clean benchmarks on dedicated hardware.
 ## Load strategy benchmark (25% subset → 9,527,947 staged rows → 9,255,375 target rows)
