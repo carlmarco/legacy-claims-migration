@@ -102,7 +102,7 @@ Apple M4 (10 cores, 16 GB), PostgreSQL 16 in Docker Desktop, `max_wal_size = 4GB
 - **Parallel loading plateaus at 4 workers.** At 8 workers, producers spent 13.6 s blocked on channel backpressure: the 2 COPY writers became the limit, and the bounded channel kept memory capped instead of growing.
 - **`executemany` holds 20,000 parameterized commands per batch**, about 3× the memory of COPY for the same rows.
 
-**Incomplete matrix, stated plainly:** 3 trials per configuration were planned. Two later runs overlapped an unrelated, I/O-heavy workload on the same machine (a merge stalled on `WALWrite` for 50 minutes), so the matrix was stopped and only the 7 clean runs above are reported. A same-day Python baseline wasn't run. The Python figures below come from an earlier session and aren't directly comparable.
+**Incomplete matrix, stated plainly:** 3 trials per configuration were planned. Mid-run the laptop went to sleep (lid closed), and one merge sat on `WALWrite` for 50 minutes. Shortly before that, an unrelated CPU-heavy process had started on the same machine. The matrix was stopped there. One run that overlapped the other process is excluded, and only the 7 clean runs above are reported. A same-day Python baseline wasn't run. The Python figures below come from an earlier session and aren't directly comparable.
 
 ## Load strategy benchmark (25% subset → 9,527,947 staged rows → 9,255,375 target rows)
 
