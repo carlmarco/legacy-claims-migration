@@ -6,7 +6,6 @@ Timing is split per phase so the benchmark can show where the bottleneck actuall
   merge_s      time spent in the set-based SQL merge
 """
 import json
-import resource
 import sys
 import time
 from collections.abc import Iterator
@@ -38,9 +37,14 @@ class Timed:
             self.seconds += time.perf_counter() - t
 
 
-def peak_rss_mb(who: int = resource.RUSAGE_SELF) -> float:
-    """Peak resident memory. RUSAGE_CHILDREN reports the largest single (waited-for) child process."""
-    r = resource.getrusage(who).ru_maxrss
+def peak_rss_mb(children: bool = False) -> float:
+    """Peak resident memory. `resource` is Unix-only, so Windows uses psutil's peak working set.
+    children=True reports the largest single (waited-for) child process (Unix only)."""
+    if sys.platform == "win32":
+        import psutil
+        return psutil.Process().memory_info().peak_wset / 1e6 if not children else float("nan")
+    import resource
+    r = resource.getrusage(resource.RUSAGE_CHILDREN if children else resource.RUSAGE_SELF).ru_maxrss
     return r / 1e6 if sys.platform == "darwin" else r / 1e3  # bytes on macOS, KiB on Linux
 
 
@@ -89,7 +93,7 @@ def run(mapping_path: str, strategy: str, dry_run: bool = False, limit: int | No
         stats["total_s"] = round(time.perf_counter() - t0, 2)
         stats["peak_rss_mb"] = round(peak_rss_mb(), 1)
         if strategy == "parallel":
-            stats["peak_rss_worker_mb"] = round(peak_rss_mb(resource.RUSAGE_CHILDREN), 1)
+            stats["peak_rss_worker_mb"] = round(peak_rss_mb(children=True), 1)
         _finish(run_id, "succeeded", stats)
     except BaseException as e:
         stats["error"] = repr(e)
