@@ -6,3 +6,7 @@ __pycache__/
 .venv/
 .pytest_cache/
 results/raw/
+bin/
+obj/
+*.user
+TestResults/
