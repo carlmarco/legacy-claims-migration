@@ -8,9 +8,9 @@ CREATE TABLE IF NOT EXISTS synpuf.beneficiary (
     birth_date      date,
     death_date      date,
     sex             char(1) CHECK (sex IN ('M', 'F')),
-    race_code       text,
+    race_code       varchar(1),
     state_ssa_code  char(2) CHECK (state_ssa_code ~ '^[0-9]{2}$'),
-    county_code     text,
+    county_code     varchar(3),
     _src_table text NOT NULL, _src_rec_id bigint NOT NULL, _version timestamp NOT NULL,
     CHECK (death_date IS NULL OR birth_date IS NULL OR death_date >= birth_date)
 );
@@ -36,24 +36,24 @@ CREATE TABLE IF NOT EXISTS synpuf.beneficiary_year (
 
 CREATE TABLE IF NOT EXISTS synpuf.claim (
     claim_type      text NOT NULL CHECK (claim_type IN ('inpatient', 'outpatient', 'carrier')),
-    clm_id          text NOT NULL,
+    clm_id          varchar(20) NOT NULL,
     segment         smallint NOT NULL,
     beneficiary_id  text NOT NULL REFERENCES synpuf.beneficiary,
     from_date       date,
     thru_date       date,
-    provider_number text,
+    provider_number varchar(10),         -- CMS certification number (6 chars observed)
     payment_amount  numeric(12,2),
     primary_payer_paid numeric(12,2),
-    attending_npi   text,
-    operating_npi   text,
-    other_npi       text,
+    attending_npi   varchar(10),         -- NPI is 10 digits
+    operating_npi   varchar(10),
+    other_npi       varchar(10),
     admission_date  date,
     discharge_date  date,
-    admitting_dx            text,
-    admitting_dx_raw        text,
+    admitting_dx            varchar(5),   -- ICD-9-CM: at most 5 characters
+    admitting_dx_raw        varchar(10),
     admitting_dx_resolution text CHECK (admitting_dx_resolution IN
                                 ('exact', 'repaired', 'assumed', 'ambiguous', 'unresolved', 'not_in_reference')),
-    drg_code        text,
+    drg_code        varchar(3),
     pass_thru_per_diem numeric(12,2),
     ip_deductible   numeric(12,2),
     pta_coinsurance numeric(12,2),
@@ -70,10 +70,10 @@ CREATE INDEX IF NOT EXISTS claim_beneficiary ON synpuf.claim (beneficiary_id);
 -- One row per code slot. code is NULL exactly when the leading-zero loss can't be resolved (D13);
 -- 'assumed' = ambiguous, as-received value stored as a labeled guess (D24).
 CREATE TABLE IF NOT EXISTS synpuf.claim_diagnosis (
-    claim_type text NOT NULL, clm_id text NOT NULL, segment smallint NOT NULL,
+    claim_type text NOT NULL, clm_id varchar(20) NOT NULL, segment smallint NOT NULL,
     position        smallint NOT NULL,
-    code            text,
-    code_raw        text NOT NULL,
+    code            varchar(5),
+    code_raw        varchar(10) NOT NULL,
     code_resolution text NOT NULL CHECK (code_resolution IN
                         ('exact', 'repaired', 'assumed', 'ambiguous', 'unresolved', 'not_in_reference')),
     _src_table text NOT NULL, _src_rec_id bigint NOT NULL, _version timestamp NOT NULL,
@@ -89,28 +89,28 @@ CREATE TABLE IF NOT EXISTS synpuf.claim_procedure (
 );
 
 CREATE TABLE IF NOT EXISTS synpuf.claim_hcpcs (
-    claim_type text NOT NULL, clm_id text NOT NULL, segment smallint NOT NULL,
+    claim_type text NOT NULL, clm_id varchar(20) NOT NULL, segment smallint NOT NULL,
     position    smallint NOT NULL,
-    hcpcs_code  text NOT NULL,
+    hcpcs_code  varchar(5) NOT NULL,
     _src_table text NOT NULL, _src_rec_id bigint NOT NULL, _version timestamp NOT NULL,
     PRIMARY KEY (claim_type, clm_id, segment, position),
     FOREIGN KEY (claim_type, clm_id, segment) REFERENCES synpuf.claim ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS synpuf.claim_line (
-    claim_type text NOT NULL, clm_id text NOT NULL, segment smallint NOT NULL,
+    claim_type text NOT NULL, clm_id varchar(20) NOT NULL, segment smallint NOT NULL,
     line_number          smallint NOT NULL,
-    performing_npi       text,
-    tax_number           text,
-    hcpcs_code           text,
+    performing_npi       varchar(10),
+    tax_number           varchar(9),       -- TIN is 9 digits
+    hcpcs_code           varchar(5),       -- HCPCS is 5 characters
     payment_amount       numeric(12,2),
     deductible           numeric(12,2),
     primary_payer_paid   numeric(12,2),
     coinsurance          numeric(12,2),
     allowed_amount       numeric(12,2),
-    processing_indicator text,
-    dx                   text,
-    dx_raw               text,
+    processing_indicator varchar(2),
+    dx                   varchar(5),
+    dx_raw               varchar(10),
     dx_resolution        text CHECK (dx_resolution IN
                              ('exact', 'repaired', 'assumed', 'ambiguous', 'unresolved', 'not_in_reference')),
     _src_table text NOT NULL, _src_rec_id bigint NOT NULL, _version timestamp NOT NULL,
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS synpuf.claim_line (
 );
 
 CREATE TABLE IF NOT EXISTS synpuf.drug_event (
-    pde_id          text PRIMARY KEY,
+    pde_id          varchar(20) PRIMARY KEY,
     beneficiary_id  text NOT NULL REFERENCES synpuf.beneficiary,
     service_date    date,
     ndc             char(11) CHECK (ndc ~ '^[0-9]{11}$'),

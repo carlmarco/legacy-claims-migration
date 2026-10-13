@@ -62,6 +62,9 @@ public sealed class MappingSpec
     public OrderedDictionary<string, Entity> Entities { get; } = new();
     public OrderedDictionary<string, List<CompiledSource>> ByTable { get; } = new();
 
+    /// <summary>Per entity: output index -> max length, from the target DDL's varchar(n)/char(n).</summary>
+    public Dictionary<string, Dictionary<int, (string Column, int Max)>> LengthLimits { get; } = new();
+
     public MappingSpec(string path)
     {
         Path = System.IO.Path.GetFullPath(path);
@@ -114,6 +117,31 @@ public sealed class MappingSpec
                 list.Add(c);
             }
         }
+
+        // Length limits come from the target DDL: one source of truth for what fits.
+        if (File.Exists(TargetDdlPath))
+        {
+            var ddl = DdlLengths.Parse(File.ReadAllText(TargetDdlPath));
+            foreach (var (name, e) in Entities)
+            {
+                var limits = new Dictionary<int, (string, int)>();
+                if (ddl.TryGetValue(name, out var cols))
+                    for (var i = 0; i < e.Output.Count; i++)
+                        if (cols.TryGetValue(e.Output[i], out var max)) limits[i] = (e.Output[i], max);
+                LengthLimits[name] = limits;
+            }
+        }
+    }
+
+    /// <summary>First string value longer than its target column allows, or null. Checked before load so one long
+    /// value quarantines one row instead of failing a whole COPY batch (and is never silently truncated).</summary>
+    private string? TooLong(string entity, object?[] values)
+    {
+        if (!LengthLimits.TryGetValue(entity, out var limits)) return null;
+        foreach (var (i, (col, max)) in limits)
+            if (values[i] is string s && s.Length > max)
+                return $"{col}: length {s.Length} > {max} ('{(s.Length > 40 ? s[..40] + "…" : s)}')";
+        return null;
     }
 
     // ---- compile ----------------------------------------------------------------------------------
@@ -266,7 +294,11 @@ public sealed class MappingSpec
             var values = new object?[src.Output.Count];
             for (var i = 0; i < dataCount; i++) values[i] = head.GetValueOrDefault(src.Output[i]);
             lineage.CopyTo(values, dataCount);
-            yield return new TransformRecord("row", src.Entity, values);
+            if (TooLong(src.Entity, values) is { } tooLong)
+                yield return new TransformRecord("quarantine", src.Entity, Table: src.Table, RecId: recId,
+                                                 Reason: "TOO_LONG", Detail: tooLong, Raw: row);
+            else
+                yield return new TransformRecord("row", src.Entity, values);
             yield break;
         }
 
@@ -300,7 +332,12 @@ public sealed class MappingSpec
             }
             if (u.KeepIfAny.Count > 0 && !u.KeepIfAny.Any(k => Truthy(vals.GetValueOrDefault(k)))) continue;
             var body = u.Columns.SelectMany(c => c.Outputs.Select(suf => vals[c.Name + suf]));
-            yield return new TransformRecord("row", src.Entity, [.. headValues, (long)(i + 1), .. body, .. lineage]);
+            object?[] slotValues = [.. headValues, (long)(i + 1), .. body, .. lineage];
+            if (TooLong(src.Entity, slotValues) is { } slotTooLong)
+                yield return new TransformRecord("quarantine", src.Entity, Table: src.Table, RecId: recId,
+                                                 Reason: "TOO_LONG", Detail: $"[{u.Index}={i + 1}] {slotTooLong}", Raw: row);
+            else
+                yield return new TransformRecord("row", src.Entity, slotValues);
         }
     }
 

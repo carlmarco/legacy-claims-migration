@@ -5,12 +5,34 @@ using Etl.Core.Mapping;
 // etl transform --mapping <path> [--tables A,B] [--limit N] [--checksum]
 // Minimal argument parsing on purpose: a handful of flags doesn't justify a CLI framework dependency.
 var opts = ParseArgs(args);
-if (args.Length == 0 || args[0] != "transform")
+return args.FirstOrDefault() switch
 {
-    Console.Error.WriteLine("usage: etl transform --mapping <path> [--tables A,B] [--limit N] [--checksum]");
+    "transform" => Transform(opts),
+    "discover" => Discover(opts),
+    _ => Usage(),
+};
+
+static int Usage()
+{
+    Console.Error.WriteLine("""
+        usage:
+          etl transform --mapping <path> [--tables A,B] [--limit N] [--checksum]
+          etl discover  --source <legacy.sqlite> [--out report.md]
+        """);
     return 2;
 }
-return Transform(opts);
+
+// Profile an unfamiliar database: types, formats, nulls, candidate keys, repeating groups.
+static int Discover(Dictionary<string, string?> o)
+{
+    var source = o.GetValueOrDefault("--source") ?? throw new ArgumentException("--source is required");
+    var sw = Stopwatch.StartNew();
+    var tables = Etl.Core.Discovery.SchemaProfiler.Profile(source);
+    var md = Etl.Core.Discovery.SchemaProfiler.ToMarkdown(source, tables);
+    if (o.GetValueOrDefault("--out") is { } outPath) File.WriteAllText(outPath, md); else Console.WriteLine(md);
+    Console.Error.WriteLine($"profiled {tables.Count} tables, {tables.Sum(t => t.Rows):N0} rows in {sw.Elapsed.TotalSeconds:0.0}s");
+    return 0;
+}
 
 static int Transform(Dictionary<string, string?> o)
 {

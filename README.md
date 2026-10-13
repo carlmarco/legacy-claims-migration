@@ -63,6 +63,12 @@ The C# transform produces **output identical to the Python engine's**: an order-
 | Python 3.13 | 240 s | ~39.7k | 44 MB |
 | C# / .NET 10 (one thread) | **52 s** | **~183k** | 88 MB |
 
+### Schema discovery (`etl discover`)
+Profiles an unfamiliar database in one streaming pass. It reports declared vs stored types, null/blank rates, distinct counts, length ranges, value-format patterns, candidate keys, repeating column groups, code domains and near-unique keys. On the legacy DB (2,894,755 rows, 52 s), it flags every injected defect family without being told about any of them. Report: [`results/discovery_legacy.md`](results/discovery_legacy.md).
+
+### Length validation
+String limits are read from the target DDL (`varchar(n)`/`char(n)`). A value that doesn't fit quarantines its row with reason `TOO_LONG` before load, never truncated. On the real data: 0 violations, and parity unchanged.
+
 Next: staging, load strategies (including binary COPY and a bounded `Channel<T>` producer/consumer), and the merge in C#. Then parity against the same oracle.
 
 ## Load strategy benchmark (25% subset → 9,527,947 staged rows → 9,255,375 target rows)

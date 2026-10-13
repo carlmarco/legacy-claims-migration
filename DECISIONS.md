@@ -336,3 +336,21 @@ No optimization is claimed until measurements are repeatable.
 **Result:** 8/8 entities match on 9,527,947 rows. Same soft-delete exclusions, 0 quarantined in both. C# took 52 s versus Python's 240 s, with peak memory of 88 MB versus 44 MB (single back-to-back runs).
 **Python behaviors mirrored in C# to get there:** PyYAML scalar typing plus merge keys, `str()` of floats, single-digit `strptime` fields, Python's `splitlines`/whitespace sets, banker's rounding, case-insensitive column access, and Python truthiness.
 **Rejected:** counts-only parity (9.5M rows can match in number and differ in value); comparing after the merge only (a transform difference would be harder to localize once dedup has run).
+
+### D31 · Schema discovery tool; length limits come from the target DDL
+**Decision:**
+- `etl discover` profiles any SQLite DB: types, formats, nulls, keys, repeating groups, code domains, near-unique columns. It flags and never decides.
+- Length validation reads `varchar(n)`/`char(n)` from `target.sql` (one source of truth) and quarantines violations as `TOO_LONG` before load.
+- The target DDL now declares standards-based limits, grounded in the observed max lengths: NPI 10, HCPCS 5, ICD-9 5, TIN 9, DRG 3, CLM/PDE IDs 20.
+
+**Evidence:**
+- Discovery rediscovered every injected defect family.
+- `PDE_ID` repeats (27,630) equal the merge's resolved duplicates exactly.
+- `CLM_ID` repeats exceed the real duplicates by 2,594 legitimate multi-segment claims.
+- Full transform parity still holds (8/8) with 0 `TOO_LONG`.
+- The Python suite passes against the new DDL.
+
+**Rejected:**
+- `max_length` in the YAML (a second source of truth that drifts from the DDL).
+- Truncation (silent data loss).
+- Exact distinct counts for every column (one extra full scan per column; capped tracking plus exact SQL only for never-null candidates is enough).
