@@ -378,3 +378,18 @@ No optimization is claimed until measurements are repeatable.
 **Applies to the C# engine only;** the Python reference engine keeps the original SQL. **Re-verified after the change:** a fresh full C# migration passes the Python validator against the oracle (8/8 checksums, 0/0/0 diff, 0 FK orphans), and all 59 tests pass.
 
 **Measurement contamination:** an unrelated CPU-heavy workload ran for about an hour alongside these measurements, with load average ~23 on 10 cores. The pure-CPU C# transform slowed 2–3.5× (59 s → 207 s), so **every wall-clock number from that window is unreliable**: the paired sync times, the 661 s first sync, and a 1,068 s fresh migration (merge 807 s vs 158 s earlier). Whether the tuning slows *fresh* loads is therefore unknown and must be re-measured on a quiet machine. Unaffected: correctness results and byte counts (WAL 554 MB → 1 MB).
+
+### D34 · A portable engine core, and the same engine running in the browser (Blazor WebAssembly)
+**Decision:**
+- Split a pure `Etl.Engine` library: mapping compiler, converters, transform, profiling, CSV/JSON/SQL writers, and an in-memory pipeline. Its only dependency is YamlDotNet.
+- It reads companion files through `IFileResolver` (disk or memory). SQLite reading and everything Postgres stay in `Etl.Core`, as extension methods, so every existing call site is unchanged.
+- A Blazor WebAssembly demo on GitHub Pages runs the engine client-side on a deterministic 8,010-row sample (`datasets/synpuf/export_demo_sample.py`): discover → edit mapping → migrate → export as CSV, JSON, or a Postgres / T-SQL script.
+
+**Evidence:** after the split, full transform parity still holds (9,527,947 rows, checksums equal to Python's) and all tests pass. The in-memory pipeline reproduces the Postgres merge's outcomes on the dental fixture, including the D22 regression. The bundled sample migrates with 0 `BAD_VALUE`, orphans quarantined and soft deletes excluded. In the browser (Release, interpreted WebAssembly, contended machine) the sample migrates in about 7 s.
+
+**Demo simplification, stated on the page:** dedup and orphan checks run in memory (C# LINQ), not as the production set-based SQL. The soft-delete filter supports only the `COL = 'X'` form.
+
+**Rejected:**
+- SQLite in the browser (native e_sqlite3 in WebAssembly adds weight and build complexity; CSV is enough for a demo).
+- A server-backed demo (GitHub Pages is static, and "no server" is the point).
+- WebAssembly AOT for now (likely sub-second, but needs the wasm-tools workload and much longer builds; revisit if the demo feels slow).

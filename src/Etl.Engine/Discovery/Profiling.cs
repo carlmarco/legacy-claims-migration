@@ -146,7 +146,10 @@ public static partial class Profiling
     {
         var f = new List<string>();
         // Low-cardinality columns are code domains: listing them exposes inconsistent encodings (1/2/M/F/male).
-        if (!c.DistinctCapped && c.Distinct is > 1 and <= 12)
+        // Only text-like columns: a money column with few distinct amounts isn't a code domain.
+        var numeric = new[] { "integer", "decimal", "money:", "number:", "padded:integer", "padded:decimal", "blank", "sentinel:" };
+        var textLike = c.Formats.Keys.Any(k => !numeric.Any(n => k.StartsWith(n)));
+        if (textLike && !c.DistinctCapped && c.Distinct is > 1 and <= 12)
             f.Add("code domain: " + string.Join(", ", c.Top(12).Select(t => $"`{t.Value.Trim()}`")));
         // Almost unique but not quite: where duplicate loads hide.
         var distinct = c.ExactDistinct ?? (c.DistinctCapped ? (long?)null : c.Distinct);

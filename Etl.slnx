@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/demo/">
+    <Project Path="demo/Etl.Demo/Etl.Demo.csproj" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/Etl.Cli/Etl.Cli.csproj" />
     <Project Path="src/Etl.Core/Etl.Core.csproj" />

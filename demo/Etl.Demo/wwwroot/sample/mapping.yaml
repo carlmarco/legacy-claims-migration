@@ -1,0 +1,230 @@
+# SynPUF legacy (SQLite) -> clean Postgres target. Read by the generic engine in src/etl/mapping.py.
+# Column spec: target_col: [source_col, converter, {args}]  |  {const: value}
+# All paths are relative to this file.
+
+name: synpuf
+source: {kind: sqlite, path: tables}
+target: {schema: synpuf, ddl: target.sql}
+
+null_tokens: ["", "N/A", "00000000", "99991231"]
+lineage: {rec_id: REC_ID, version: LOAD_TS}
+exclude: "DEL_FLG = 'Y'"          # soft-deleted legacy rows (E3); counted, never loaded
+
+# ICD-9-CM code lists: the claim years (FY2008-FY2011 = v25-v28) plus the final version (v32). D13, D18.
+references:
+  icd9_dx:
+    loader: first_token
+    sources:
+      - {path: icd/ICD-9-CM-v25.zip, member: I9diagnosesV25.txt}
+      - {path: icd/ICD-9-CM-v26.zip, member: "V26 I-9 Diagnosis.txt"}
+      - {path: icd/ICD-9-CM-v27.zip, member: CMS27_DESC_SHORT_DX.txt}
+      - {path: icd/ICD-9-CM-v28.zip, member: CMS28_DESC_SHORT_DX.txt}
+      - {path: icd/ICD-9-CM-v32-master-descriptions.zip, member: CMS32_DESC_SHORT_DX.txt}
+  icd9_px:
+    loader: first_token
+    sources:
+      - {path: icd/ICD-9-CM-v25.zip, member: I9proceduresV25.txt}
+      - {path: icd/ICD-9-CM-v26.zip, member: "V26  I-9 Procedures.txt"}
+      - {path: icd/ICD-9-CM-v27.zip, member: CMS27_DESC_SHORT_SG.txt}
+      - {path: icd/ICD-9-CM-v28.zip, member: CMS28_DESC_SHORT_SG.txt}
+      - {path: icd/ICD-9-CM-v32-master-descriptions.zip, member: CMS32_DESC_SHORT_SG.txt}
+
+code_maps:
+  sex: {case_insensitive: true, values: {"1": M, "2": F, "M": M, "F": F, "male": M, "female": F}}
+  flag: {case_insensitive: true, values: {"1": true, "2": false, "Y": true, "N": false, "0": false}}
+  yes_no: {case_insensitive: true, values: {"0": false, "N": false, "Y": true, "1": true}}
+  claim_type:
+    case_insensitive: true
+    values: {"IP": inpatient, "I": inpatient, "INPT": inpatient, "01": inpatient,
+             "OP": outpatient, "O": outpatient, "OUTPT": outpatient, "02": outpatient}
+  state_ssa: {file: state_codes.yaml, invert: true, include_targets: true, values: {"54": "54"}}
+
+# Shared column fragments (YAML anchors).
+_ids:
+  bene: &bene_id [MBR_ID, id, {pattern: "[0-9A-F]{16}"}]
+  # on_ambiguous: assume_received -> store the as-received code labeled 'assumed' (D24)
+  icd9_dx: &icd9_dx {reference: icd9_dx, max_len: 5, on_ambiguous: assume_received}
+  icd9_px: &icd9_px {reference: icd9_px, max_len: 4, on_ambiguous: assume_received}
+  hdr_key: &hdr_key
+    claim_type: [CLM_TYP, code, {map: claim_type}]
+    clm_id: [CLM_ID, text]
+    segment: [SEG, integer]
+  car_key: &car_key
+    claim_type: {const: carrier}
+    clm_id: [CLM_ID, text]
+    segment: {const: 1}
+
+entities:
+  beneficiary:
+    key: [beneficiary_id]
+    survivorship: {order: "_version DESC", fields: {death_date: max}}
+    sources:
+      - from: MBR_MSTR
+        columns:
+          beneficiary_id: *bene_id
+          birth_date: [DOB, date, {century: 1900}]
+          death_date: [DOD, date, {century: 2000}]
+          sex: [SEX, code, {map: sex}]
+          race_code: [RACE, text]
+          state_ssa_code: [ST, code, {map: state_ssa}]
+          county_code: [CNTY, text]
+
+  beneficiary_year:
+    key: [beneficiary_id, year]
+    survivorship: {order: "_version DESC"}
+    references: {beneficiary: [beneficiary_id]}
+    sources:
+      - from: MBR_MSTR
+        columns:
+          beneficiary_id: *bene_id
+          year: [YR, integer]
+          esrd: [ESRD, code, {map: yes_no}]
+          part_a_months: [MOS_A, integer]
+          part_b_months: [MOS_B, integer]
+          hmo_months: [MOS_HMO, integer]
+          part_d_months: [MOS_D, integer]
+          alzheimers: [FLG_ALZHDMTA, code, {map: flag}]
+          heart_failure: [FLG_CHF, code, {map: flag}]
+          chronic_kidney: [FLG_CHRNKIDN, code, {map: flag}]
+          cancer: [FLG_CNCR, code, {map: flag}]
+          copd: [FLG_COPD, code, {map: flag}]
+          depression: [FLG_DEPRESSN, code, {map: flag}]
+          diabetes: [FLG_DIABETES, code, {map: flag}]
+          ischemic_heart: [FLG_ISCHMCHT, code, {map: flag}]
+          osteoporosis: [FLG_OSTEOPRS, code, {map: flag}]
+          ra_oa: [FLG_RA_OA, code, {map: flag}]
+          stroke_tia: [FLG_STRKETIA, code, {map: flag}]
+          ip_medicare_reimb: [AMT_IP_REIMB, money]
+          ip_bene_responsibility: [AMT_IP_BENRES, money]
+          ip_primary_payer: [AMT_IP_PPPYMT, money]
+          op_medicare_reimb: [AMT_OP_REIMB, money]
+          op_bene_responsibility: [AMT_OP_BENRES, money]
+          op_primary_payer: [AMT_OP_PPPYMT, money]
+          carrier_medicare_reimb: [AMT_CAR_REIMB, money]
+          carrier_bene_responsibility: [AMT_CAR_BENRES, money]
+          carrier_primary_payer: [AMT_CAR_PPPYMT, money]
+
+  claim:
+    key: [claim_type, clm_id, segment]
+    survivorship: {order: "_version DESC"}
+    references: {beneficiary: [beneficiary_id]}
+    sources:
+      - from: CLM_HDR_ALL
+        rules: {swap_if_reversed: [[from_date, thru_date]]}
+        columns:
+          <<: *hdr_key
+          beneficiary_id: *bene_id
+          from_date: [FROM_DT, date, {century: 2000}]
+          thru_date: [THRU_DT, date, {century: 2000}]
+          provider_number: [PRVDR, text]
+          payment_amount: [AMT_PMT, money]
+          primary_payer_paid: [AMT_PRMRY_PYR, money]
+          attending_npi: [AT_NPI, text]
+          operating_npi: [OP_NPI, text]
+          other_npi: [OT_NPI, text]
+          admission_date: [ADMIT_DT, date, {century: 2000}]
+          discharge_date: [DISCH_DT, date, {century: 2000}]
+          admitting_dx: [ADMIT_DX, zero_padded_code, *icd9_dx]
+          drg_code: [DRG, text]
+          pass_thru_per_diem: [AMT_PASSTHRU, money]
+          ip_deductible: [AMT_IP_DED, money]
+          pta_coinsurance: [AMT_PTA_COINS, money]
+          blood_deductible: [AMT_BLOOD_DED, money]
+          ptb_deductible: [AMT_PTB_DED, money]
+          ptb_coinsurance: [AMT_PTB_COINS, money]
+          utilization_days: [UTIL_DAYS, integer]
+          # DOB/SEX/ST on CLM_HDR_ALL are stale denormalized copies (A1): deliberately not mapped.
+      - from: CAR_CLM
+        rules: {swap_if_reversed: [[from_date, thru_date]]}
+        columns:
+          <<: *car_key
+          beneficiary_id: *bene_id
+          from_date: [FROM_DT, date, {century: 2000}]
+          thru_date: [THRU_DT, date, {century: 2000}]
+
+  claim_diagnosis:
+    key: [claim_type, clm_id, segment, position]
+    survivorship: {order: "_version DESC", follow_parent: claim}
+    references: {claim: [claim_type, clm_id, segment]}
+    sources:
+      - from: CLM_HDR_ALL
+        columns: *hdr_key
+        unpivot:
+          index: position
+          n: 10
+          fields: {dx: "DX{n}"}
+          columns: {code: [dx, zero_padded_code, *icd9_dx]}
+      - from: CAR_CLM
+        columns: *car_key
+        unpivot:
+          index: position
+          split: {column: DX_LIST, sep: "|", field: dx}
+          columns: {code: [dx, zero_padded_code, *icd9_dx]}
+
+  claim_procedure:
+    key: [claim_type, clm_id, segment, position]
+    survivorship: {order: "_version DESC", follow_parent: claim}
+    references: {claim: [claim_type, clm_id, segment]}
+    sources:
+      - from: CLM_HDR_ALL
+        columns: *hdr_key
+        unpivot:
+          index: position
+          n: 6
+          fields: {px: "PX{n}"}
+          columns: {code: [px, zero_padded_code, *icd9_px]}
+
+  claim_hcpcs:
+    key: [claim_type, clm_id, segment, position]
+    survivorship: {order: "_version DESC", follow_parent: claim}
+    references: {claim: [claim_type, clm_id, segment]}
+    sources:
+      - from: CLM_HDR_ALL
+        columns: *hdr_key
+        unpivot:
+          index: position
+          n: 45
+          fields: {hcpcs: "HCPCS{n}"}
+          columns: {hcpcs_code: [hcpcs, text]}
+
+  claim_line:
+    key: [claim_type, clm_id, segment, line_number]
+    survivorship: {order: "_version DESC", follow_parent: claim}
+    references: {claim: [claim_type, clm_id, segment]}
+    sources:
+      - from: CAR_CLM
+        columns: *car_key
+        unpivot:
+          index: line_number
+          n: 13
+          fields: {npi: "L{n}_NPI", tax: "L{n}_TAX", hcpcs: "L{n}_HCPCS", pmt: "L{n}_PMT", ded: "L{n}_DED",
+                   prpyr: "L{n}_PRPYR", coins: "L{n}_COINS", alowd: "L{n}_ALOWD", prcsg: "L{n}_PRCSG", dx: "L{n}_DX"}
+          # Unused line slots are padded with 0.00: keep a line only if it carries something real.
+          keep_if_any: [hcpcs_code, payment_amount, deductible, primary_payer_paid, coinsurance, allowed_amount]
+          columns:
+            performing_npi: [npi, text]
+            tax_number: [tax, text]
+            hcpcs_code: [hcpcs, text]
+            payment_amount: [pmt, money]
+            deductible: [ded, money]
+            primary_payer_paid: [prpyr, money]
+            coinsurance: [coins, money]
+            allowed_amount: [alowd, money]
+            processing_indicator: [prcsg, text]
+            dx: [dx, zero_padded_code, *icd9_dx]
+
+  drug_event:
+    key: [pde_id]
+    survivorship: {order: "_version DESC"}
+    references: {beneficiary: [beneficiary_id]}
+    sources:
+      - from: RX_EVNT
+        columns:
+          pde_id: [PDE_ID, text]
+          beneficiary_id: *bene_id
+          service_date: [SRVC_DT, date, {century: 2000}]
+          ndc: [NDC, padded_digits, {width: 11, segments: [5, 4, 2], placeholders: [OTHER]}]
+          quantity: [QTY, decimal]
+          days_supply: [DAYS, integer]
+          patient_pay: [AMT_PTNT_PAY, money]
+          total_cost: [AMT_TOT_COST, money]

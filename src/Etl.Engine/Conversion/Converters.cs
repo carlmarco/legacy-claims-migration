@@ -129,7 +129,8 @@ public static class ConverterRegistry
         if (negative) s = s[1..^1];
         if (!decimal.TryParse(s, NumberStyles.Float, CultureInfo.InvariantCulture, out var d))
             throw new ConversionException($"not money: {Repr(v)}");
-        return Math.Round(negative ? -d : d, 2, MidpointRounding.ToEven);
+        // + 0.00m forces scale 2 ("60" -> "60.00") without changing the value; Round alone never adds decimal places.
+        return Math.Round(negative ? -d : d, 2, MidpointRounding.ToEven) + 0.00m;
     }
 
     private static readonly Regex TwoDigitYear = new(@"^(\d{1,2})/(\d{1,2})/(\d{2})$", RegexOptions.Compiled);

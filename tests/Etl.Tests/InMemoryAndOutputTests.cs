@@ -107,3 +107,30 @@ public class InMemoryAndOutputTests
         Assert.Equal(3, sql.Split("INSERT INTO").Length - 1);              // 500 + 500 + 201
     }
 }
+
+/// <summary>The demo's bundled sample, loaded exactly as the browser does (in-memory files, CSV tables).</summary>
+public class DemoSampleTests
+{
+    [Fact]
+    public void BundledSampleMigratesInMemory()
+    {
+        var d = new DirectoryInfo(AppContext.BaseDirectory);
+        while (!File.Exists(Path.Combine(d.FullName, "Etl.slnx"))) d = d.Parent!;
+        var root = Path.Combine(d.FullName, "demo/Etl.Demo/wwwroot/sample");
+        var files = Directory.GetFiles(root, "*", SearchOption.AllDirectories)
+            .ToDictionary(f => Path.GetRelativePath(root, f).Replace('\\', '/'), File.ReadAllBytes);
+        var m = new MappingSpec(new InMemoryResolver(files), "mapping.yaml");
+        var tables = new Dictionary<string, (IReadOnlyList<string>, IReadOnlyList<object?[]>)>();
+        foreach (var t in m.ByTable.Keys)
+        {
+            var (h, rows) = Csv.Read(System.Text.Encoding.UTF8.GetString(files[$"tables/{t}.csv"]));
+            tables[t] = (h, rows);
+        }
+        var r = InMemoryPipeline.Run(m, tables);
+        Assert.DoesNotContain(r.Quarantine, q => q.Reason == "BAD_VALUE");           // every injected format defect repaired
+        Assert.Contains(r.Quarantine, q => q.Reason == "ORPHAN_FK");                 // the two removed beneficiaries
+        Assert.True(r.Excluded > 0);                                                 // soft-deleted junk rows
+        Assert.True(r.Stats["claim"].Duplicates > 0);                                // reloads resolved
+        Assert.True(r.Rows["claim_diagnosis"].Count > 1000);
+    }
+}

@@ -1,0 +1,37 @@
+name: Demo (GitHub Pages)
+
+# Publishes the Blazor WebAssembly demo: the same C# engine, compiled to run in the browser.
+on:
+  push:
+    branches: [main]
+    paths: ["src/Etl.Engine/**", "demo/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with: { dotnet-version: "10.0.x" }
+      - run: dotnet publish demo/Etl.Demo -c Release -o out
+      # Served from /<repo>/, not the domain root.
+      - run: sed -i 's#<base href="/" />#<base href="/${{ github.event.repository.name }}/" />#' out/wwwroot/index.html
+      # Jekyll drops folders that start with "_", and Blazor's runtime lives in _framework/.
+      - run: touch out/wwwroot/.nojekyll && cp out/wwwroot/index.html out/wwwroot/404.html
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: out/wwwroot }
+      - id: deployment
+        uses: actions/deploy-pages@v4

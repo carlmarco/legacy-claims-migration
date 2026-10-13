@@ -5,6 +5,8 @@
 
 **A C#/.NET migration engine that moves a messy legacy database into a clean PostgreSQL schema, and proves the result is correct, row by row.**
 
+**[▶ Try the live demo](https://carlmarco.github.io/legacy-claims-migration/)**: the same engine, compiled to WebAssembly, running in your browser. Profile damaged legacy data, edit the mapping, migrate, and export to CSV, JSON or a PostgreSQL / SQL Server script.
+
 Real migrations fail quietly: a date format nobody noticed, codes that lost their leading zeros, a record loaded twice. This project takes 2.9 million rows of Medicare claims data that was *deliberately damaged* in 20 realistic ways, migrates it, and measures exactly how much was repaired, flagged or rejected, against a ground truth the engine never sees.
 
 > Built using Claude Code.
@@ -18,7 +20,7 @@ Real migrations fail quietly: a date format nobody noticed, codes that lost thei
 | **Data quality** | 3,967,754 injected defects across 20 types; **19 of 20 types handled 100%**. The 20th (medical codes stored as integers) is 99.0% correct, and uncertain values are *labeled*, never silently guessed |
 | **Performance** | Bulk loading is **85× faster** than row-by-row; the C# engine is **4.6× faster** than the Python reference implementation, with identical output |
 | **Incremental sync** | Re-syncing 9.26M rows with no changes takes **0.6 s**. A fix to how unchanged rows are handled cut database write volume by **99.8%** |
-| **Quality bar** | 172 automated tests (59 xUnit, 113 pytest) running against real PostgreSQL in CI. 32 design decisions logged with the alternatives rejected |
+| **Quality bar** | 178 automated tests (65 xUnit, 113 pytest) running against real PostgreSQL in CI. 32 design decisions logged with the alternatives rejected |
 
 *Performance figures are single runs on an Apple M4 laptop; repeated-trial benchmarks are in progress. Full methodology and caveats: [docs/RESULTS.md](docs/RESULTS.md).*
 
@@ -67,7 +69,9 @@ Every command supports a dry run (`--dry-run`): the full migration runs and repo
 
 | Path | What's there |
 |---|---|
-| [`src/Etl.Core/`](src/Etl.Core/) | The C# engine: mapping compiler, converters, discovery, loaders, merge, sync |
+| [`src/Etl.Engine/`](src/Etl.Engine/) | The portable core (no database dependency): mapping compiler, converters, transform, profiling, output writers |
+| [`src/Etl.Core/`](src/Etl.Core/) | Everything database-facing: SQLite source, PostgreSQL loaders, merge, incremental sync |
+| [`demo/Etl.Demo/`](demo/Etl.Demo/) | Blazor WebAssembly demo: the engine running in the browser, deployed to GitHub Pages |
 | [`src/Etl.Cli/`](src/Etl.Cli/) | `etl transform \| discover \| migrate \| sync` |
 | [`tests/Etl.Tests/`](tests/Etl.Tests/) | xUnit: unit tests plus end-to-end runs against real PostgreSQL |
 | [`datasets/synpuf/`](datasets/synpuf/) | The Medicare mapping and target schema, plus the data generator, the oracle and the defect scorer (Python) |
@@ -76,7 +80,7 @@ Every command supports a dry run (`--dry-run`): the full migration runs and repo
 | [`docs/`](docs/) | [Results detail](docs/RESULTS.md), [T-SQL / SQL Server notes](docs/TSQL_NOTES.md), [benchmark runbook](docs/WINDOWS_BENCHMARK_RUNBOOK.md) |
 | [`DECISIONS.md`](DECISIONS.md) | Every design decision, with rationale and the alternatives rejected |
 
-**Stack:** C# / .NET 10, Npgsql (binary COPY), Microsoft.Data.Sqlite, YamlDotNet, xUnit · PostgreSQL 16 · Python 3.13 (reference engine, oracle, validation) · PowerShell 7 · GitHub Actions
+**Stack:** C# / .NET 10, Npgsql (binary COPY), Microsoft.Data.Sqlite, YamlDotNet, xUnit, Blazor WebAssembly · PostgreSQL 16 · Python 3.13 (reference engine, oracle, validation) · PowerShell 7 · GitHub Actions
 
 **Data:** [CMS DE-SynPUF](https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-claims-synthetic-public-use-files), public *synthetic* Medicare claims. No real patient data is used anywhere.
 

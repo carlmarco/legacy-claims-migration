@@ -1,0 +1,327 @@
+@page "/"
+@using System.Text
+@using Etl.Core.Discovery
+@using Etl.Core.IO
+@using Etl.Core.Mapping
+@inject HttpClient Http
+@inject IJSRuntime JS
+
+<PageTitle>Legacy Claims Migration · live demo</PageTitle>
+
+<header>
+    <h1>Legacy Claims Migration</h1>
+    <p class="lede">
+        A C#/.NET data-migration engine, <strong>running in your browser</strong> (WebAssembly, no server).
+        Load messy legacy data, let the engine profile it, edit the mapping, migrate, and export the result.
+    </p>
+    <p class="fine">
+        Sample: 8,010 rows of synthetic Medicare claims deliberately damaged in 20 ways (mixed date formats, money as text,
+        codes that lost leading zeros, duplicate loads, orphans…). The full engine migrates 9.3M rows into PostgreSQL and is
+        validated row by row; this page runs the same transform code on a small sample.
+        <a href="https://github.com/carlmarco/legacy-claims-migration">Source on GitHub</a>.
+    </p>
+</header>
+
+@if (loadError is not null)
+{
+    <p class="error">@loadError</p>
+}
+else if (!loaded)
+{
+    <p class="busy">Loading the sample and the ICD-9 code lists…</p>
+}
+else
+{
+    <nav class="steps">
+        @foreach (var (n, name) in Steps)
+        {
+            <button class="@(step == n ? "active" : "")" @onclick="() => step = n">@n · @name</button>
+        }
+    </nav>
+
+    @if (busy is not null) { <p class="busy">@busy</p> }
+
+    @switch (step)
+    {
+        case 1:
+            <section>
+                <h2>Legacy data</h2>
+                <p>Four tables from a legacy system. Upload your own CSV to add or replace a table (the file name becomes the table name).</p>
+                <label class="upload">Upload CSV <InputFile OnChange="Upload" accept=".csv" /></label>
+                <table class="summary">
+                    <tr><th>Table</th><th>Rows</th><th>Columns</th><th></th></tr>
+                    @foreach (var (name, t) in tables)
+                    {
+                        <tr><td><code>@name</code></td><td>@t.Rows.Count.ToString("N0")</td><td>@t.Header.Count</td>
+                            <td><button class="link" @onclick="() => previewTable = name">preview</button></td></tr>
+                    }
+                </table>
+                @if (previewTable is not null && tables.TryGetValue(previewTable, out var pt))
+                {
+                    <h3>@previewTable: first 12 rows</h3>
+                    <div class="scroll"><table class="grid">
+                        <tr>@foreach (var h in pt.Header) { <th>@h</th> }</tr>
+                        @foreach (var r in pt.Rows.Take(12)) { <tr>@foreach (var v in r) { <td>@v</td> }</tr> }
+                    </table></div>
+                }
+                <button class="primary" @onclick="() => Go(2, Discover)">Next: profile it →</button>
+            </section>
+            break;
+
+        case 2:
+            <section>
+                <h2>Discover</h2>
+                <p>Schema discovery on data the engine has never seen: what's stored vs declared, value formats, code domains,
+                   near-duplicate keys, and repeating columns that should become child tables. These findings become mapping rules.</p>
+                @if (profiles is null) { <button class="primary" @onclick="() => Go(2, Discover)">Profile all tables</button> }
+                else
+                {
+                    @foreach (var t in profiles)
+                    {
+                        <h3><code>@t.Name</code> · @t.Rows.ToString("N0") rows</h3>
+                        @if (t.RepeatingGroups.Count > 0)
+                        {
+                            <p class="fine">Repeating groups → child tables: @string.Join(", ", t.RepeatingGroups)</p>
+                        }
+                        <table class="grid">
+                            <tr><th>Column</th><th>Formats seen</th><th>Finding</th></tr>
+                            @foreach (var c in t.Columns.Where(c => Profiling.Flags(c).Count > 0).Take(14))
+                            {
+                                <tr><td><code>@c.Name</code></td>
+                                    <td class="fine">@string.Join(", ", c.Formats.OrderByDescending(f => f.Value).Take(3).Select(f => f.Key))</td>
+                                    <td>@foreach (var f in Profiling.Flags(c)) { <div>@((MarkupString)Md(f))</div> }</td></tr>
+                            }
+                        </table>
+                    }
+                    <button class="primary" @onclick="() => step = 3">Next: the mapping →</button>
+                }
+            </section>
+            break;
+
+        case 3:
+            <section>
+                <h2>Mapping</h2>
+                <p>Declarative YAML: source columns → target columns through named converters (<code>date</code>, <code>money</code>,
+                   <code>code</code>, <code>zero_padded_code</code>…), code maps, unpivots, keys and survivorship rules. Edit it and recompile.
+                   Try breaking a code map and see what gets quarantined.</p>
+                <textarea class="yaml" spellcheck="false" @bind="mappingText" @bind:event="oninput"></textarea>
+                <div class="row">
+                    <button class="primary" @onclick="() => Go(3, CompileMapping)">Compile</button>
+                    @if (compileError is not null) { <span class="error">@compileError</span> }
+                    else if (spec is not null) { <span class="ok">✓ @spec.Entities.Count target tables from @spec.ByTable.Count legacy tables</span> }
+                </div>
+                @if (spec is not null && compileError is null)
+                {
+                    <button class="primary" @onclick="() => Go(4, Migrate)">Next: migrate →</button>
+                }
+            </section>
+            break;
+
+        case 4:
+            <section>
+                <h2>Migrate</h2>
+                @if (result is null) { <button class="primary" @onclick="() => Go(4, Migrate)">Run the migration</button> }
+                else
+                {
+                    <p>@result.Rows.Values.Sum(r => r.Count).ToString("N0") clean rows in @result.Rows.Count tables ·
+                       @result.Quarantine.Count.ToString("N0") records quarantined · @result.Excluded.ToString("N0") soft-deleted rows excluded ·
+                       @elapsedMs.ToString("N0") ms in your browser.</p>
+                    <table class="summary">
+                        <tr><th>Target table</th><th>Staged</th><th>Duplicates resolved</th><th>Orphans</th><th>Loaded</th></tr>
+                        @foreach (var (name, s) in result.Stats)
+                        {
+                            <tr><td><code>@name</code></td><td>@s.Staged.ToString("N0")</td><td>@s.Duplicates.ToString("N0")</td>
+                                <td>@s.Orphans.ToString("N0")</td><td>@result.Rows[name].Count.ToString("N0")</td></tr>
+                        }
+                    </table>
+                    @if (codeResolutions.Count > 0)
+                    {
+                        <h3>ICD-9 codes: nothing is silently guessed</h3>
+                        <p class="fine">Codes stored as integers lost their leading zeros (<code>038.9</code> septicemia → <code>389</code>, which is also hearing loss).
+                           Each code keeps its raw value, its resolved value, and how it was resolved.</p>
+                        <table class="summary">
+                            <tr><th>Resolution</th><th>Codes</th><th>Meaning</th></tr>
+                            @foreach (var (res, n) in codeResolutions)
+                            {
+                                <tr><td><code>@res</code></td><td>@n.ToString("N0")</td><td class="fine">@ResolutionMeaning(res)</td></tr>
+                            }
+                        </table>
+                    }
+                    <h3>Quarantine: refused rather than guessed</h3>
+                    <table class="grid">
+                        <tr><th>Reason</th><th>Table</th><th>Legacy record</th><th>Detail</th></tr>
+                        @foreach (var q in result.Quarantine.Take(15))
+                        {
+                            <tr><td>@q.Reason</td><td>@q.Entity</td><td>@q.Table #@q.RecId</td><td class="fine">@q.Detail</td></tr>
+                        }
+                    </table>
+                    <h3>Preview: <select @bind="previewEntity">@foreach (var e in result.Rows.Keys) { <option>@e</option> }</select></h3>
+                    @if (previewEntity is not null && result.Rows.TryGetValue(previewEntity, out var rows))
+                    {
+                        var cols = spec!.Entities[previewEntity].Output;
+                        <div class="scroll"><table class="grid">
+                            <tr>@foreach (var c in cols) { <th>@c</th> }</tr>
+                            @foreach (var r in rows.Take(15)) { <tr>@foreach (var v in r) { <td>@Show(v)</td> }</tr> }
+                        </table></div>
+                    }
+                    <button class="primary" @onclick="() => step = 5">Next: export →</button>
+                }
+            </section>
+            break;
+
+        case 5:
+            <section>
+                <h2>Export</h2>
+                <p>Download the migrated tables. SQL scripts come in PostgreSQL or SQL Server (T-SQL) dialect. Identifiers, string escaping,
+                   dates and booleans differ, and T-SQL caps a <code>VALUES</code> list at 1,000 rows, so batches are 500.</p>
+                @if (result is null) { <p>Run the migration first.</p> }
+                else
+                {
+                    <div class="row">
+                        <select @bind="exportEntity">@foreach (var e in result.Rows.Keys) { <option>@e</option> }</select>
+                        <select @bind="exportFormat">
+                            <option value="csv">CSV</option><option value="json">JSON</option>
+                            <option value="pg">SQL · PostgreSQL</option><option value="tsql">SQL · SQL Server (T-SQL)</option>
+                        </select>
+                        <button class="primary" @onclick="Export">Download</button>
+                    </div>
+                    <pre class="peek">@exportPeek</pre>
+                }
+            </section>
+            break;
+    }
+}
+
+<footer class="fine">
+    Built using Claude Code.
+    Demo simplification: on this page, deduplication ("newest version wins") and orphan checks run in memory. The full engine does them as
+    set-based SQL in PostgreSQL inside one transaction.
+</footer>
+
+@code {
+    private static readonly (int, string)[] Steps = [(1, "Legacy data"), (2, "Discover"), (3, "Mapping"), (4, "Migrate"), (5, "Export")];
+    private static readonly string[] SampleFiles =
+    [
+        "mapping.yaml", "state_codes.yaml", "target.sql",
+        "tables/MBR_MSTR.csv", "tables/CLM_HDR_ALL.csv", "tables/CAR_CLM.csv", "tables/RX_EVNT.csv",
+        "icd/ICD-9-CM-v25.zip", "icd/ICD-9-CM-v26.zip", "icd/ICD-9-CM-v27.zip", "icd/ICD-9-CM-v28.zip",
+        "icd/ICD-9-CM-v32-master-descriptions.zip",
+    ];
+
+    private readonly Dictionary<string, byte[]> files = new();
+    private readonly SortedDictionary<string, (List<string> Header, List<object?[]> Rows)> tables = new(StringComparer.Ordinal);
+    private bool loaded;
+    private string? loadError, busy, compileError, previewTable, previewEntity, exportEntity, exportPeek;
+    private string exportFormat = "csv";
+    private string mappingText = "";
+    private int step = 1;
+    private List<TableProfile>? profiles;
+    private MappingSpec? spec;
+    private InMemoryResult? result;
+    private long elapsedMs;
+    private List<(string Resolution, long Count)> codeResolutions = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await Task.WhenAll(SampleFiles.Select(async f => { var b = await Http.GetByteArrayAsync($"sample/{f}"); lock (files) files[f] = b; }));
+            foreach (var f in SampleFiles.Where(f => f.StartsWith("tables/")))
+            {
+                var (h, rows) = Csv.Read(Encoding.UTF8.GetString(files[f]));
+                tables[Path.GetFileNameWithoutExtension(f)] = (h, rows);
+            }
+            mappingText = Encoding.UTF8.GetString(files["mapping.yaml"]);
+            CompileMapping();
+            loaded = true;
+        }
+        catch (Exception e) { loadError = $"Couldn't load the sample: {e.Message}"; }
+    }
+
+    // WebAssembly runs on one thread: yield once so the "Running…" message renders before the work starts.
+    private async Task Go(int target, Action work)
+    {
+        busy = "Running…";
+        StateHasChanged();
+        await Task.Delay(1);
+        try { work(); step = target; }
+        finally { busy = null; }
+    }
+
+    private void Discover() =>
+        profiles = tables.Select(t => Profiling.ProfileRows(t.Key, t.Value.Header, t.Value.Rows)).ToList();
+
+    private void CompileMapping()
+    {
+        try
+        {
+            files["mapping.yaml"] = Encoding.UTF8.GetBytes(mappingText);
+            spec = new MappingSpec(new InMemoryResolver(files), "mapping.yaml");
+            compileError = null;
+            result = null;
+        }
+        catch (Exception e) { compileError = e.Message; spec = null; }
+    }
+
+    private void Migrate()
+    {
+        if (spec is null) return;
+        var sw = System.Diagnostics.Stopwatch.StartNew();
+        result = InMemoryPipeline.Run(spec, tables.ToDictionary(t => t.Key, t => ((IReadOnlyList<string>)t.Value.Header, (IReadOnlyList<object?[]>)t.Value.Rows)));
+        elapsedMs = sw.ElapsedMilliseconds;
+        previewEntity = exportEntity = result.Rows.Keys.FirstOrDefault(k => k == "claim") ?? result.Rows.Keys.First();
+        codeResolutions = result.Rows.SelectMany(kv =>
+                spec.Entities[kv.Key].Output.Select((c, i) => (c, i)).Where(x => x.c.EndsWith("_resolution"))
+                    .SelectMany(x => kv.Value.Select(r => r[x.i] as string)))
+            .Where(r => r is not null).GroupBy(r => r!).Select(g => (g.Key, (long)g.Count())).OrderByDescending(x => x.Item2).ToList();
+    }
+
+    private async Task Upload(InputFileChangeEventArgs e)
+    {
+        using var stream = e.File.OpenReadStream(maxAllowedSize: 25_000_000);
+        using var reader = new StreamReader(stream);
+        var (h, rows) = Csv.Read(await reader.ReadToEndAsync());
+        tables[Path.GetFileNameWithoutExtension(e.File.Name)] = (h, rows);
+        previewTable = Path.GetFileNameWithoutExtension(e.File.Name);
+        profiles = null;
+        result = null;
+    }
+
+    private async Task Export()
+    {
+        if (result is null || exportEntity is null) return;
+        var cols = spec!.Entities[exportEntity].Output;
+        var rows = result.Rows[exportEntity];
+        var (text, ext, type) = exportFormat switch
+        {
+            "json" => (OutputWriters.ToJson(cols, rows), "json", "application/json"),
+            "pg" => (OutputWriters.ToSql(SqlDialect.Postgres, spec.TargetSchema, exportEntity, cols, rows), "postgres.sql", "text/plain"),
+            "tsql" => (OutputWriters.ToSql(SqlDialect.TSql, spec.TargetSchema, exportEntity, cols, rows), "tsql.sql", "text/plain"),
+            _ => (OutputWriters.ToCsv(cols, rows), "csv", "text/csv"),
+        };
+        exportPeek = string.Join('\n', text.Split('\n').Take(8)) + "\n…";
+        await JS.InvokeVoidAsync("etlDownload", $"{exportEntity}.{ext}", type, text);
+    }
+
+    private static string Show(object? v) => v switch
+    {
+        null => "∅",
+        DateOnly d => d.ToString("yyyy-MM-dd"),
+        bool b => b ? "true" : "false",
+        _ => v.ToString() ?? "",
+    };
+
+    private static string Md(string s) => System.Text.RegularExpressions.Regex.Replace(
+        System.Net.WebUtility.HtmlEncode(s).Replace("`", ""), @"\*\*(.+?)\*\*", "<strong>$1</strong>");
+
+    private static string ResolutionMeaning(string r) => r switch
+    {
+        "exact" => "valid as received",
+        "repaired" => "exactly one zero-padded candidate is a valid code",
+        "assumed" => "several candidates valid; the received value kept, labeled as an assumption",
+        "ambiguous" => "several candidates valid; withheld (NULL)",
+        "unresolved" => "no valid candidate; withheld (NULL)",
+        "not_in_reference" => "no zeros could have been lost; kept, but not in the code list",
+        _ => "",
+    };
+}
