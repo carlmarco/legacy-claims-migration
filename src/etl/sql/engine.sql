@@ -24,3 +24,15 @@ CREATE TABLE IF NOT EXISTS etl.quarantine (
     run_id       bigint REFERENCES etl.migration_run,
     PRIMARY KEY (dataset, entity, src_table, src_rec_id, reason)
 );
+
+-- Incremental sync (C# engine, `etl sync`): per legacy table, the (version, rec_id) high-water mark of the last
+-- committed sync. Written in the same transaction as the merge, so a crash can't advance it past unmerged data.
+CREATE TABLE IF NOT EXISTS etl.sync_watermark (
+    dataset       text        NOT NULL,
+    src_table     text        NOT NULL,
+    last_version  text        NOT NULL,
+    last_rec_id   bigint      NOT NULL,
+    run_id        bigint      REFERENCES etl.migration_run,
+    updated_at    timestamptz NOT NULL DEFAULT now(),
+    PRIMARY KEY (dataset, src_table)
+);

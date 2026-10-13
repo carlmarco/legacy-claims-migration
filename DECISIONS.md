@@ -354,3 +354,25 @@ No optimization is claimed until measurements are repeatable.
 - `max_length` in the YAML (a second source of truth that drifts from the DDL).
 - Truncation (silent data loss).
 - Exact distinct counts for every column (one extra full scan per column; capped tracking plus exact SQL only for never-null candidates is enough).
+
+### D32 · Incremental sync: tuple watermark, bounded window, version guard, tombstones, watermark in the merge transaction
+**Decision:** `etl sync` (C# only), with the watermark table `etl.sync_watermark` defined in the shared `engine.sql`.
+- The window is `(watermark, high mark]` using a `(version, rec_id)` row-value comparison; the high mark is snapshotted at start.
+- Soft-deleted rows inside the window become tombstones (key via the same mapping), deleted if not older than the target row; children cascade.
+- The upsert gains `(EXCLUDED._version, EXCLUDED._src_rec_id) >= (t._version, t._src_rec_id)`.
+- The new watermark is written in the merge transaction.
+
+**Tests (dental):** first sync, no-change sync (0 extracted), a delta with update + insert + soft-delete (4 rows extracted, cascade verified), a dry run that doesn't advance the watermark, and the equal-timestamp boundary.
+**At scale:** no-change sync 0.63 s; a 161k-row delta in 15–40 s; the first sync over an already-loaded target took 661 s and wrote 0 rows.
+**Known limitations:**
+- Rows arriving *later* with a version older than the watermark are missed (fix: a lookback window).
+- Hard deletes the source never flags need a periodic full-key reconciliation (not built).
+- Deleting a beneficiary that still has claims fails the transaction on the FK (no cascade from beneficiary), which is correct but unhandled.
+
+**Rejected:** a timestamp-only watermark (skips rows that share the boundary timestamp); committing the watermark separately (a crash advances it past unmerged data); log-based CDC (needs control of the source system).
+
+### D33 · Merge tuning: filter unchanged rows before the upsert; ANALYZE temp tables
+**Finding:** a no-op re-run (0 rows inserted or updated) generated 554 MB of WAL for a 161k-row delta, because `ON CONFLICT DO UPDATE … WHERE false` locks each conflicting row, and the lock is WAL-logged.
+**Decision:** the upsert reads from `surv s WHERE NOT EXISTS (unchanged target row)`, so unchanged rows never reach `ON CONFLICT`. Also `ANALYZE` each `surv__*` temp table (autovacuum never sees temp tables).
+**Measured** (3 paired runs, `ETL_MERGE_TUNING=0/1`, same rewound delta): WAL 554 MB → 1 MB in 3/3 pairs. Merge time median 36.3 s → 26.7 s, but one tuned run (65.9 s) coincided with a 2.3× slowdown of the pure-CPU transform, i.e. machine contention. The **time gain isn't claimed**; the WAL reduction is.
+**Applies to the C# engine only;** the Python reference engine keeps the original SQL. Full validation of a fresh C# migration is unaffected (all tests pass; parity was proven before this change and the rows written are identical by construction).

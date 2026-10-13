@@ -9,7 +9,8 @@ namespace Etl.Core;
 
 public sealed record RunOptions(string MappingPath, string Strategy, bool DryRun = false, long? Limit = null,
                                 bool MergeStep = true, bool Fresh = false, int Workers = 1, int Writers = 2,
-                                bool DeferFks = false, string? Dsn = null, string? ReviewDir = "results/review");
+                                bool DeferFks = false, string? Dsn = null, string? ReviewDir = "results/review",
+                                bool Incremental = false);
 
 /// <summary>
 /// One migration run: extract -> transform -> load (strategy) into staging -> merge into the target. Each phase is
@@ -50,8 +51,38 @@ public static class Pipeline
             runId = Pg.Scalar<long>(con, "INSERT INTO etl.migration_run (dataset, strategy, dry_run) VALUES ($1, $2, $3) RETURNING run_id",
                                     null, m.Name, "dotnet:" + o.Strategy, o.DryRun);
         }
+        // Incremental sync: per legacy table, extract only (version, rec_id) in (last committed watermark, high mark now].
+        Dictionary<string, SyncWindow>? windows = null;
+        SyncPlan? sync = null;
+        if (o.Incremental)
+        {
+            if (o.Strategy == "parallel") throw new ArgumentException("incremental sync uses a single-process strategy (deltas are small)");
+            var marks = new Dictionary<string, (string, long)>();
+            using (var con = ds.OpenConnection())
+            using (var cmd = new NpgsqlCommand("SELECT src_table, last_version, last_rec_id FROM etl.sync_watermark WHERE dataset = $1", con))
+            {
+                cmd.Parameters.Add(new NpgsqlParameter { Value = m.Name });
+                using var r = cmd.ExecuteReader();
+                while (r.Read()) marks[r.GetString(0)] = (r.GetString(1), r.GetInt64(2));
+            }
+            windows = new Dictionary<string, SyncWindow>();
+            var newMarks = new Dictionary<string, (string Version, long RecId)>();
+            foreach (var table in m.ByTable.Keys)
+            {
+                if (m.HighMark(table) is not { } high) continue;
+                (string, long)? from = marks.TryGetValue(table, out var f) ? f : null;
+                newMarks[table] = high;
+                if (from is { } fr && Compare(high, fr) <= 0) continue;   // nothing new since the last committed sync
+                windows[table] = new SyncWindow(from, high);
+            }
+            var tombstones = windows.SelectMany(w => m.Tombstones(w.Key, w.Value)).ToList();
+            sync = new SyncPlan(tombstones, newMarks);
+        }
+
         var stats = new Dictionary<string, object?>
         {
+            ["incremental"] = o.Incremental,
+            ["sync_windows"] = windows?.ToDictionary(w => w.Key, w => $"({w.Value.From?.Item1 ?? "start"}, {w.Value.To.Version}]"),
             ["engine"] = "dotnet", ["run_id"] = runId, ["dataset"] = m.Name, ["strategy"] = o.Strategy, ["dry_run"] = o.DryRun,
             ["limit"] = o.Limit, ["workers"] = o.Workers, ["writers"] = o.Writers, ["defer_fks"] = o.DeferFks,
         };
@@ -66,7 +97,7 @@ public static class Pipeline
             }
             else
             {
-                var records = new Timed<TransformRecord>(m.Transform(limit: o.Limit));
+                var records = new Timed<TransformRecord>(m.Transform(limit: o.Limit, windows: windows));
                 load = o.Strategy switch
                 {
                     "naive" => Loaders.Naive(ds, m, records),
@@ -91,7 +122,7 @@ public static class Pipeline
             {
                 var t = Stopwatch.StartNew();
                 using var con = ds.OpenConnection();
-                stats["merge"] = Merge.All(con, m, runId, o.DeferFks, o.DryRun, o.ReviewDir, log);
+                stats["merge"] = Merge.All(con, m, runId, o.DeferFks, o.DryRun, o.ReviewDir, log, sync);
                 stats["merge_s"] = Math.Round(t.Elapsed.TotalSeconds, 2);
             }
             stats["total_s"] = Math.Round(total.Elapsed.TotalSeconds, 2);
@@ -105,6 +136,13 @@ public static class Pipeline
             throw;
         }
         return stats;
+    }
+
+    /// <summary>Total order on (version, rec_id), matching SQLite's row-value comparison of TEXT (binary collation) then INTEGER.</summary>
+    private static int Compare((string Version, long RecId) a, (string Version, long RecId) b)
+    {
+        var c = string.CompareOrdinal(a.Version, b.Version);
+        return c != 0 ? c : a.RecId.CompareTo(b.RecId);
     }
 
     private static void Finish(NpgsqlDataSource ds, long runId, string status, Dictionary<string, object?> stats)

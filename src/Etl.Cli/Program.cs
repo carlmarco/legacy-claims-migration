@@ -11,6 +11,7 @@ return args.FirstOrDefault() switch
     "transform" => Transform(opts),
     "discover" => Discover(opts),
     "migrate" => Migrate(opts),
+    "sync" => Migrate(opts, incremental: true),
     _ => Usage(),
 };
 
@@ -20,6 +21,7 @@ static int Usage()
         usage:
           etl transform --mapping <path> [--tables A,B] [--limit N] [--checksum]
           etl discover  --source <legacy.sqlite> [--out report.md]
+          etl sync      --mapping <path> [--strategy batched] [--dry-run]   (incremental: only rows since the last committed sync)
           etl migrate   --mapping <path> --strategy naive|executemany|batched|parallel
                         [--workers N] [--writers K] [--limit N] [--fresh] [--no-merge] [--dry-run] [--defer-fks] [--out stats.json]
         """);
@@ -71,7 +73,7 @@ static int Transform(Dictionary<string, string?> o)
     return 0;
 }
 
-static int Migrate(Dictionary<string, string?> o)
+static int Migrate(Dictionary<string, string?> o, bool incremental = false)
 {
     var options = new Etl.Core.RunOptions(
         MappingPath: o.GetValueOrDefault("--mapping") ?? throw new ArgumentException("--mapping is required"),
@@ -82,7 +84,8 @@ static int Migrate(Dictionary<string, string?> o)
         Fresh: o.ContainsKey("--fresh"),
         Workers: o.GetValueOrDefault("--workers") is { } w ? int.Parse(w) : Environment.ProcessorCount / 2,
         Writers: o.GetValueOrDefault("--writers") is { } k ? int.Parse(k) : 2,
-        DeferFks: o.ContainsKey("--defer-fks"));
+        DeferFks: o.ContainsKey("--defer-fks"),
+        Incremental: incremental);
     // Structured logs: JSON lines on stderr (stdout stays clean for the stats JSON). Message templates keep
     // {Entity}, {Inserted}... as queryable fields instead of flattening them into text.
     using var loggerFactory = LoggerFactory.Create(b => b

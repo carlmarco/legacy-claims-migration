@@ -17,15 +17,21 @@ namespace Etl.Core;
 ///   4. child sets    follow_parent children the surviving parent no longer has are deleted
 /// A re-run over unchanged data writes zero rows. Ported SQL-for-SQL from src/etl/merge.py.
 /// </summary>
+/// <summary>What an incremental sync adds to a merge: tombstones to delete and the watermarks to commit with it.</summary>
+public sealed record SyncPlan(IReadOnlyList<Tombstone> Tombstones, IReadOnlyDictionary<string, (string Version, long RecId)> NewWatermarks);
+
 public static class Merge
 {
+    /// <summary>ETL_MERGE_TUNING=0 disables the two merge tunings below, for paired before/after measurements.</summary>
+    private static bool Tuned => Environment.GetEnvironmentVariable("ETL_MERGE_TUNING") != "0";
     private static string Ids(IEnumerable<string> cols, string? alias = null) =>
         string.Join(", ", cols.Select(c => alias is null ? Pg.Q(c) : $"{alias}.{Pg.Q(c)}"));
 
     private static long Count(NpgsqlConnection con, NpgsqlTransaction tx, string table) =>
         Pg.Scalar<long>(con, $"SELECT count(*) FROM {table}", tx);
 
-    public static Dictionary<string, object?> Entity(NpgsqlConnection con, NpgsqlTransaction tx, MappingSpec m, string entity, long runId)
+    public static Dictionary<string, object?> Entity(NpgsqlConnection con, NpgsqlTransaction tx, MappingSpec m, string entity, long runId,
+                                                     bool versionGuard = false)
     {
         var e = m.Entities[entity];
         var target = Pg.Q(m.TargetSchema, entity);
@@ -65,6 +71,9 @@ public static class Merge
             Pg.Exec(con, $"CREATE TEMP TABLE {surv} AS SELECT DISTINCT ON ({key}) {Select(null)} " +
                          $"FROM {stage} ORDER BY {key}, {order}, _src_rec_id DESC", tx);
         }
+        // Autovacuum never analyzes temp tables: without stats the planner guesses their size and tends to pick full
+        // scans of the (large) target for the orphan check and child delete, even for a small sync delta.
+        if (Tuned) Pg.Exec(con, $"ANALYZE {surv}", tx);
         var survivors = Count(con, tx, surv);
         stats["survivors"] = survivors;
         stats["duplicates_resolved"] = (long)stats["staged"]! - survivors;
@@ -94,9 +103,19 @@ public static class Merge
         var setCols = e.Output.Where(c => !e.Key.Contains(c)).ToList();
         var distinct = dataCols.Count == 0 ? "false"
             : $"({Ids(dataCols, "t")}) IS DISTINCT FROM ({Ids(dataCols, "EXCLUDED")})";
+        // Incremental sync: never let an older version overwrite a newer one (a re-read or late row can't regress data).
+        if (versionGuard) distinct += " AND (EXCLUDED._version, EXCLUDED._src_rec_id) >= (t._version, t._src_rec_id)";
+        // Unchanged rows are filtered out BEFORE the upsert: ON CONFLICT DO UPDATE ... WHERE false still locks every
+        // conflicting row (stamping xmax, dirtying the page, writing WAL), so an "idempotent" no-op re-run otherwise
+        // writes to every row it touches. The anti-join is a read; only new or changed rows reach ON CONFLICT.
+        var unchanged = dataCols.Count == 0
+            ? $"EXISTS (SELECT 1 FROM {target} u WHERE {string.Join(" AND ", e.Key.Select(k => $"u.{Pg.Q(k)} = s.{Pg.Q(k)}"))})"
+            : $"EXISTS (SELECT 1 FROM {target} u WHERE {string.Join(" AND ", e.Key.Select(k => $"u.{Pg.Q(k)} = s.{Pg.Q(k)}"))} " +
+              $"AND ({Ids(dataCols, "u")}) IS NOT DISTINCT FROM ({Ids(dataCols, "s")}))";
+        var source = Tuned ? $"{surv} s WHERE NOT {unchanged}" : surv;
         using (var cmd = new NpgsqlCommand($"""
             WITH w AS (
-                INSERT INTO {target} AS t ({Ids(e.Output)}) SELECT {Ids(e.Output)} FROM {surv}
+                INSERT INTO {target} AS t ({Ids(e.Output)}) SELECT {Ids(e.Output)} FROM {source}
                 ON CONFLICT ({key}) DO UPDATE SET {string.Join(", ", setCols.Select(c => $"{Pg.Q(c)} = EXCLUDED.{Pg.Q(c)}"))}
                 WHERE {distinct}
                 RETURNING (xmax = 0) AS inserted)
@@ -128,6 +147,47 @@ public static class Merge
         return stats;
     }
 
+    /// <summary>
+    /// Deletes for soft-deleted source rows (children follow via ON DELETE CASCADE), then the new watermarks, in the
+    /// merge's transaction: either the data and the watermark both commit, or neither does.
+    /// </summary>
+    private static Dictionary<string, object?> ApplySync(NpgsqlConnection con, NpgsqlTransaction tx, MappingSpec m, long runId, SyncPlan sync)
+    {
+        var deleted = new Dictionary<string, long>();
+        foreach (var entity in m.LoadOrder().Reverse())   // children before parents
+        {
+            var stones = sync.Tombstones.Where(t => t.Entity == entity).ToList();
+            if (stones.Count == 0) continue;
+            var e = m.Entities[entity];
+            var del = Pg.Q($"del__{entity}");
+            Pg.Exec(con, $"DROP TABLE IF EXISTS {del}", tx);
+            Pg.Exec(con, $"CREATE TEMP TABLE {del} AS SELECT {Ids(e.Key)}, _version FROM {Pg.Q(m.TargetSchema, entity)} WITH NO DATA", tx);
+            var cols = PgColumn.For(con, m.TargetSchema, entity, [.. e.Key, "_version"]);
+            using (var w = con.BeginBinaryImport($"COPY {del} ({Ids([.. e.Key, "_version"])}) FROM STDIN (FORMAT BINARY)"))
+            {
+                foreach (var t in stones)
+                {
+                    w.StartRow();
+                    object?[] row = [.. t.Key, t.Version];
+                    for (var i = 0; i < cols.Count; i++)
+                        if (row[i] is null) w.WriteNull(); else w.Write(cols[i].Coerce(row[i]!), cols[i].DbType);
+                }
+                w.Complete();
+            }
+            var on = string.Join(" AND ", e.Key.Select(k => $"t.{Pg.Q(k)} = d.{Pg.Q(k)}"));
+            deleted[entity] = Pg.Exec(con, $"DELETE FROM {Pg.Q(m.TargetSchema, entity)} t USING {del} d WHERE {on} AND d._version >= t._version", tx);
+            Pg.Exec(con, $"DROP TABLE {del}", tx);
+        }
+        foreach (var (table, mark) in sync.NewWatermarks)
+            Pg.Exec(con, """
+                INSERT INTO etl.sync_watermark (dataset, src_table, last_version, last_rec_id, run_id)
+                VALUES ($1, $2, $3, $4, $5)
+                ON CONFLICT (dataset, src_table) DO UPDATE
+                SET last_version = EXCLUDED.last_version, last_rec_id = EXCLUDED.last_rec_id, run_id = EXCLUDED.run_id, updated_at = now()
+                """, tx, m.Name, table, mark.Version, mark.RecId, runId);
+        return new Dictionary<string, object?> { ["tombstones"] = sync.Tombstones.Count, ["deleted"] = deleted, ["watermarks"] = sync.NewWatermarks.Count };
+    }
+
     /// <summary>Drop the target's FK constraints, returning (table, name, definition) to restore them.</summary>
     public static List<(string Table, string Name, string Definition)> DropFks(NpgsqlConnection con, NpgsqlTransaction tx, MappingSpec m)
     {
@@ -156,7 +216,7 @@ public static class Merge
 
     /// <summary>Merge every entity in one transaction. Dry run = the same path ending in ROLLBACK (D19).</summary>
     public static Dictionary<string, object?> All(NpgsqlConnection con, MappingSpec m, long runId, bool deferFks, bool dryRun,
-                                                  string? reviewDir = null, ILogger? log = null)
+                                                  string? reviewDir = null, ILogger? log = null, SyncPlan? sync = null)
     {
         log ??= NullLogger.Instance;
         using var tx = con.BeginTransaction();
@@ -174,11 +234,17 @@ public static class Merge
         foreach (var entity in m.LoadOrder())
         {
             var sw = Stopwatch.StartNew();
-            var s = Entity(con, tx, m, entity, runId);
+            var s = Entity(con, tx, m, entity, runId, versionGuard: sync is not null);
             s["seconds"] = Math.Round(sw.Elapsed.TotalSeconds, 2);
             result[entity] = s;
             log.LogInformation("Merged {Entity}: {Staged} staged, {Inserted} inserted, {Updated} updated, {Orphans} orphans in {Seconds}s",
                                entity, s["staged"], s["inserted"], s["updated"], s["orphans"], s["seconds"]);
+        }
+        if (sync is not null)
+        {
+            result["_sync"] = ApplySync(con, tx, m, runId, sync);
+            log.LogInformation("Sync: {Tombstones} tombstones, {Deleted} target rows deleted, watermarks {Watermarks}",
+                               sync.Tombstones.Count, ((Dictionary<string, object?>)result["_sync"]!)["deleted"], sync.NewWatermarks);
         }
         if (fks.Count > 0)
         {

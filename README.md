@@ -69,8 +69,28 @@ Profiles an unfamiliar database in one streaming pass. It reports declared vs st
 ### Length validation
 String limits are read from the target DDL (`varchar(n)`/`char(n)`). A value that doesn't fit quarantines its row with reason `TOO_LONG` before load, never truncated. On the real data: 0 violations, and parity unchanged.
 
-Next: staging, load strategies (including binary COPY and a bounded `Channel<T>` producer/consumer), and the merge in C#. Then parity against the same oracle.
+### Migration, validated end to end (C#)
+`etl migrate --strategy batched --fresh` with the C# engine: 9,527,947 rows staged and merged in 231 s. The **Python** validator then checked it against the **Python-built** oracle: 8/8 table checksums match, the full keyed diff is 0 missing / 0 extra / 0 differing, 0 FK orphans, and the per-defect scores are identical to the Python engine's on all 20 defect types. Strategies: `naive` (prepared INSERT per row), `executemany` (NpgsqlBatch), `batched` (binary COPY with per-column typed writers), and `parallel` (N transform workers → bounded `Channel<T>` → K COPY writers, with backpressure wait measured).
 
+### Incremental sync (`etl sync`)
+Per legacy table, a `(version, rec_id)` watermark of the last *committed* sync. Each run extracts only `(watermark, high mark]`. Soft-deleted rows become tombstones that delete their target row (children cascade). An upsert version guard prevents regressions. The watermark commits in the merge's transaction.
+
+| Sync over the loaded 9.26M-row target | Rows extracted | Target rows written | Time |
+|---|---:|---:|---:|
+| First sync (no watermark yet) | 9,527,947 | 0 | 661 s |
+| No changes since last sync | 0 | 0 | **0.63 s** |
+| Delta since 2010-12-01 | 160,934 | 0 | 15–40 s (see below) |
+
+**A "0 rows written" re-run was still writing.** `ON CONFLICT DO UPDATE … WHERE false` locks every conflicting row, and each lock is WAL-logged. Filtering unchanged rows out *before* the upsert, plus `ANALYZE` on the merge's temp tables (autovacuum never analyzes them), measured over 3 paired runs on the same delta:
+
+| | Untuned | Tuned |
+|---|---:|---:|
+| WAL written per no-op delta sync | 554 MB (3/3 runs) | **1 MB** (3/3 runs) |
+| Merge time | 36–42 s | 15–66 s (median 27 s) |
+
+The WAL result is deterministic. The time result is noisy: the 66 s tuned run also had its pure-CPU transform slow down 2.3×, which indicates machine contention, not the change.
+
+Next: PowerShell scripts (written, not yet run), T-SQL notes ([docs/TSQL_NOTES.md](docs/TSQL_NOTES.md)), clean benchmarks on dedicated hardware.
 ## Load strategy benchmark (25% subset → 9,527,947 staged rows → 9,255,375 target rows)
 
 ```bash

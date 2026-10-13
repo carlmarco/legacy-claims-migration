@@ -28,6 +28,12 @@ public sealed class CompiledSource(string entity, string table, IReadOnlyList<Co
     public List<string> Output { get; set; } = output;
 }
 
+/// <summary>A sync window per legacy table: rows with (version, rec_id) in (From, To]. From = null means "from the start".</summary>
+public sealed record SyncWindow((string Version, long RecId)? From, (string Version, long RecId) To);
+
+/// <summary>A soft-deleted legacy row's target key: the sync deletes the target row it stood for.</summary>
+public sealed record Tombstone(string Entity, object?[] Key, string Version);
+
 public sealed record Entity(string Name, IReadOnlyList<string> Key, IReadOnlyDictionary<string, object?> Survivorship,
                             IReadOnlyDictionary<string, IReadOnlyList<string>> References, IReadOnlyList<string> Output);
 
@@ -358,20 +364,78 @@ public sealed class MappingSpec
         return (long)cmd.ExecuteScalar()!;
     }
 
-    /// <summary>Stream every record for the given legacy tables (default: all), optionally one REC_ID range.</summary>
-    public IEnumerable<TransformRecord> Transform(IEnumerable<string>? tables = null, (long Lo, long Hi)? recRange = null, long? limit = null)
+    /// <summary>The newest (version, rec_id) in a legacy table right now: the upper bound of a sync window.</summary>
+    public (string Version, long RecId)? HighMark(string table)
+    {
+        using var con = OpenSource();
+        using var cmd = con.CreateCommand();
+        cmd.CommandText = $"SELECT {VersionColumn}, {RecIdColumn} FROM {table} ORDER BY {VersionColumn} DESC, {RecIdColumn} DESC LIMIT 1";
+        using var r = cmd.ExecuteReader();
+        return r.Read() ? (System.Convert.ToString(r.GetValue(0), System.Globalization.CultureInfo.InvariantCulture)!, r.GetInt64(1)) : null;
+    }
+
+    private void AddWindow(SqliteCommand cmd, List<string> where, SyncWindow w)
+    {
+        // Row-value comparison: (version, rec_id) is a total order, so equal timestamps at the boundary can't be skipped.
+        if (w.From is { } f)
+        {
+            where.Add($"({VersionColumn}, {RecIdColumn}) > ($fv, $fr)");
+            cmd.Parameters.AddWithValue("$fv", f.Version);
+            cmd.Parameters.AddWithValue("$fr", f.RecId);
+        }
+        where.Add($"({VersionColumn}, {RecIdColumn}) <= ($tv, $tr)");
+        cmd.Parameters.AddWithValue("$tv", w.To.Version);
+        cmd.Parameters.AddWithValue("$tr", w.To.RecId);
+    }
+
+    /// <summary>
+    /// Target keys of rows soft-deleted inside the window: each one deletes the target row it stood for
+    /// (if that row isn't newer). Rows whose keys don't convert are ignored: there's nothing to delete.
+    /// </summary>
+    public IEnumerable<Tombstone> Tombstones(string table, SyncWindow window)
+    {
+        if (Exclude is null) yield break;
+        using var con = OpenSource();
+        using var cmd = con.CreateCommand();
+        var where = new List<string> { $"coalesce(({Exclude}), 0)" };
+        AddWindow(cmd, where, window);
+        cmd.CommandText = $"SELECT * FROM {table} WHERE {string.Join(" AND ", where)} ORDER BY {RecIdColumn}";
+        using var reader = cmd.ExecuteReader();
+        var names = Enumerable.Range(0, reader.FieldCount).Select(reader.GetName).ToArray();
+        var flat = ByTable[table].Where(s => s.Unpivot is null).ToList();
+        while (reader.Read())
+        {
+            var row = new Dictionary<string, object?>(names.Length, StringComparer.OrdinalIgnoreCase);
+            for (var i = 0; i < names.Length; i++) row[names[i]] = reader.IsDBNull(i) ? null : reader.GetValue(i);
+            foreach (var src in flat)
+                foreach (var rec in TransformRow(src, row).Where(r => r.IsRow))
+                {
+                    var e = Entities[src.Entity];
+                    var key = e.Key.Select(k => rec.Values![e.Output.ToList().IndexOf(k)]).ToArray();
+                    yield return new Tombstone(src.Entity, key, System.Convert.ToString(row[VersionColumn], System.Globalization.CultureInfo.InvariantCulture)!);
+                }
+        }
+    }
+
+    /// <summary>Stream every record for the given legacy tables (default: all), optionally one REC_ID range or sync window.</summary>
+    public IEnumerable<TransformRecord> Transform(IEnumerable<string>? tables = null, (long Lo, long Hi)? recRange = null, long? limit = null,
+                                                 IReadOnlyDictionary<string, SyncWindow>? windows = null)
     {
         using var con = OpenSource();
         foreach (var table in tables ?? ByTable.Keys)
         {
+            using var cmd = con.CreateCommand();
             var where = new List<string>();
             // coalesce: a NULL flag must not exclude the row (NOT NULL is NULL in SQL).
             if (Exclude is not null) where.Add($"NOT coalesce(({Exclude}), 0)");
             if (recRange is { } r) where.Add($"{RecIdColumn} BETWEEN {r.Lo} AND {r.Hi}");
-            var sql = $"SELECT * FROM {table}" + (where.Count > 0 ? " WHERE " + string.Join(" AND ", where) : "")
+            if (windows is not null)
+            {
+                if (!windows.TryGetValue(table, out var w)) continue;   // nothing new in this table
+                AddWindow(cmd, where, w);
+            }
+            cmd.CommandText = $"SELECT * FROM {table}" + (where.Count > 0 ? " WHERE " + string.Join(" AND ", where) : "")
                       + $" ORDER BY {RecIdColumn}" + (limit is { } l ? $" LIMIT {l}" : "");
-            using var cmd = con.CreateCommand();
-            cmd.CommandText = sql;
             using var reader = cmd.ExecuteReader();
             var sources = ByTable[table];
             var names = Enumerable.Range(0, reader.FieldCount).Select(reader.GetName).ToArray();

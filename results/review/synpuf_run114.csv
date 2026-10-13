@@ -1,0 +1,134 @@
+entity,src_table,src_rec_id,reason,detail
+claim,CAR_CLM,3403,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,3404,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,213645,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,213646,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,227022,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,227023,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,227024,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,227025,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,283511,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,283514,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,283516,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,735686,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,735687,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,735688,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,735689,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,735690,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,735691,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,735693,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,899975,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,954402,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,1055218,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,1055220,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,1055221,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,1055222,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,1105161,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,1185423,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,1185424,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,1185425,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CAR_CLM,1185426,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,46164,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,58691,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,62082,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,66101,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,135971,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,195562,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim,CLM_HDR_ALL,215816,ORPHAN_FK,no beneficiary for (beneficiary_id)
+claim_diagnosis,CAR_CLM,3403,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,3404,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,213645,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,213646,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,227022,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,227023,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,227024,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,227025,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,283511,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,283514,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,283516,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,735686,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,735687,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,735688,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,735689,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,735690,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,735691,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,735693,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,899975,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,954402,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,1055218,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,1055220,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,1055221,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,1055222,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,1105161,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,1185423,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,1185424,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,1185425,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CAR_CLM,1185426,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,46164,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,62082,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,66101,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,135971,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,195562,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_diagnosis,CLM_HDR_ALL,215816,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_hcpcs,CLM_HDR_ALL,46164,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_hcpcs,CLM_HDR_ALL,58691,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_hcpcs,CLM_HDR_ALL,62082,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_hcpcs,CLM_HDR_ALL,66101,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_hcpcs,CLM_HDR_ALL,135971,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,3403,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,3404,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,213645,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,213646,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,227022,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,227023,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,227024,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,227025,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,283511,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,283514,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,283516,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,735686,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,735687,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,735688,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,735689,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,735690,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,735691,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,735693,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,899975,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,954402,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,1055218,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,1055220,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,1055221,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,1055222,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,1105161,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,1185423,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,1185424,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,1185425,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+claim_line,CAR_CLM,1185426,ORPHAN_FK,"no claim for (claim_type, clm_id, segment)"
+drug_event,RX_EVNT,296321,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,296322,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,296324,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,296325,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,332357,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,386444,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,386445,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,386446,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,592470,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,701367,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,701368,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,701369,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,815229,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,836385,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,836390,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,836391,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,836392,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,1024576,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,1097848,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,1097849,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,1097850,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,1097851,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,1097852,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,1097853,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,1097854,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,1377212,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,1377214,ORPHAN_FK,no beneficiary for (beneficiary_id)
+drug_event,RX_EVNT,1377216,ORPHAN_FK,no beneficiary for (beneficiary_id)
