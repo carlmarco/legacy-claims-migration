@@ -42,9 +42,9 @@ etl transform --mapping datasets/synpuf/mapping.yaml   # counts + quarantine rea
 | claim_procedure | 24,418 |
 | drug_event | 1,395,271 |
 
-2,880,698 legacy rows become 9,527,947 target rows in 325 s (**29k rows/s, one process, transform only**). 14,057 soft-deleted rows are excluded and 0 rows are quarantined for bad values.
+2,880,698 live legacy rows (2,894,755 minus 14,057 soft-deleted rows, which are excluded) become 9,527,947 transformed rows in 325 s (**29k rows/s, one process, transform only**); 0 rows are quarantined for bad values. Deduplication in the merge then leaves 9,255,375 target rows.
 
-## C# / .NET 10 engine (port in progress, see DECISIONS D27–D28)
+## C# / .NET 10 engine (see DECISIONS D27–D28)
 
 ```bash
 dotnet run -c Release --project src/Etl.Cli -- transform --mapping datasets/synpuf/mapping.yaml --checksum
@@ -69,22 +69,25 @@ String limits are read from the target DDL (`varchar(n)`/`char(n)`). A value tha
 ### Incremental sync (`etl sync`)
 Per legacy table, a `(version, rec_id)` watermark of the last *committed* sync. Each run extracts only `(watermark, high mark]`. Soft-deleted rows become tombstones that delete their target row (children cascade). An upsert version guard prevents regressions. The watermark commits in the merge's transaction.
 
-| Sync over the loaded 9.26M-row target | Rows extracted | Target rows written | Time |
-|---|---:|---:|---:|
-| First sync (no watermark yet) | 9,527,947 | 0 | 661 s |
-| No changes since last sync | 0 | 0 | **0.63 s** |
-| Delta since 2010-12-01 | 160,934 | 0 | 15–40 s (see below) |
+Re-measured 2026-10-14 on a quiet machine (load average ≤ 3.2 including the run itself; raw results in [`results/sync-m4-2026-10-14/`](../results/sync-m4-2026-10-14/)). Times are in-process pipeline time; .NET process startup is excluded.
 
-**A "0 rows written" re-run was still writing.** `ON CONFLICT DO UPDATE … WHERE false` locks every conflicting row, and each lock is WAL-logged. Filtering unchanged rows out *before* the upsert, plus `ANALYZE` on the merge's temp tables (autovacuum never analyzes them), measured over 3 paired runs on the same delta:
+| Sync over a freshly migrated 9.26M-row target | Rows extracted | Target rows written | Time |
+|---|---:|---:|---:|
+| First sync (no watermark yet) | 9,527,947 | 0 | 132 s (1 run) |
+| No changes since last sync | 0 | 0 | **0.09 s** (3/3 runs) |
+
+The first sync re-reads every legacy row once to establish the watermark. Every later sync reads only rows past it.
+
+**A "0 rows written" re-run was still writing.** `ON CONFLICT DO UPDATE … WHERE false` locks every conflicting row, and each lock is WAL-logged. Filtering unchanged rows out *before* the upsert, plus `ANALYZE` on the merge's temp tables (autovacuum never analyzes them), measured over 3 paired runs on the same 160,934-row delta (legacy rows modified since 2010-12-01):
 
 | | Untuned | Tuned |
 |---|---:|---:|
 | WAL written per no-op delta sync | 554 MB (3/3 runs) | **1 MB** (3/3 runs) |
 | Merge time | 36–42 s | 15–66 s (median 27 s) |
 
-The WAL result is deterministic. **The time results in this section are not trustworthy:** an unrelated CPU-heavy workload was running on the same machine (load average ~23 on 10 cores; the pure-CPU transform slowed up to 3.5×). Clean, repeated measurements on a quiet, dedicated machine are pending (D33).
+The WAL result is deterministic. **The merge times in this table are not trustworthy:** an unrelated CPU-heavy workload was running on the same machine (load average ~23 on 10 cores; the pure-CPU transform slowed up to 3.5×). Whether the tuning changes merge *time* has not yet been re-measured on a quiet machine (D33). The sync table above was re-measured cleanly.
 
-Next: PowerShell scripts ([`scripts/`](../scripts/), run on PowerShell 7.7; not yet on Windows), T-SQL notes ([docs/TSQL_NOTES.md](TSQL_NOTES.md)), clean benchmarks on dedicated hardware.
+PowerShell scripts ([`scripts/`](../scripts/)) are tested on PowerShell 7.7 on macOS, not yet on Windows. SQL Server equivalents: [docs/TSQL_NOTES.md](TSQL_NOTES.md) (not executed against SQL Server).
 ## C# engine benchmark (2026-10-13, repeated trials, every run validated)
 
 Apple M4 (10 cores, 16 GB), PostgreSQL 16 in Docker Desktop, `max_wal_size = 4GB`, durability at defaults. Each run started from an empty target and passed validation against the oracle (8/8 checksums, 0 FK orphans) before it was counted. Raw results: [`results/bench/dotnet-m4-2026-10-13/`](../results/bench/dotnet-m4-2026-10-13/).
@@ -149,7 +152,7 @@ Memory stays flat regardless of input size: about 120 MB for single-process batc
 
 ## Validation (`etl validate`, `python -m datasets.synpuf.score`)
 
-The expected target is built **independently** from the clean CMS files ([`oracle.py`](../datasets/synpuf/oracle.py): separate, deliberately simple parsing, none of the engine's converters) into a sibling schema with the same DDL. The checks:
+The expected target is built **separately**, from the clean CMS files ([`oracle.py`](../datasets/synpuf/oracle.py): separate, deliberately simple parsing, none of the engine's converters) into a sibling schema with the same DDL. The checks:
 
 | Check | Result |
 |---|---|

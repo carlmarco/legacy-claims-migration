@@ -15,14 +15,16 @@ Real migrations fail quietly: a date format nobody noticed, codes that lost thei
 
 | | |
 |---|---|
-| **Scale** | 2,894,755 legacy rows → **9,255,375** rows in a normalized 8-table schema |
-| **Correctness** | Matches an independently built expected result on **every row**: 8/8 tables checksum-identical, 0 differing rows, 0 broken references |
+| **Scale** | 2,894,755 legacy rows (14,057 soft-deleted, so excluded) → 9,527,947 transformed rows → **9,255,375** rows after deduplication, in a normalized 8-table schema |
+| **Correctness** | Matches the expected result on **every row**: 8/8 tables checksum-identical, 0 differing rows, 0 broken references |
 | **Data quality** | 3,967,754 injected defects across 20 types; **19 of 20 types handled 100%**. The 20th (medical codes stored as integers) is 99.0% correct, and uncertain values are *labeled*, never silently guessed |
 | **Performance** | Full 9.3M-row migration in **about 4.5 minutes** (C#, 4 parallel workers, validated). Bulk loading is **85× faster** than row-by-row, and the C# transform is **4.6× faster** than the Python reference, with identical output |
-| **Incremental sync** | Re-syncing 9.26M rows with no changes takes **0.6 s**. A fix to how unchanged rows are handled cut database write volume by **99.8%** |
-| **Quality bar** | 178 automated tests (65 xUnit, 113 pytest) running against real PostgreSQL in CI. 33 design decisions logged with the alternatives rejected |
+| **Incremental sync** | Re-syncing 9.26M rows with no changes takes **0.09 s** (3/3 runs). A fix to how unchanged rows are handled cut database write volume by **99.8%** |
+| **Quality bar** | 179 automated tests (66 xUnit, 113 pytest) running against real PostgreSQL in CI. 33 design decisions logged with the alternatives rejected |
 
 *Measured on an Apple M4 laptop (10 cores) with PostgreSQL 16 in Docker; every benchmark run is validated against the oracle before it counts. Trials, ranges and caveats: [docs/RESULTS.md](docs/RESULTS.md).*
+
+*How the expected result is built:* the original, undamaged CMS files are converted straight into the target schema by a separate, deliberately simple script ([`oracle.py`](datasets/synpuf/oracle.py)) that shares no code with the engine; the engine only ever reads the damaged copy. The damage generator, engine, oracle and defect scorer are all written for this project, so the defect scores measure repair of known, injected defects, not of unknown real-world ones.
 
 ## How it works
 
@@ -32,11 +34,11 @@ Real migrations fail quietly: a date format nobody noticed, codes that lost thei
   20 defect types)               anything unparseable → quarantine with a reason (never coerced to NULL)
                  ──► LOAD       naive | batched | binary COPY | parallel producer/consumer with backpressure
                  ──► MERGE      one transaction: dedupe (newest wins) → orphan check → change-guarded upsert
-                 ──► VALIDATE   vs an expected result built independently: checksums, row-level diff, FK checks
+                 ──► VALIDATE   vs an expected result built from the clean source: checksums, row-level diff, FK checks
                  ──► SYNC       afterwards: watermark-based incremental updates and deletes
 ```
 
-The engine contains **no dataset-specific code**. The Medicare dataset is a 230-line [YAML mapping](datasets/synpuf/mapping.yaml), and a second, unrelated test dataset (a dental practice system) runs through the same engine unchanged.
+The engine contains **no dataset-specific code**. The Medicare dataset is a 230-line [YAML mapping](datasets/synpuf/mapping.yaml), and a second, unrelated test dataset (a small synthetic dental-practice schema, [`tests/fixtures/dental/`](tests/fixtures/dental/)) runs through the same engine unchanged in the test suite.
 
 ## Try it
 
@@ -47,7 +49,7 @@ docker compose up -d                                     # PostgreSQL 16
 ./datasets/synpuf/download.sh                            # CMS synthetic Medicare data + ICD-9 code lists (~380 MB)
 python -m venv .venv && .venv/bin/pip install -e ".[dev]"
 .venv/bin/python -m datasets.synpuf.legacyize            # build the damaged "legacy" database (~3 min)
-.venv/bin/python -m datasets.synpuf.oracle               # build the expected result, independently (~3 min)
+.venv/bin/python -m datasets.synpuf.oracle               # build the expected result from the clean data (~3 min)
 
 dotnet run -c Release --project src/Etl.Cli -- discover --source data/legacy.sqlite --out discovery.md
 dotnet run -c Release --project src/Etl.Cli -- migrate  --mapping datasets/synpuf/mapping.yaml --strategy parallel --fresh
@@ -61,7 +63,7 @@ Every command supports a dry run (`--dry-run`): the full migration runs and repo
 - **Never guess.** When a legacy system stored medical codes as integers, `038.9` (septicemia) and `389` (hearing loss) became indistinguishable. Each code keeps its raw value, its resolved value, and *how* it was resolved, so uncertainty is queryable rather than hidden. ([D13](DECISIONS.md), [D24](DECISIONS.md))
 - **A bug that only row-level validation could find.** 3 stale rows out of 2.3M survived because a filter ran *before* deduplication. Fixed by making child rows follow their parent's surviving version; regression tests are verified to fail without the fix. ([D22](DECISIONS.md))
 - **"Zero rows written" was still writing 554 MB.** Postgres's `INSERT … ON CONFLICT DO UPDATE` locks every row it touches, even when nothing changes. Filtering unchanged rows out first cut that to 1 MB. ([D33](DECISIONS.md))
-- **Ported Python → C# with proof, not hope.** Both engines checksum every transformed value. They agree on all 9,527,947 rows, and the C# output passes the Python validator. ([D30](DECISIONS.md))
+- **Ported Python → C# with proof, not hope.** Both engines checksum every transformed value. They agree on all 9,527,947 transformed rows, and the C# output passes the Python validator. ([D30](DECISIONS.md))
 - **Reproducible by construction.** Every random decision in the data generator is keyed on the record, not on a shared random stream, so two builds are byte-identical regardless of order or parallelism. ([D12](DECISIONS.md))
 - **Measured honestly.** Paired before/after runs, rejected hypotheses kept in the log, and a machine-contention problem disclosed rather than averaged away. ([D25–D26](DECISIONS.md), [D33](DECISIONS.md))
 

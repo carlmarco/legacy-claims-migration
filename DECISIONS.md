@@ -185,7 +185,7 @@ Candidates are the received digits plus left-padded variants, up to the code sys
 
 **Rejected:** a "naive with a transaction" variant (`executemany` already covers removing the commit cost); binary COPY (exact-type matching across smallint/int adds fragility for a gain that's second-order next to parallelizing the transform).
 
-### D21 · Validation compares against an independent oracle, entirely in SQL
+### D21 · Validation compares against a separately built oracle, entirely in SQL
 **Decision:** `datasets/synpuf/oracle.py` builds the expected target from the **clean zips** into schema `synpuf_oracle`, with the same DDL as the target. It deliberately reuses none of the engine's converters: dates are parsed with slicing, codes are taken verbatim. The generic validator (`src/etl/validate.py`) then runs:
 - Per-entity counts and quarantine reasons.
 - FK integrity in the target.
@@ -363,7 +363,7 @@ No optimization is claimed until measurements are repeatable.
 - The new watermark is written in the merge transaction.
 
 **Tests (dental):** first sync, no-change sync (0 extracted), a delta with update + insert + soft-delete (4 rows extracted, cascade verified), a dry run that doesn't advance the watermark, and the equal-timestamp boundary.
-**At scale:** no-change sync 0.63 s; a 161k-row delta in 15–40 s; the first sync over an already-loaded target took 661 s and wrote 0 rows.
+**At scale:** no-change sync 0.63 s; a 161k-row delta in 15–40 s; the first sync over an already-loaded target took 661 s and wrote 0 rows. *(Amended: these times were taken during the contamination described in D33. Re-measured on a quiet machine: no-change sync 0.09 s in 3/3 runs, first sync 132 s.)*
 **Known limitations:**
 - Rows arriving *later* with a version older than the watermark are missed (fix: a lookback window).
 - Hard deletes the source never flags need a periodic full-key reconciliation (not built).
