@@ -39,6 +39,9 @@ public static class Staging
         Pg.Exec(con, $"DROP SCHEMA IF EXISTS {Pg.Q(m.TargetSchema)} CASCADE");
         if (Pg.Scalar<bool>(con, "SELECT to_regclass('etl.quarantine') IS NOT NULL"))
             Pg.Exec(con, "DELETE FROM etl.quarantine WHERE dataset = $1", null, m.Name);
+        // The watermark describes the target just dropped; kept, it would make the next sync skip rows the target no longer has.
+        if (Pg.Scalar<bool>(con, "SELECT to_regclass('etl.sync_watermark') IS NOT NULL"))
+            Pg.Exec(con, "DELETE FROM etl.sync_watermark WHERE dataset = $1", null, m.Name);
     }
 
     public static void Reset(NpgsqlConnection con, MappingSpec m)

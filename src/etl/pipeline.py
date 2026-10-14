@@ -57,6 +57,9 @@ def run(mapping_path: str, strategy: str, dry_run: bool = False, limit: int | No
             con.execute(f'DROP SCHEMA IF EXISTS "{m.target_schema}" CASCADE')
             if _has_engine(con):
                 con.execute("DELETE FROM etl.quarantine WHERE dataset = %s", (m.name,))
+            # the watermark describes the target just dropped; kept, the next sync would skip rows the target no longer has
+            if con.execute("SELECT to_regclass('etl.sync_watermark') IS NOT NULL").fetchone()[0]:
+                con.execute("DELETE FROM etl.sync_watermark WHERE dataset = %s", (m.name,))
         stage.ensure_schema(con, m, ENGINE_SQL.read_text())
         stage.reset(con, m)
         run_id = con.execute(

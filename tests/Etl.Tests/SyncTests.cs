@@ -112,6 +112,17 @@ public sealed class SyncTests : IDisposable
     }
 
     [Fact]
+    public void FreshMigrationResetsTheWatermark()
+    {
+        Sync();
+        // A fresh, limited migration leaves rows out; a surviving watermark would tell the next sync they were already loaded.
+        Pipeline.Run(new RunOptions(MappingPath, "batched", Fresh: true, Limit: 1, ReviewDir: null));
+        Assert.Empty(Watermarks());
+        Sync();
+        Assert.Equal(2L, Q("SELECT count(*) FROM dental.appointment").Single()[0]);
+    }
+
+    [Fact]
     public void RowWithTheSameTimestampAsTheWatermarkIsNotSkipped()
     {
         Sync();
